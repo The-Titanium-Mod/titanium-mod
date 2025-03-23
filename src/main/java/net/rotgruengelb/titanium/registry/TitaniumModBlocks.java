@@ -2,7 +2,6 @@ package net.rotgruengelb.titanium.registry;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.GrassBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -15,8 +14,14 @@ import java.util.function.Function;
 
 public class TitaniumModBlocks
 {
+    public static Block CLART = register("clart", Block::new, AbstractBlock.Settings.create()
+            .sounds(BlockSoundGroup.GRAVEL));
+
     public static Block SOD = register("sod", Block::new, AbstractBlock.Settings.create()
             .sounds(BlockSoundGroup.NYLIUM));
+
+    public static Block SOD_BATCH = register("sod_batch", Block::new, AbstractBlock.Settings.create()
+            .sounds(BlockSoundGroup.GRASS));
 
     protected static Block register(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, TitaniumMod.id(name));

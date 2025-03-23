@@ -20,6 +20,9 @@
     ],
     "client": [
       "net.rotgruengelb.titanium.TitaniumModClient"
+    ],
+    "fabric-datagen": [
+      "net.rotgruengelb.titanium.datagen.TitaniumModDataGenerator"
     ]
   },
   "mixins": [
