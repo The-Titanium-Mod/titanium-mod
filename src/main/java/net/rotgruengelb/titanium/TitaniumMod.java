@@ -2,6 +2,8 @@ package net.rotgruengelb.titanium;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
+import net.rotgruengelb.titanium.registry.TitaniumModBlocks;
+import net.rotgruengelb.titanium.registry.TitaniumModItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +18,8 @@ public class TitaniumMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		TitaniumModItems.initialize();
+		TitaniumModBlocks.initialize();
 	}
 
 }
