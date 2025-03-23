@@ -1,10 +1,22 @@
-// 1.21.1	2025-03-23T23:38:28.9241991	Titanium/Model Definitions
-633afd2d8ca5a3c09fa4577a37f7704cd8b14346 assets\titanium\blockstates\clart.json
-1deba9d85c08515dd3e1e89b352bb88f6ce0b314 assets\titanium\models\block\sod_batch.json
+// 1.21.1	2025-03-24T00:07:47.0450384	Titanium/Model Definitions
+8396213ed07d4022bb3fa682549092c013c46d96 assets\titanium\models\block\rotten_sod_batch.json
+4f075dd0434f24e66a0906c5f7638449809d75aa assets\titanium\blockstates\rotten_sod_batch.json
+6bc539e5ed92cc28519900c58960744ab80132bd assets\titanium\models\item\rotten_sod.json
 a56640fcbfbddd886e91071cdc41ee46ff33dd60 assets\titanium\models\item\clart.json
-27e67b1022b837983b34b4e4cdf2dd74b0be2b95 assets\titanium\blockstates\sod_batch.json
-82993553a47eff6ef9f109aa742db0202972b3fd assets\titanium\models\item\sod.json
-d1e8e7e27295198aa9843a59680cd244164cca2b assets\titanium\models\block\sod.json
 98a9f2527d5ebc9a3a7688ac608a942d10aeba18 assets\titanium\models\item\sod_batch.json
+d1e8e7e27295198aa9843a59680cd244164cca2b assets\titanium\models\block\sod.json
 438f7ac067a3f820ee3e6e78cd98d99ba4f50bb2 assets\titanium\blockstates\sod.json
 bf3d8a49586a739d6de16a0c8dc39322a036fec7 assets\titanium\models\block\clart.json
+633afd2d8ca5a3c09fa4577a37f7704cd8b14346 assets\titanium\blockstates\clart.json
+403b88214aefdb6fc436c2b690416c6c2fa432a1 assets\titanium\models\block\veiny_sod.json
+c2590b97b3630cafb700d34e8956d55058e101a7 assets\titanium\models\block\veiny_clart.json
+f3b16bf6751fd43dae0fab6cf1c0a8f5ce1ec306 assets\titanium\models\item\rotten_sod_batch.json
+ba3e46a1b8215997af4ea667968bef75d389ca37 assets\titanium\models\item\veiny_clart.json
+ea10977900bd36db6f59803d09f70ecb98d34294 assets\titanium\blockstates\rotten_sod.json
+1deba9d85c08515dd3e1e89b352bb88f6ce0b314 assets\titanium\models\block\sod_batch.json
+82993553a47eff6ef9f109aa742db0202972b3fd assets\titanium\models\item\sod.json
+27e67b1022b837983b34b4e4cdf2dd74b0be2b95 assets\titanium\blockstates\sod_batch.json
+a8a44b34bf1fc0a7b0c61a799994277b16677bc6 assets\titanium\blockstates\veiny_clart.json
+6bd4d112599f4b472f2ddabddb0c2fe4555d316d assets\titanium\blockstates\veiny_sod.json
+cbff92ff5af476ffd3d26f5bfe0e5631443482f8 assets\titanium\models\item\veiny_sod.json
+d81237efe434aa88d50ec579d5ab2c600805c288 assets\titanium\models\block\rotten_sod.json
