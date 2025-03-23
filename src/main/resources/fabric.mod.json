@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}+${mc_title}",
+  "name": "${name}",
+  "description": "",
+  "authors": [
+    "rotgruengelb"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/The-Titanium-Mod/titanium-mod"
+  },
+  "license": "ARR",
+  "icon": "assets/titanium/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.rotgruengelb.titanium.TitaniumMod"
+    ],
+    "client": [
+      "net.rotgruengelb.titanium.TitaniumModClient"
+    ]
+  },
+  "mixins": [
+    "titanium.mixins.json",
+    {
+      "config": "titanium.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.15",
+    "minecraft": "${mcdep}",
+    "fabric-api": "*"
+  }
+}
