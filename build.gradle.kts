@@ -35,6 +35,8 @@ loom {
             sourceSet(sourceSets["client"])
         }
     }
+
+    accessWidenerPath = file("src/main/resources/titanium.accesswidener")
 }
 
 repositories {
@@ -76,7 +78,9 @@ loom {
 }
 
 fabricApi {
-	configureDataGeneration()
+	configureDataGeneration() {
+	    client = true
+	}
 }
 
 

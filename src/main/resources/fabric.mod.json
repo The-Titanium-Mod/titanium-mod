@@ -14,12 +14,16 @@
   "license": "ARR",
   "icon": "assets/titanium/icon.png",
   "environment": "*",
+  "accessWidener" : "${id}.accesswidener",
   "entrypoints": {
     "main": [
       "net.rotgruengelb.titanium.TitaniumMod"
     ],
     "client": [
       "net.rotgruengelb.titanium.TitaniumModClient"
+    ],
+    "fabric-datagen": [
+      "net.rotgruengelb.titanium.datagen.TitaniumModDataGenerator"
     ]
   },
   "mixins": [
