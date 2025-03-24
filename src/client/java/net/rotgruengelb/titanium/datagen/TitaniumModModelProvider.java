@@ -1,17 +1,10 @@
 package net.rotgruengelb.titanium.datagen;
 
-import com.google.gson.JsonElement;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.*;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.registry.TitaniumModBlocks;
-
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class TitaniumModModelProvider extends FabricModelProvider {
 	public TitaniumModModelProvider(FabricDataOutput output) {
@@ -20,7 +13,8 @@ public class TitaniumModModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator baseGenerator) {
-		TitaniumBlockStateModelGenerator generator = (TitaniumBlockStateModelGenerator) baseGenerator;
+		TitaniumBlockStateModelGenerator generator = new TitaniumBlockStateModelGenerator(baseGenerator);
+
 		generator.registerSimpleCubeAll(TitaniumModBlocks.CLART);
 		generator.registerSimpleCubeAll(TitaniumModBlocks.BRAWN);
 		generator.registerSimpleCubeAll(TitaniumModBlocks.TENDON);
@@ -35,8 +29,9 @@ public class TitaniumModModelProvider extends FabricModelProvider {
 		generator.registerSod(TitaniumModBlocks.ROTTEN_SOD, TitaniumModBlocks.CLART);
 		generator.registerSodBatch(TitaniumModBlocks.ROTTEN_SOD_BATCH, TitaniumModBlocks.ROTTEN_SOD);
 
-		generator.registerLog(TitaniumModBlocks.WILDWOOD_LOG).log(TitaniumModBlocks.WILDWOOD_LOG);
-    }
+		generator.registerLog(TitaniumModBlocks.WILDWOOD_LOG)
+				.log(TitaniumModBlocks.WILDWOOD_LOG);
+	}
 
 	@Override
 	public void generateItemModels(ItemModelGenerator generator) {
@@ -44,8 +39,9 @@ public class TitaniumModModelProvider extends FabricModelProvider {
 	}
 
 	private static class TitaniumBlockStateModelGenerator extends BlockStateModelGenerator {
-		public TitaniumBlockStateModelGenerator(Consumer<BlockStateSupplier> blockStateCollector, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<Item> simpleItemModelExemptionCollector) {
-			super(blockStateCollector, modelCollector, simpleItemModelExemptionCollector);
+
+		public TitaniumBlockStateModelGenerator(BlockStateModelGenerator blockStateModelGenerator) {
+			super(blockStateModelGenerator.blockStateCollector, blockStateModelGenerator.modelCollector, blockStateModelGenerator.simpleItemModelExemptionCollector);
 		}
 
 		public void registerSod(Block block, Block from) {
