@@ -21,15 +21,22 @@ public class TitaniumModModelProvider extends FabricModelProvider {
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator baseGenerator) {
 		TitaniumBlockStateModelGenerator generator = (TitaniumBlockStateModelGenerator) baseGenerator;
-
 		generator.registerSimpleCubeAll(TitaniumModBlocks.CLART);
+		generator.registerSimpleCubeAll(TitaniumModBlocks.BRAWN);
+		generator.registerSimpleCubeAll(TitaniumModBlocks.TENDON);
+		generator.registerSimpleCubeAll(TitaniumModBlocks.SALT);
+		generator.registerSimpleCubeAll(TitaniumModBlocks.BLUE_VOLLON);
+		generator.registerSimpleCubeAll(TitaniumModBlocks.RED_VOLLON);
+
 		generator.registerSod(TitaniumModBlocks.SOD, TitaniumModBlocks.CLART);
 		generator.registerSodBatch(TitaniumModBlocks.SOD_BATCH, TitaniumModBlocks.SOD);
 		generator.registerSimpleCubeAll(TitaniumModBlocks.VEINY_CLART);
 		generator.registerSod(TitaniumModBlocks.VEINY_SOD, TitaniumModBlocks.VEINY_CLART);
-		generator.registerSodBatch(TitaniumModBlocks.ROTTEN_SOD, TitaniumModBlocks.CLART);
+		generator.registerSod(TitaniumModBlocks.ROTTEN_SOD, TitaniumModBlocks.CLART);
 		generator.registerSodBatch(TitaniumModBlocks.ROTTEN_SOD_BATCH, TitaniumModBlocks.ROTTEN_SOD);
-	}
+
+		generator.registerLog(TitaniumModBlocks.WILDWOOD_LOG).log(TitaniumModBlocks.WILDWOOD_LOG);
+    }
 
 	@Override
 	public void generateItemModels(ItemModelGenerator generator) {
