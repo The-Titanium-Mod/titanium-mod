@@ -10,8 +10,8 @@ import net.rotgruengelb.titanium.registry.TitaniumModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
-public class TitaniumModBlockTagProvider extends FabricTagProvider<Block>
-{
+public class TitaniumModBlockTagProvider extends FabricTagProvider<Block> {
+
     public TitaniumModBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, RegistryKeys.BLOCK, registriesFuture);
     }

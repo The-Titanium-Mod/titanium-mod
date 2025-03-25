@@ -18,8 +18,8 @@ import net.rotgruengelb.titanium.block.VollonPlantBlock;
 
 import java.util.function.Function;
 
-public class TitaniumModBlocks
-{
+public class TitaniumModBlocks {
+    
     public static Block CLART = register("clart", Block::new, AbstractBlock.Settings.create()
             .sounds(BlockSoundGroup.ROOTED_DIRT));
 

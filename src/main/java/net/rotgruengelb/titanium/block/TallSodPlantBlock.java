@@ -6,8 +6,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.rotgruengelb.titanium.registry.TitaniumModBlockTags;
 
-public class TallSodPlantBlock extends TallPlantBlock
-{
+public class TallSodPlantBlock extends TallPlantBlock {
+
     public TallSodPlantBlock(Settings settings) {
         super(settings);
     }

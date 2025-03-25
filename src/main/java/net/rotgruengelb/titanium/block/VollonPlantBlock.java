@@ -6,8 +6,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.rotgruengelb.titanium.registry.TitaniumModBlockTags;
 
-public class VollonPlantBlock extends RootsBlock
-{
+public class VollonPlantBlock extends RootsBlock {
+
     public VollonPlantBlock(Settings settings) {
         super(settings);
     }

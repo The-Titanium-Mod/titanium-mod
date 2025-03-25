@@ -7,6 +7,7 @@ import net.minecraft.data.client.*;
 import net.rotgruengelb.titanium.registry.TitaniumModBlocks;
 
 public class TitaniumModModelProvider extends FabricModelProvider {
+
 	public TitaniumModModelProvider(FabricDataOutput output) {
 		super(output);
 	}

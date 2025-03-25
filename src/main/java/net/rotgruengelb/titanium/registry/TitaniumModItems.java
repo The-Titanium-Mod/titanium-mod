@@ -10,8 +10,8 @@ import net.rotgruengelb.titanium.TitaniumMod;
 
 import java.util.function.Function;
 
-public class TitaniumModItems
-{
+public class TitaniumModItems {
+
     protected static Item register(String name, Item.Settings settings, Function<Item.Settings, Item> factory) {
         RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(TitaniumMod.MOD_ID, name));
 
