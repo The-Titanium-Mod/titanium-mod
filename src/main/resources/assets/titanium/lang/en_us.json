@@ -11,5 +11,6 @@
   "block.titanium.blue_vollon": "Blue Vollon",
   "block.titanium.red_vollon": "Red Vollon",
   "block.titanium.salt": "Salt Block",
-  "block.titanium.wildwood_log": "Wildwood Log"
+  "block.titanium.wildwood_log": "Wildwood Log",
+  "itemGroup.titanium": "Titanium"
 }
