@@ -9,5 +9,6 @@ public class TitaniumModDataGenerator implements DataGeneratorEntrypoint
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(TitaniumModModelProvider::new);
+        pack.addProvider(TitaniumModBlockTagProvider::new);
     }
 }

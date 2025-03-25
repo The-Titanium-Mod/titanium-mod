@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "titanium:block/tall_wildwood_grass_bottom"
+    },
+    "half=upper": {
+      "model": "titanium:block/tall_wildwood_grass_top"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "titanium:block/tall_wildwood_grass_top"
+  }
+}
