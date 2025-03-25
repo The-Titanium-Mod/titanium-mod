@@ -10,17 +10,16 @@ import net.rotgruengelb.titanium.TitaniumMod;
 
 import java.util.function.Function;
 
-public class TitaniumModItems
-{
-    protected static Item register(String name, Item.Settings settings, Function<Item.Settings, Item> factory) {
-        RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(TitaniumMod.MOD_ID, name));
+public class TitaniumModItems {
 
-        Item item = factory.apply(settings);
+	protected static Item register(String name, Item.Settings settings, Function<Item.Settings, Item> factory) {
+		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(TitaniumMod.MOD_ID, name));
 
-        Registry.register(Registries.ITEM, itemKey, item);
-        return item;
-    }
+		Item item = factory.apply(settings);
 
-    public static void initialize() {
-    }
+		Registry.register(Registries.ITEM, itemKey, item);
+		return item;
+	}
+
+	public static void initialize() { }
 }
