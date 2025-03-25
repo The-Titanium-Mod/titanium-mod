@@ -3,7 +3,9 @@ package net.rotgruengelb.titanium.registry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.HangingRootsBlock;
 import net.minecraft.block.MapColor;
+import net.minecraft.block.PointedDripstoneBlock;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.registry.Registries;
@@ -12,6 +14,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.rotgruengelb.titanium.TitaniumMod;
+import net.rotgruengelb.titanium.block.HangingTendonBlock;
 import net.rotgruengelb.titanium.block.SodPlantBlock;
 import net.rotgruengelb.titanium.block.TallSodPlantBlock;
 import net.rotgruengelb.titanium.block.VollonPlantBlock;
@@ -131,6 +134,9 @@ public class TitaniumModBlocks {
             .noCollision()
             .offset(AbstractBlock.OffsetType.XZ)
             .pistonBehavior(PistonBehavior.DESTROY));
+
+	public static Block HANGING_TENDON = register("hanging_tendon", HangingTendonBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.SHROOMLIGHT));
 
 
 	protected static Block register(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {

@@ -50,7 +50,8 @@ public class TitaniumModItemGroups {
 							.$(TitaniumModBlocks.ROTTEN_TOOTH)
 							.$(TitaniumModBlocks.VOLLON_NOODLES)
 							.$(TitaniumModBlocks.VOLLON_BRONCHI)
-							.$(TitaniumModBlocks.VOLLON_STRINGS);
+							.$(TitaniumModBlocks.VOLLON_STRINGS)
+							.$(TitaniumModBlocks.HANGING_TENDON);
 				});
 	}
 
