@@ -3,9 +3,7 @@ package net.rotgruengelb.titanium.registry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.HangingRootsBlock;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.PointedDripstoneBlock;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.registry.Registries;
@@ -62,82 +60,81 @@ public class TitaniumModBlocks {
 	public static Block WILDWOOD_LOG = register("wildwood_log", settings -> Blocks.createLogBlock(MapColor.DULL_RED, MapColor.DULL_RED), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD));
 
-    public static Block WILDWOOD_GRASS = register("wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.GRASS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block WILDWOOD_GRASS = register("wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.GRASS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block WILDWOOD_LUMEN = register("wildwood_lumen", SodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.GRASS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .luminance(state -> 8)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block WILDWOOD_LUMEN = register("wildwood_lumen", SodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.GRASS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.luminance(state -> 8)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block WILDWOOD_BLISTER = register("wildwood_blister", SodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.CORAL)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block WILDWOOD_BLISTER = register("wildwood_blister", SodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.CORAL)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block BUNNY_CATCHER = register("bunny_catcher", SodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.ROOTS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block BUNNY_CATCHER = register("bunny_catcher", SodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.ROOTS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block SMALL_TEETH = register("small_teeth", SodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.ROOTS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block SMALL_TEETH = register("small_teeth", SodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.ROOTS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block TALL_WILDWOOD_GRASS = register("tall_wildwood_grass", TallSodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.GRASS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block TALL_WILDWOOD_GRASS = register("tall_wildwood_grass", TallSodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.GRASS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block ROTTING_WILDWOOD_GRASS = register("rotting_wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.WET_GRASS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block ROTTING_WILDWOOD_GRASS = register("rotting_wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.WET_GRASS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block ROTTEN_WILDWOOD_GRASS = register("rotten_wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.WET_GRASS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block ROTTEN_WILDWOOD_GRASS = register("rotten_wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.WET_GRASS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block ROTTEN_TOOTH = register("rotten_tooth", TallSodPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.ROOTS)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block ROTTEN_TOOTH = register("rotten_tooth", TallSodPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.ROOTS)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block VOLLON_NOODLES = register("vollon_noodles", VollonPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.CORAL)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block VOLLON_NOODLES = register("vollon_noodles", VollonPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.CORAL)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block VOLLON_BRONCHI = register("vollon_bronchi", VollonPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.CORAL)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block VOLLON_BRONCHI = register("vollon_bronchi", VollonPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.CORAL)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
-    public static Block VOLLON_STRINGS = register("vollon_strings", VollonPlantBlock::new, AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.CORAL)
-            .noCollision()
-            .offset(AbstractBlock.OffsetType.XZ)
-            .pistonBehavior(PistonBehavior.DESTROY));
+	public static Block VOLLON_STRINGS = register("vollon_strings", VollonPlantBlock::new, AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.CORAL)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
 
 	public static Block HANGING_TENDON = register("hanging_tendon", HangingTendonBlock::new, AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.SHROOMLIGHT));
-
 
 	protected static Block register(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
 		RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, TitaniumMod.id(name));

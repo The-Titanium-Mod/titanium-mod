@@ -8,12 +8,12 @@ import net.rotgruengelb.titanium.registry.TitaniumModBlockTags;
 
 public class SodPlantBlock extends RootsBlock {
 
-    public SodPlantBlock(Settings settings) {
-        super(settings);
-    }
+	public SodPlantBlock(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(TitaniumModBlockTags.CLART);
-    }
+	@Override
+	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+		return floor.isIn(TitaniumModBlockTags.CLART);
+	}
 }

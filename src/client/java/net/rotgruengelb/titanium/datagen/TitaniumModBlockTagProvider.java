@@ -12,12 +12,13 @@ import java.util.concurrent.CompletableFuture;
 
 public class TitaniumModBlockTagProvider extends FabricTagProvider<Block> {
 
-    public TitaniumModBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-        super(output, RegistryKeys.BLOCK, registriesFuture);
-    }
+	public TitaniumModBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, RegistryKeys.BLOCK, registriesFuture);
+	}
 
-    @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+	@Override
+	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+		//@formatter:off
         getOrCreateTagBuilder(TitaniumModBlockTags.CLART).add(
                 TitaniumModBlocks.CLART,
                 TitaniumModBlocks.VEINY_CLART,
@@ -32,5 +33,6 @@ public class TitaniumModBlockTagProvider extends FabricTagProvider<Block> {
                 TitaniumModBlocks.BLUE_VOLLON,
                 TitaniumModBlocks.RED_VOLLON
         );
-    }
+        //@formatter:on
+	}
 }

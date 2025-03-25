@@ -9,6 +9,7 @@ public class TitaniumModClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		//@formatter:off
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
 				TitaniumModBlocks.WILDWOOD_GRASS,
 				TitaniumModBlocks.WILDWOOD_LUMEN,
@@ -24,5 +25,6 @@ public class TitaniumModClient implements ClientModInitializer {
 				TitaniumModBlocks.VOLLON_STRINGS,
 				TitaniumModBlocks.HANGING_TENDON
 				);
+		//@formatter:on
 	}
 }

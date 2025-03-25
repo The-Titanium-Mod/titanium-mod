@@ -7,6 +7,6 @@ import net.rotgruengelb.titanium.TitaniumMod;
 
 public class TitaniumModBlockTags {
 
-    public static final TagKey<Block> CLART = TagKey.of(RegistryKeys.BLOCK, TitaniumMod.id("clart"));
-    public static final TagKey<Block> VOLLON = TagKey.of(RegistryKeys.BLOCK, TitaniumMod.id("vollon"));
+	public static final TagKey<Block> CLART = TagKey.of(RegistryKeys.BLOCK, TitaniumMod.id("clart"));
+	public static final TagKey<Block> VOLLON = TagKey.of(RegistryKeys.BLOCK, TitaniumMod.id("vollon"));
 }

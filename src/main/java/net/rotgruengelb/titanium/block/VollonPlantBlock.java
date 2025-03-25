@@ -8,12 +8,12 @@ import net.rotgruengelb.titanium.registry.TitaniumModBlockTags;
 
 public class VollonPlantBlock extends RootsBlock {
 
-    public VollonPlantBlock(Settings settings) {
-        super(settings);
-    }
+	public VollonPlantBlock(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(TitaniumModBlockTags.VOLLON);
-    }
+	@Override
+	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+		return floor.isIn(TitaniumModBlockTags.VOLLON);
+	}
 }
