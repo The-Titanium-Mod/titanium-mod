@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "titanium:block/tall_wildwood_grass_top"
+  }
+}

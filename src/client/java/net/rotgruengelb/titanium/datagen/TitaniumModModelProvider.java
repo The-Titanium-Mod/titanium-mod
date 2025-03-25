@@ -7,6 +7,7 @@ import net.minecraft.data.client.*;
 import net.rotgruengelb.titanium.registry.TitaniumModBlocks;
 
 public class TitaniumModModelProvider extends FabricModelProvider {
+
 	public TitaniumModModelProvider(FabricDataOutput output) {
 		super(output);
 	}
@@ -33,6 +34,23 @@ public class TitaniumModModelProvider extends FabricModelProvider {
 
 		generator.registerLog(TitaniumModBlocks.WILDWOOD_LOG)
 				.log(TitaniumModBlocks.WILDWOOD_LOG);
+
+		generator.registerTintableCross(TitaniumModBlocks.WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.WILDWOOD_LUMEN, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.WILDWOOD_BLISTER, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.BUNNY_CATCHER, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.SMALL_TEETH, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.ROTTING_WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.ROTTEN_WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+
+		generator.registerTintableCross(TitaniumModBlocks.VOLLON_NOODLES, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.VOLLON_BRONCHI, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerTintableCross(TitaniumModBlocks.VOLLON_STRINGS, BlockStateModelGenerator.TintType.NOT_TINTED);
+
+		generator.registerTintableCross(TitaniumModBlocks.HANGING_TENDON, BlockStateModelGenerator.TintType.NOT_TINTED);
+
+		generator.registerDoubleBlock(TitaniumModBlocks.TALL_WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+		generator.registerDoubleBlock(TitaniumModBlocks.ROTTEN_TOOTH, BlockStateModelGenerator.TintType.NOT_TINTED);
 	}
 
 	@Override
