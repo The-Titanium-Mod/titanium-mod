@@ -38,7 +38,19 @@ public class TitaniumModItemGroups {
 							.$(TitaniumModBlocks.BLUE_VOLLON)
 							.$(TitaniumModBlocks.RED_VOLLON)
 							.$(TitaniumModBlocks.SALT)
-							.$(TitaniumModBlocks.WILDWOOD_LOG);
+							.$(TitaniumModBlocks.WILDWOOD_LOG)
+							.$(TitaniumModBlocks.WILDWOOD_GRASS)
+							.$(TitaniumModBlocks.WILDWOOD_LUMEN)
+							.$(TitaniumModBlocks.WILDWOOD_BLISTER)
+							.$(TitaniumModBlocks.BUNNY_CATCHER)
+							.$(TitaniumModBlocks.SMALL_TEETH)
+							.$(TitaniumModBlocks.TALL_WILDWOOD_GRASS)
+							.$(TitaniumModBlocks.ROTTING_WILDWOOD_GRASS)
+							.$(TitaniumModBlocks.ROTTEN_WILDWOOD_GRASS)
+							.$(TitaniumModBlocks.ROTTEN_TOOTH)
+							.$(TitaniumModBlocks.VOLLON_NOODLES)
+							.$(TitaniumModBlocks.VOLLON_BRONCHI)
+							.$(TitaniumModBlocks.VOLLON_STRINGS);
 				});
 	}
 

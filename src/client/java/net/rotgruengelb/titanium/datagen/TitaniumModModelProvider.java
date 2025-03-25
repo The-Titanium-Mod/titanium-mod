@@ -42,6 +42,7 @@ public class TitaniumModModelProvider extends FabricModelProvider {
 		generator.registerTintableCross(TitaniumModBlocks.SMALL_TEETH, BlockStateModelGenerator.TintType.NOT_TINTED);
 		generator.registerTintableCross(TitaniumModBlocks.ROTTING_WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
 		generator.registerTintableCross(TitaniumModBlocks.ROTTEN_WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+
 		generator.registerTintableCross(TitaniumModBlocks.VOLLON_NOODLES, BlockStateModelGenerator.TintType.NOT_TINTED);
 		generator.registerTintableCross(TitaniumModBlocks.VOLLON_BRONCHI, BlockStateModelGenerator.TintType.NOT_TINTED);
 		generator.registerTintableCross(TitaniumModBlocks.VOLLON_STRINGS, BlockStateModelGenerator.TintType.NOT_TINTED);
