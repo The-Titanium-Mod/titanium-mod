@@ -6,4 +6,6 @@ import net.minecraft.world.GameRules;
 
 public class TitaniumGameRules {
 	public static final GameRules.Key<GameRules.BooleanRule> BLOOD_SOURCE_CONVERSION = GameRuleRegistry.register("titanium:bloodSourceConversion", net.minecraft.world.GameRules.Category.UPDATES, GameRuleFactory.createBooleanRule(true));
+
+	public static void initialize() { }
 }

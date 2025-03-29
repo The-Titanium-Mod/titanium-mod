@@ -4,8 +4,9 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
-import net.rotgruengelb.titanium.registry.TitaniumItemGroups;
+import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.item.TitaniumItems;
+import net.rotgruengelb.titanium.world.TitaniumGameRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +25,7 @@ public class Titanium implements ModInitializer {
 		TitaniumItems.initialize();
 		TitaniumBlocks.initialize();
 		TitaniumFluids.initialize();
+		TitaniumGameRules.initialize();
 		TitaniumItemGroups.initialize();
 	}
 }

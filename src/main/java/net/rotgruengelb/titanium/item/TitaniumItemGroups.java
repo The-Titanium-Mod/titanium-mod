@@ -1,4 +1,4 @@
-package net.rotgruengelb.titanium.registry;
+package net.rotgruengelb.titanium.item;
 
 import com.google.common.collect.Lists;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
