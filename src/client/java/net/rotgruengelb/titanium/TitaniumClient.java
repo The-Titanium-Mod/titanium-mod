@@ -35,7 +35,8 @@ public class TitaniumClient implements ClientModInitializer {
 				TitaniumFluids.FLOWING_BLOOD,
 				new SimpleFluidRenderHandler(
 						Titanium.id("block/blood_still"),
-						Titanium.id("block/blood_flow")
+						Titanium.id("block/blood_flow"),
+						null
 				)
 		);
 		//@formatter:on

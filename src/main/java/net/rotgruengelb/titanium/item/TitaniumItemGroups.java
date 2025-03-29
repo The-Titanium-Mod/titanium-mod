@@ -54,7 +54,9 @@ public class TitaniumItemGroups {
 						TitaniumBlocks.VOLLON_NOODLES,
 						TitaniumBlocks.VOLLON_BRONCHI,
 						TitaniumBlocks.VOLLON_STRINGS,
-						TitaniumBlocks.HANGING_TENDON)));
+						TitaniumBlocks.HANGING_TENDON,
+						TitaniumItems.BLOOD_BUCKET
+				)));
 		//@formatter:on
 	}
 
