@@ -4,7 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.RootsBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
-import net.rotgruengelb.titanium.registry.TitaniumModBlockTags;
+import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 
 public class VollonPlantBlock extends RootsBlock {
 
@@ -14,6 +14,6 @@ public class VollonPlantBlock extends RootsBlock {
 
 	@Override
 	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isIn(TitaniumModBlockTags.VOLLON);
+		return floor.isIn(TitaniumBlockTags.VOLLON);
 	}
 }
