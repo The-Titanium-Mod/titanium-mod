@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
+import net.rotgruengelb.titanium.item.TitaniumItems;
 import net.rotgruengelb.titanium.registry.tag.TitaniumFluidTags;
 import net.rotgruengelb.titanium.world.TitaniumGameRules;
 
@@ -52,7 +53,6 @@ public abstract class BloodFluid extends FlowableFluid {
 		return 3;
 	}
 
-
 	@Override
 	protected int getLevelDecreasePerBlock(WorldView world) {
 		return 2;
@@ -60,7 +60,7 @@ public abstract class BloodFluid extends FlowableFluid {
 
 	@Override
 	public Item getBucketItem() {
-		return null;
+		return TitaniumItems.BLOOD_BUCKET;
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public abstract class BloodFluid extends FlowableFluid {
 	public static class Still extends BloodFluid {
 		@Override
 		public int getLevel(FluidState state) {
-			return 7;
+			return 8;
 		}
 
 		@Override

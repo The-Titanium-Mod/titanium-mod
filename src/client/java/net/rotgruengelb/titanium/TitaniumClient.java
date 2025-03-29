@@ -2,8 +2,12 @@ package net.rotgruengelb.titanium;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
+import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
 public class TitaniumClient implements ClientModInitializer {
 
@@ -24,7 +28,16 @@ public class TitaniumClient implements ClientModInitializer {
 				TitaniumBlocks.VOLLON_BRONCHI,
 				TitaniumBlocks.VOLLON_STRINGS,
 				TitaniumBlocks.HANGING_TENDON
-				);
+		);
+
+		FluidRenderHandlerRegistry.INSTANCE.register(
+				TitaniumFluids.BLOOD,
+				TitaniumFluids.FLOWING_BLOOD,
+				new SimpleFluidRenderHandler(
+						Titanium.id("block/blood_still"),
+						Titanium.id("block/blood_flow")
+				)
+		);
 		//@formatter:on
 	}
 }

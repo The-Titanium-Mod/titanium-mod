@@ -3,14 +3,15 @@ package net.rotgruengelb.titanium.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.data.client.*;
+import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
+import net.rotgruengelb.titanium.item.TitaniumItems;
 
 public class TitaniumModelProvider extends FabricModelProvider {
 
-	public TitaniumModelProvider(FabricDataOutput output) {
-		super(output);
-	}
+	public TitaniumModelProvider(FabricDataOutput output) { super(output); }
 
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator baseGenerator) {
@@ -51,11 +52,13 @@ public class TitaniumModelProvider extends FabricModelProvider {
 
 		generator.registerDoubleBlock(TitaniumBlocks.TALL_WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
 		generator.registerDoubleBlock(TitaniumBlocks.ROTTEN_TOOTH, BlockStateModelGenerator.TintType.NOT_TINTED);
+
+		generator.registerSimpleFluid(TitaniumBlocks.BLOOD);
 	}
 
 	@Override
 	public void generateItemModels(ItemModelGenerator generator) {
-
+		generator.register(TitaniumItems.BLOOD_BUCKET, Models.GENERATED);
 	}
 
 	private static class TitaniumBlockStateModelGenerator extends BlockStateModelGenerator {
@@ -71,6 +74,10 @@ public class TitaniumModelProvider extends FabricModelProvider {
 
 		public void registerSodBatch(Block block, Block from) {
 			this.registerSingleton(block, TextureMap.all(TextureMap.getSubId(from, "_top")), Models.CUBE_ALL);
+		}
+
+		public void registerSimpleFluid(Block block) {
+			this.registerSingleton(block, TextureMap.particle(TextureMap.getSubId(block, "_still")), Models.PARTICLE);
 		}
 	}
 }

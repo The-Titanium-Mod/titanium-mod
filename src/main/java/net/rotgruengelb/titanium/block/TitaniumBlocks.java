@@ -16,8 +16,7 @@ import java.util.function.Function;
 
 public class TitaniumBlocks {
 
-	public static final Block BLOOD = block("blood",
-			(settings) -> new FluidBlock(TitaniumFluids.BLOOD, settings), AbstractBlock.Settings.create()
+	public static final Block BLOOD = block("blood", settings -> new FluidBlock(TitaniumFluids.BLOOD, settings), AbstractBlock.Settings.create()
 			.mapColor(MapColor.DARK_RED)
 			.replaceable()
 			.noCollision()
@@ -119,7 +118,7 @@ public class TitaniumBlocks {
 	protected static Block blockWithItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
 		RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Titanium.id(name));
 		Block block = blockWithItem(blockKey, factory.apply(settings));
-		TitaniumItems.item(name, new BlockItem.Settings(), itemSettings -> new BlockItem(block, itemSettings));
+		TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), new BlockItem.Settings());
 		return block;
 	}
 

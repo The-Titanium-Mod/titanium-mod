@@ -10,5 +10,6 @@ public class TitaniumDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(TitaniumModelProvider::new);
 		pack.addProvider(TitaniumBlockTagProvider::new);
+		pack.addProvider(TitaniumFluidTagProvider::new);
 	}
 }
