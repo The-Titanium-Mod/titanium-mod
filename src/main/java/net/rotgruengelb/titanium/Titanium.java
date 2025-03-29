@@ -2,13 +2,14 @@ package net.rotgruengelb.titanium;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
-import net.rotgruengelb.titanium.registry.TitaniumModBlocks;
-import net.rotgruengelb.titanium.registry.TitaniumModItemGroups;
-import net.rotgruengelb.titanium.registry.TitaniumModItems;
+import net.rotgruengelb.titanium.block.TitaniumBlocks;
+import net.rotgruengelb.titanium.fluid.TitaniumFluids;
+import net.rotgruengelb.titanium.registry.TitaniumItemGroups;
+import net.rotgruengelb.titanium.item.TitaniumItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TitaniumMod implements ModInitializer {
+public class Titanium implements ModInitializer {
 
 	public static final String MOD_ID = "titanium";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -20,8 +21,9 @@ public class TitaniumMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		TitaniumModItems.initialize();
-		TitaniumModBlocks.initialize();
-		TitaniumModItemGroups.initialize();
+		TitaniumItems.initialize();
+		TitaniumBlocks.initialize();
+		TitaniumFluids.initialize();
+		TitaniumItemGroups.initialize();
 	}
 }
