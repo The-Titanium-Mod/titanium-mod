@@ -17,13 +17,13 @@
   "accessWidener" : "${id}.accesswidener",
   "entrypoints": {
     "main": [
-      "net.rotgruengelb.titanium.TitaniumMod"
+		"net.rotgruengelb.titanium.Titanium"
     ],
     "client": [
-      "net.rotgruengelb.titanium.TitaniumModClient"
+      "net.rotgruengelb.titanium.TitaniumClient"
     ],
     "fabric-datagen": [
-      "net.rotgruengelb.titanium.datagen.TitaniumModDataGenerator"
+      "net.rotgruengelb.titanium.datagen.TitaniumDataGenerator"
     ]
   },
   "mixins": [

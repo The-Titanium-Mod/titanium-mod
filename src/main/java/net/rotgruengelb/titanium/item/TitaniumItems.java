@@ -1,4 +1,4 @@
-package net.rotgruengelb.titanium.registry;
+package net.rotgruengelb.titanium.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -6,14 +6,14 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-import net.rotgruengelb.titanium.TitaniumMod;
+import net.rotgruengelb.titanium.Titanium;
 
 import java.util.function.Function;
 
-public class TitaniumModItems {
+public class TitaniumItems {
 
-	protected static Item register(String name, Item.Settings settings, Function<Item.Settings, Item> factory) {
-		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(TitaniumMod.MOD_ID, name));
+	public static Item item(String name, Item.Settings settings, Function<Item.Settings, Item> factory) {
+		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Titanium.MOD_ID, name));
 
 		Item item = factory.apply(settings);
 
