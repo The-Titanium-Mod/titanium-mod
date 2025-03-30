@@ -3,11 +3,12 @@ package net.rotgruengelb.titanium.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
-import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.data.client.*;
-import net.rotgruengelb.titanium.Titanium;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.item.TitaniumItems;
+import net.rotgruengelb.titanium.state.property.TitaniumProperties;
 
 public class TitaniumModelProvider extends FabricModelProvider {
 
@@ -53,12 +54,15 @@ public class TitaniumModelProvider extends FabricModelProvider {
 		generator.registerDoubleBlock(TitaniumBlocks.TALL_WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
 		generator.registerDoubleBlock(TitaniumBlocks.ROTTEN_TOOTH, BlockStateModelGenerator.TintType.NOT_TINTED);
 
+		generator.registerGiantTooth(TitaniumBlocks.GIANT_TOOTH);
+
 		generator.registerSimpleFluid(TitaniumBlocks.BLOOD);
 	}
 
 	@Override
 	public void generateItemModels(ItemModelGenerator generator) {
 		generator.register(TitaniumItems.BLOOD_BUCKET, Models.GENERATED);
+		generator.register(TitaniumBlocks.GIANT_TOOTH.asItem(), Models.GENERATED);
 	}
 
 	private static class TitaniumBlockStateModelGenerator extends BlockStateModelGenerator {
@@ -79,5 +83,24 @@ public class TitaniumModelProvider extends FabricModelProvider {
 		public void registerSimpleFluid(Block block) {
 			this.registerSingleton(block, TextureMap.particle(TextureMap.getSubId(block, "_still")), Models.PARTICLE);
 		}
+
+		public void registerGiantTooth(Block block) {
+			Identifier topModelId = this.createSubModel(block, "_top", BlockStateModelGenerator.TintType.NOT_TINTED.getCrossModel(), TextureMap::cross);
+			Identifier bottomFleshlessModel = this.createSubModel(block, "_bottom_fleshless", BlockStateModelGenerator.TintType.NOT_TINTED.getCrossModel(), TextureMap::cross);
+			Identifier bottomFleshyModel = this.createSubModel(block, "_bottom", BlockStateModelGenerator.TintType.NOT_TINTED.getCrossModel(), TextureMap::cross);
+			this.blockStateCollector.accept(VariantsBlockStateSupplier.create(block)
+					.coordinate(BlockStateVariantMap.create(Properties.DOUBLE_BLOCK_HALF, TitaniumProperties.FLESHY)
+							.register((half, fleshy) -> switch (half) {
+								case UPPER -> BlockStateVariant.create()
+										.put(VariantSettings.MODEL, topModelId);
+								case LOWER -> fleshy ? //@formatter:off
+										BlockStateVariant.create()
+												.put(VariantSettings.MODEL, bottomFleshyModel) :
+										BlockStateVariant.create()
+												.put(VariantSettings.MODEL, bottomFleshlessModel); //@formatter:on
+							})));
+		}
 	}
 }
+
+

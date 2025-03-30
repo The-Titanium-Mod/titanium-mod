@@ -73,7 +73,13 @@ public class TitaniumBlocks {
 			.offset(AbstractBlock.OffsetType.XZ)
 			.pistonBehavior(PistonBehavior.DESTROY));
 	public static Block SMALL_TEETH = blockWithItem("small_teeth", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.ROOTS)
+			.sounds(BlockSoundGroup.BONE)
+			.noCollision()
+			.offset(AbstractBlock.OffsetType.XZ)
+			.pistonBehavior(PistonBehavior.DESTROY));
+	public static Block GIANT_TOOTH = blockWithItem("giant_tooth", GiantToothBlock::new,
+			AbstractBlock.Settings.create()
+			.sounds(BlockSoundGroup.BONE)
 			.noCollision()
 			.offset(AbstractBlock.OffsetType.XZ)
 			.pistonBehavior(PistonBehavior.DESTROY));
