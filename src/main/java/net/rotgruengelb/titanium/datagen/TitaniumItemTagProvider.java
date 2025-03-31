@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class TitaniumItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
-	public TitaniumItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture, @Nullable BlockTagProvider blockTagProvider) { super(output, completableFuture, blockTagProvider); }
+	public TitaniumItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) { super(output, completableFuture); }
 
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
