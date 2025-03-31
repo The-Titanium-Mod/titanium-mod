@@ -6,9 +6,10 @@ import net.minecraft.registry.tag.TagKey;
 import net.rotgruengelb.titanium.Titanium;
 
 public final class TitaniumFluidTags {
-	public static final TagKey<Fluid> BLOOD = of("blood");
 
-	private static TagKey<Fluid> of(String id) {
+	public static final TagKey<Fluid> BLOOD = tag("blood");
+
+	private static TagKey<Fluid> tag(String id) {
 		return TagKey.of(RegistryKeys.FLUID, Titanium.id(id));
 	}
 }
