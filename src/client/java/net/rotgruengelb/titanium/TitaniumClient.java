@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.screen.PlayerScreenHandler;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
@@ -23,6 +22,7 @@ public class TitaniumClient implements ClientModInitializer {
 				TitaniumBlocks.TALL_WILDWOOD_GRASS,
 				TitaniumBlocks.ROTTING_WILDWOOD_GRASS,
 				TitaniumBlocks.ROTTEN_WILDWOOD_GRASS,
+				TitaniumBlocks.GIANT_TOOTH,
 				TitaniumBlocks.ROTTEN_TOOTH,
 				TitaniumBlocks.VOLLON_NOODLES,
 				TitaniumBlocks.VOLLON_BRONCHI,
