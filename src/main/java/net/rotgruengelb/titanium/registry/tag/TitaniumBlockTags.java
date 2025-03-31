@@ -1,12 +1,17 @@
 package net.rotgruengelb.titanium.registry.tag;
 
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.rotgruengelb.titanium.Titanium;
 
 public class TitaniumBlockTags {
 
-	public static final TagKey<Block> CLART = TagKey.of(RegistryKeys.BLOCK, Titanium.id("clart"));
-	public static final TagKey<Block> VOLLON = TagKey.of(RegistryKeys.BLOCK, Titanium.id("vollon"));
+	public static final TagKey<Block> CLART = tag("clart");
+	public static final TagKey<Block> VOLLON = tag("vollon");
+
+	private static TagKey<Block> tag(String id) {
+		return TagKey.of(RegistryKeys.BLOCK, Titanium.id(id));
+	}
 }
