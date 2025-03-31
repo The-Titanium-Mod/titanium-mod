@@ -10,9 +10,9 @@ import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class TitaniumBlockTagProvider extends FabricTagProvider<Block> {
+public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
-	public TitaniumBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) { super(output, RegistryKeys.BLOCK, registriesFuture); }
+	public TitaniumBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) { super(output, registriesFuture); }
 
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
