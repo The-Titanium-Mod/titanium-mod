@@ -2,8 +2,6 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.rotgruengelb.titanium.item.TitaniumItems;
 
 public class TitaniumDataGenerator implements DataGeneratorEntrypoint {
 

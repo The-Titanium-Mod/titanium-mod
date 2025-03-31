@@ -1,7 +1,6 @@
 package net.rotgruengelb.titanium.registry.tag;
 
 import net.minecraft.block.Block;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.rotgruengelb.titanium.Titanium;
