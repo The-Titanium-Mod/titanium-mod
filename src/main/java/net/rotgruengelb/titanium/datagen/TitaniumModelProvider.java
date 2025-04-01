@@ -3,6 +3,7 @@ package net.rotgruengelb.titanium.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.client.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
@@ -35,7 +36,23 @@ public class TitaniumModelProvider extends FabricModelProvider {
 		generator.registerSimpleCubeAll(TitaniumBlocks.RED_VOLLON);
 
 		generator.registerLog(TitaniumBlocks.WILDWOOD_LOG)
-				.log(TitaniumBlocks.WILDWOOD_LOG);
+				.log(TitaniumBlocks.WILDWOOD_LOG)
+				.wood(TitaniumBlocks.WILDWOOD_WOOD);
+		generator.registerLog(TitaniumBlocks.STRIPPED_WILDWOOD_LOG)
+				.log(TitaniumBlocks.STRIPPED_WILDWOOD_LOG)
+				.wood(TitaniumBlocks.STRIPPED_WILDWOOD_WOOD);
+
+		generator.registerCubeAllModelTexturePool(TitaniumBlocks.WILDWOOD_PLANKS)
+				.button(TitaniumBlocks.WILDWOOD_BUTTON)
+				.fence(TitaniumBlocks.WILDWOOD_FENCE)
+				.fenceGate(TitaniumBlocks.WILDWOOD_FENCE_GATE)
+				.pressurePlate(TitaniumBlocks.WILDWOOD_PRESSURE_PLATE)
+				.slab(TitaniumBlocks.WILDWOOD_SLAB)
+				.stairs(TitaniumBlocks.WILDWOOD_STAIRS);
+		generator.registerDoor(TitaniumBlocks.WILDWOOD_DOOR);
+		generator.registerTrapdoor(TitaniumBlocks.WILDWOOD_TRAPDOOR);
+		generator.registerSimpleCubeAll(TitaniumBlocks.WILDWOOD_LEAVES);
+		generator.registerTintableCross(TitaniumBlocks.WILDWOOD_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
 		generator.registerTintableCross(TitaniumBlocks.WILDWOOD_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
 		generator.registerTintableCross(TitaniumBlocks.WILDWOOD_LUMEN, BlockStateModelGenerator.TintType.NOT_TINTED);

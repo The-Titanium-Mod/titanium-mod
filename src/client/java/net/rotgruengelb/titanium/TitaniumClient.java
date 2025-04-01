@@ -27,7 +27,10 @@ public class TitaniumClient implements ClientModInitializer {
 				TitaniumBlocks.VOLLON_NOODLES,
 				TitaniumBlocks.VOLLON_BRONCHI,
 				TitaniumBlocks.VOLLON_STRINGS,
-				TitaniumBlocks.HANGING_TENDON
+				TitaniumBlocks.HANGING_TENDON,
+				TitaniumBlocks.WILDWOOD_DOOR,
+				TitaniumBlocks.WILDWOOD_TRAPDOOR,
+				TitaniumBlocks.WILDWOOD_SAPLING
 		);
 
 		FluidRenderHandlerRegistry.INSTANCE.register(
