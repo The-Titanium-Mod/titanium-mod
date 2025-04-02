@@ -15,9 +15,12 @@ import net.rotgruengelb.titanium.block.TitaniumBlocks;
 
 import java.util.Collection;
 
+import static net.rotgruengelb.titanium.block.TitaniumBlocks.*;
+import static net.rotgruengelb.titanium.item.TitaniumItems.BLOOD_BUCKET;
+
 public class TitaniumItemGroups {
 
-	public static final RegistryKey<ItemGroup> ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Titanium.id("general"));
+	public static final RegistryKey<ItemGroup> ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Titanium.id("titanium"));
 	public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(TitaniumBlocks.SOD))
 			.displayName(Text.translatable("itemGroup.titanium"))
@@ -29,34 +32,14 @@ public class TitaniumItemGroups {
 		//@formatter:off
 		ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP_KEY)
 				.register(itemGroup -> itemGroup.addAll(toItemStackCollection(
-						TitaniumBlocks.CLART,
-						TitaniumBlocks.SOD,
-						TitaniumBlocks.SOD_BATCH,
-						TitaniumBlocks.WILDWOOD_LOG,
-						TitaniumBlocks.WILDWOOD_GRASS,
-						TitaniumBlocks.WILDWOOD_LUMEN,
-						TitaniumBlocks.WILDWOOD_BLISTER,
-						TitaniumBlocks.SMALL_TEETH,
-						TitaniumBlocks.GIANT_TOOTH,
-						TitaniumBlocks.TALL_WILDWOOD_GRASS,
-						TitaniumBlocks.ROTTEN_SOD,
-						TitaniumBlocks.ROTTEN_SOD_BATCH,
-						TitaniumBlocks.ROTTING_WILDWOOD_GRASS,
-						TitaniumBlocks.ROTTEN_WILDWOOD_GRASS,
-						TitaniumBlocks.ROTTEN_TOOTH,
-						TitaniumBlocks.VEINY_CLART,
-						TitaniumBlocks.VEINY_SOD,
-						TitaniumBlocks.BLUE_VOLLON,
-						TitaniumBlocks.RED_VOLLON,
-						TitaniumBlocks.BUNNY_CATCHER,
-						TitaniumBlocks.VOLLON_NOODLES,
-						TitaniumBlocks.VOLLON_BRONCHI,
-						TitaniumBlocks.VOLLON_STRINGS,
-						TitaniumBlocks.TENDON,
-						TitaniumBlocks.HANGING_TENDON,
-						TitaniumBlocks.BRAWN,
-						TitaniumBlocks.SALT,
-						TitaniumItems.BLOOD_BUCKET
+						CLART, SOD, SOD_BATCH, WILDWOOD_LOG,
+						WILDWOOD_GRASS, WILDWOOD_LUMEN, WILDWOOD_BLISTER,
+						SMALL_TEETH, GIANT_TOOTH, TALL_WILDWOOD_GRASS,
+						ROTTEN_SOD, ROTTEN_SOD_BATCH, ROTTING_WILDWOOD_GRASS,
+						ROTTEN_WILDWOOD_GRASS, ROTTEN_TOOTH, VEINY_CLART,
+						VEINY_SOD, BLUE_VOLLON, RED_VOLLON, BUNNY_CATCHER,
+						VOLLON_NOODLES, VOLLON_BRONCHI, VOLLON_STRINGS,
+						TENDON, HANGING_TENDON, BRAWN, SALT, BLOOD_BUCKET
 				)));
 		//@formatter:on
 	}
