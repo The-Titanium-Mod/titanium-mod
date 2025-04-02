@@ -16,7 +16,7 @@ import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import java.util.Collection;
 
 import static net.rotgruengelb.titanium.block.TitaniumBlocks.*;
-import static net.rotgruengelb.titanium.item.TitaniumItems.BLOOD_BUCKET;
+import static net.rotgruengelb.titanium.item.TitaniumItems.*;
 
 public class TitaniumItemGroups {
 
@@ -40,21 +40,11 @@ public class TitaniumItemGroups {
 						VEINY_SOD, BLUE_VOLLON, RED_VOLLON, BUNNY_CATCHER,
 						VOLLON_NOODLES, VOLLON_BRONCHI, VOLLON_STRINGS,
 						TENDON, HANGING_TENDON, BRAWN, SALT, BLOOD_BUCKET,
-						TitaniumBlocks.WILDWOOD_LOG,
-						TitaniumBlocks.WILDWOOD_WOOD,
-						TitaniumBlocks.STRIPPED_WILDWOOD_LOG,
-						TitaniumBlocks.STRIPPED_WILDWOOD_WOOD,
-						TitaniumBlocks.WILDWOOD_PLANKS,
-						TitaniumBlocks.WILDWOOD_STAIRS,
-						TitaniumBlocks.WILDWOOD_SLAB,
-						TitaniumBlocks.WILDWOOD_FENCE,
-						TitaniumBlocks.WILDWOOD_FENCE_GATE,
-						TitaniumBlocks.WILDWOOD_DOOR,
-						TitaniumBlocks.WILDWOOD_TRAPDOOR,
-						TitaniumBlocks.WILDWOOD_PRESSURE_PLATE,
-						TitaniumBlocks.WILDWOOD_BUTTON,
-						TitaniumBlocks.WILDWOOD_LEAVES,
-						TitaniumBlocks.WILDWOOD_SAPLING
+						WILDWOOD_LOG, WILDWOOD_WOOD, STRIPPED_WILDWOOD_LOG,
+						STRIPPED_WILDWOOD_WOOD, WILDWOOD_PLANKS, WILDWOOD_STAIRS,
+						WILDWOOD_SLAB, WILDWOOD_FENCE, WILDWOOD_FENCE_GATE,
+						WILDWOOD_DOOR, WILDWOOD_TRAPDOOR, WILDWOOD_PRESSURE_PLATE,
+						WILDWOOD_BUTTON, WILDWOOD_LEAVES, WILDWOOD_SAPLING
 				)));
 		//@formatter:on
 	}
