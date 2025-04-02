@@ -170,17 +170,17 @@ public class TitaniumBlocks {
 
 	protected static Block blockWithItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
 		RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Titanium.id(name));
-		Block block = blockWithItem(blockKey, factory.apply(settings));
+		Block block = block(blockKey, factory.apply(settings));
 		TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), new BlockItem.Settings());
 		return block;
 	}
 
 	protected static Block block(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
 		RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Titanium.id(name));
-		return blockWithItem(blockKey, factory.apply(settings));
+		return block(blockKey, factory.apply(settings));
 	}
 
-	protected static Block blockWithItem(RegistryKey<Block> blockRegistryKey, Block block) {
+	protected static Block block(RegistryKey<Block> blockRegistryKey, Block block) {
 		return Registry.register(Registries.BLOCK, blockRegistryKey, block);
 	}
 
