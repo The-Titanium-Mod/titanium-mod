@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "titanium:block/wildwood_slab"
+    },
+    "type=double": {
+      "model": "titanium:block/wildwood_planks"
+    },
+    "type=top": {
+      "model": "titanium:block/wildwood_slab_top"
+    }
+  }
+}

@@ -1,3 +1,16 @@
-// 1.21.1	2025-04-02T07:54:32.9978752	Titanium/Tags for minecraft:block
-6731d7c7269d468857e1cc24fa0f00130db031e6 data\titanium\tags\block\clart.json
+// 1.21.1	2025-04-02T21:11:14.0967937	Titanium/Tags for minecraft:block
 6f255f52aada17b1674b65080c160db99a888ac1 data\titanium\tags\block\vollon.json
+d50ec596755b07b6aff8ef83bc1723b7736e0495 data\minecraft\tags\block\wooden_fences.json
+b8dad15bdfbf80c96cb27e97ccc3dd7ced896b88 data\minecraft\tags\block\wooden_slabs.json
+7aa6168ddcae5c4a20ed45c841029ed69ca1b91a data\minecraft\tags\block\wooden_doors.json
+f89bfa0e8783dab0d0b3025fb8a92a3c59491213 data\minecraft\tags\block\wooden_stairs.json
+e6061457f7c4ae6c57f2b397bf9d3081fe521d16 data\minecraft\tags\block\planks.json
+aa4a690c325ea98a7d43789ebbdf582843e71734 data\minecraft\tags\block\logs.json
+f8c4b66ad799474e31119263dc0a2b3b1230ab5e data\minecraft\tags\block\buttons.json
+f8c4b66ad799474e31119263dc0a2b3b1230ab5e data\minecraft\tags\block\wooden_buttons.json
+0375d04f830b5b4992b8d01e38fd975250c951bd data\minecraft\tags\block\leaves.json
+7aa6168ddcae5c4a20ed45c841029ed69ca1b91a data\minecraft\tags\block\doors.json
+06c0f5eb03d87ca65f32f21c44a4835cc2371fce data\minecraft\tags\block\wooden_trapdoors.json
+6731d7c7269d468857e1cc24fa0f00130db031e6 data\titanium\tags\block\clart.json
+d50ec596755b07b6aff8ef83bc1723b7736e0495 data\minecraft\tags\block\fences.json
+b33dbe358e0d60ea960c0af1237d212eaeaac9bf data\minecraft\tags\block\fence_gates.json

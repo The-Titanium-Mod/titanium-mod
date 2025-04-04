@@ -7,11 +7,11 @@ import net.minecraft.data.client.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
-import net.rotgruengelb.titanium.item.TitaniumItems;
 import net.rotgruengelb.titanium.state.property.TitaniumProperties;
 
 import static net.minecraft.data.client.BlockStateModelGenerator.TintType.NOT_TINTED;
 import static net.rotgruengelb.titanium.block.TitaniumBlocks.*;
+import static net.rotgruengelb.titanium.item.TitaniumItems.*;
 
 public class TitaniumModelProvider extends FabricModelProvider {
 
@@ -38,7 +38,23 @@ public class TitaniumModelProvider extends FabricModelProvider {
 		generator.registerSimpleCubeAll(RED_VOLLON);
 
 		generator.registerLog(WILDWOOD_LOG)
-				.log(WILDWOOD_LOG);
+				.log(WILDWOOD_LOG)
+				.wood(WILDWOOD_WOOD);
+		generator.registerLog(STRIPPED_WILDWOOD_LOG)
+				.log(STRIPPED_WILDWOOD_LOG)
+				.wood(STRIPPED_WILDWOOD_WOOD);
+
+		generator.registerCubeAllModelTexturePool(WILDWOOD_PLANKS)
+				.button(WILDWOOD_BUTTON)
+				.fence(WILDWOOD_FENCE)
+				.fenceGate(WILDWOOD_FENCE_GATE)
+				.pressurePlate(WILDWOOD_PRESSURE_PLATE)
+				.slab(WILDWOOD_SLAB)
+				.stairs(WILDWOOD_STAIRS);
+		generator.registerDoor(WILDWOOD_DOOR);
+		generator.registerTrapdoor(WILDWOOD_TRAPDOOR);
+		generator.registerSimpleCubeAll(WILDWOOD_LEAVES);
+		generator.registerCross(WILDWOOD_SAPLING);
 
 		generator.registerCross(WILDWOOD_GRASS);
 		generator.registerCross(WILDWOOD_LUMEN);
@@ -64,8 +80,8 @@ public class TitaniumModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateItemModels(ItemModelGenerator generator) {
-		generator.register(TitaniumItems.BLOOD_BUCKET, Models.GENERATED);
-		generator.register(TitaniumBlocks.GIANT_TOOTH.asItem(), Models.GENERATED);
+		generator.register(BLOOD_BUCKET, Models.GENERATED);
+		generator.register(GIANT_TOOTH.asItem(), Models.GENERATED);
 	}
 
 	private static class TitaniumBlockStateModelGenerator extends BlockStateModelGenerator {
