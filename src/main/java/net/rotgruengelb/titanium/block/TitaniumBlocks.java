@@ -1,20 +1,6 @@
 package net.rotgruengelb.titanium.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSetType;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.block.FenceBlock;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.FluidBlock;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.TrapdoorBlock;
-import net.minecraft.block.WoodType;
+import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.registry.Registries;
@@ -27,6 +13,9 @@ import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItems;
 
 import java.util.function.Function;
+
+import static net.rotgruengelb.titanium.block.TitaniumBlockTypes.TitaniumBlockSetTypes;
+import static net.rotgruengelb.titanium.block.TitaniumBlockTypes.TitaniumWoodTypes;
 
 public class TitaniumBlocks {
 
@@ -89,8 +78,7 @@ public class TitaniumBlocks {
 			.noCollision()
 			.offset(AbstractBlock.OffsetType.XZ)
 			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block GIANT_TOOTH = blockWithItem("giant_tooth", GiantToothBlock::new,
-			AbstractBlock.Settings.create()
+	public static Block GIANT_TOOTH = blockWithItem("giant_tooth", GiantToothBlock::new, AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.BONE)
 			.noCollision()
 			.offset(AbstractBlock.OffsetType.XZ)
@@ -146,27 +134,26 @@ public class TitaniumBlocks {
 			.sounds(BlockSoundGroup.NETHER_WOOD));
 	public static Block WILDWOOD_STAIRS = blockWithItem("wildwood_stairs", settings -> createStairsBlock(TitaniumBlocks.WILDWOOD_PLANKS), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_BUTTON = blockWithItem("wildwood_button", settings -> Blocks.createWoodenButtonBlock(BlockSetType.OAK), AbstractBlock.Settings.create()
+	public static Block WILDWOOD_BUTTON = blockWithItem("wildwood_button", settings -> Blocks.createWoodenButtonBlock(TitaniumBlockSetTypes.WILDWOOD), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_PRESSURE_PLATE = blockWithItem("wildwood_pressure_plate", settings -> new PressurePlateBlock(BlockSetType.OAK, settings), AbstractBlock.Settings.create()
+	public static Block WILDWOOD_PRESSURE_PLATE = blockWithItem("wildwood_pressure_plate", settings -> new PressurePlateBlock(TitaniumBlockSetTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_DOOR = blockWithItem("wildwood_door", settings -> new DoorBlock(BlockSetType.OAK, settings), AbstractBlock.Settings.create()
+	public static Block WILDWOOD_DOOR = blockWithItem("wildwood_door", settings -> new DoorBlock(TitaniumBlockSetTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD)
 			.nonOpaque());
-	public static Block WILDWOOD_TRAPDOOR = blockWithItem("wildwood_trapdoor", settings -> new TrapdoorBlock(BlockSetType.OAK, settings), AbstractBlock.Settings.create()
+	public static Block WILDWOOD_TRAPDOOR = blockWithItem("wildwood_trapdoor", settings -> new TrapdoorBlock(TitaniumBlockSetTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD)
 			.allowsSpawning(Blocks::never)
 			.nonOpaque());
 	public static Block WILDWOOD_FENCE = blockWithItem("wildwood_fence", FenceBlock::new, AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD)
 			.solid());
-	public static Block WILDWOOD_FENCE_GATE = blockWithItem("wildwood_fence_gate", settings -> new FenceGateBlock(WoodType.OAK, settings), AbstractBlock.Settings.create()
+	public static Block WILDWOOD_FENCE_GATE = blockWithItem("wildwood_fence_gate", settings -> new FenceGateBlock(TitaniumWoodTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.NETHER_WOOD));
 	public static Block WILDWOOD_LEAVES = blockWithItem("wildwood_leaves", settings -> Blocks.createLeavesBlock(BlockSoundGroup.GRASS), AbstractBlock.Settings.create());
 	public static Block WILDWOOD_SAPLING = blockWithItem("wildwood_sapling", settings -> new WildwoodSaplingBlock(null, settings), AbstractBlock.Settings.create()
 			.sounds(BlockSoundGroup.GRASS)
 			.noCollision());
-
 
 	protected static Block blockWithItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
 		RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Titanium.id(name));
