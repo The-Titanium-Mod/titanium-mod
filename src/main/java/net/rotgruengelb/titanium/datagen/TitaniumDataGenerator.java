@@ -13,5 +13,6 @@ public class TitaniumDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(TitaniumBlockTagProvider::new);
 		pack.addProvider(TitaniumFluidTagProvider::new);
 		pack.addProvider(TitaniumItemTagProvider::new);
+        pack.addProvider(TitaniumBlockLootTableProvider::new);
 	}
 }
