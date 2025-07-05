@@ -78,7 +78,7 @@ loom {
 }
 
 fabricApi {
-	configureDataGeneration()
+    configureDataGeneration()
 }
 
 
@@ -97,11 +97,7 @@ tasks.processResources {
     inputs.property("mc_title", mc_title)
 
     val map = mapOf(
-        "id" to mod.id,
-        "name" to mod.name,
-        "version" to mod.version,
-        "mcdep" to mcDep,
-        "mc_title" to mc_title
+        "id" to mod.id, "name" to mod.name, "version" to mod.version, "mcdep" to mcDep, "mc_title" to mc_title
     )
 
     filesMatching("fabric.mod.json") { expand(map) }
@@ -145,8 +141,7 @@ publishMods {
         }
     }
 }
-*/
-/*
+
 publishing {
     repositories {
         maven("...") {
