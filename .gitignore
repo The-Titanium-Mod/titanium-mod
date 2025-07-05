@@ -38,4 +38,6 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
-/versions/**/.cache/
+
+# dont track datagen cache files
+versions/**/.cache/
