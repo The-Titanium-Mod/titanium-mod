@@ -7,17 +7,16 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.kikugie.stonecutter") version "0.5"
+    id("dev.kikugie.stonecutter") version "0.6.2"
 }
 
 stonecutter {
     kotlinController = true
     centralScript = "build.gradle.kts"
 
-    shared {
+    create(rootProject) {
         versions("1.21.1")
     }
-    create(rootProject)
 }
 
 rootProject.name = "Titanium"
