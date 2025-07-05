@@ -2,6 +2,7 @@ package net.rotgruengelb.titanium;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
+import net.rotgruengelb.titanium.world.biome.TitaniumBiomes;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
@@ -27,5 +28,6 @@ public class Titanium implements ModInitializer {
 		TitaniumFluids.initialize();
 		TitaniumGameRules.initialize();
 		TitaniumItemGroups.initialize();
+        TitaniumBiomes.initialize();
 	}
 }
