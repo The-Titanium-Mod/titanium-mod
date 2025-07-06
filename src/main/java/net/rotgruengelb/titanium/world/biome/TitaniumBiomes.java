@@ -16,12 +16,11 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import net.rotgruengelb.titanium.Titanium;
 
 public class TitaniumBiomes {
-    public static final RegistryKey<Biome> WILDWOOD_WASTES = register("wildwood_wastes");
+    public static final RegistryKey<Biome> WILDWOOD_WASTES = biome("wildwood_wastes");
 
-    private static RegistryKey<Biome> register(String name) {
+    private static RegistryKey<Biome> biome(String name) {
         return RegistryKey.of(RegistryKeys.BIOME, Titanium.id(name));
     }
-
 
     public static void bootstrap(Registerable<Biome> registerable) {
         RegistryEntryLookup<PlacedFeature> featureLookup = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
