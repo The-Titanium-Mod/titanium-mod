@@ -1,6 +1,3 @@
 accessWidener v2 named
 
 accessible field net/minecraft/data/client/BlockStateModelGenerator simpleItemModelExemptionCollector Ljava/util/function/Consumer;
-accessible field net/minecraft/block/BlockSetType VALUES Ljava/util/Map;
-accessible field net/minecraft/block/BlockSetType name Ljava/lang/String;
-accessible field net/minecraft/block/WoodType VALUES Ljava/util/Map;
