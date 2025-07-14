@@ -1,10 +1,12 @@
 package net.rotgruengelb.titanium.util;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 
 public class Util {
 
-	public static String snakeCaseToTitleCase(String snakeCaseText) {
+	public static @NotNull String snakeCaseToTitleCase(@NotNull String snakeCaseText) {
 		String[] words = snakeCaseText.split("_");
 		StringBuilder titleCaseText = new StringBuilder();
 
@@ -20,7 +22,7 @@ public class Util {
 				.trim();
 	}
 
-	public static String snakeCaseWithOfNotation(String string) {
+	public static @NotNull String snakeCaseWithOfNotation(@NotNull String string) {
 		String[] words = string.split(" ");
 		if (words.length < 2) {
 			return string;
@@ -41,6 +43,5 @@ public class Util {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 }
