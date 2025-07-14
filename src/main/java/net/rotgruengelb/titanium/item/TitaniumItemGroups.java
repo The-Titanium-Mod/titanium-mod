@@ -22,7 +22,7 @@ public class TitaniumItemGroups {
 
 	public static final RegistryKey<ItemGroup> ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Titanium.id("titanium"));
 	public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
-			.icon(() -> new ItemStack(TitaniumBlocks.SOD))
+			.icon(TitaniumBlocks.SOD.asItem()::getDefaultStack)
 			.displayName(Text.translatable("itemGroup.titanium"))
 			.build();
 
