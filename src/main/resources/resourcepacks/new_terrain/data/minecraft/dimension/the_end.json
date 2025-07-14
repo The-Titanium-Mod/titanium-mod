@@ -1,0 +1,132 @@
+{
+  "type": "minecraft:the_end",
+  "generator": {
+    "biome_source": {
+      "biomes": [
+        {
+          "biome": "minecraft:the_end",
+          "parameters": {
+            "continentalness": [
+              -1,
+              1
+            ],
+            "depth": [
+              -1,
+              1.2
+            ],
+            "erosion": [
+              0,
+              0.50025
+            ],
+            "temperature": [
+              -1,
+              1
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "offset": 0,
+            "weirdness": [
+              -1,
+              1
+            ]
+          }
+        },
+        {
+          "biome": "minecraft:end_midlands",
+          "parameters": {
+            "continentalness": [
+              -0.55,
+              0.55
+            ],
+            "depth": [
+              -0.3,
+              0.2
+            ],
+            "erosion": [
+              0.50025,
+              2
+            ],
+            "temperature": [
+              -0.3,
+              0.3
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "offset": 0,
+            "weirdness": [
+              -0.05,
+              1
+            ]
+          }
+        },
+        {
+          "biome": "minecraft:end_highlands",
+          "parameters": {
+            "continentalness": [
+              -0.55,
+              0.55
+            ],
+            "depth": [
+              0.2,
+              1.025
+            ],
+            "erosion": [
+              0.50025,
+              2
+            ],
+            "temperature": [
+              -1,
+              0
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "offset": 0,
+            "weirdness": [
+              -0.05,
+              1
+            ]
+          }
+        },
+        {
+          "biome": "titanium:wildwood_wastes",
+          "parameters": {
+            "continentalness": [
+              -0.55,
+              0.55
+            ],
+            "depth": [
+              -0.3,
+              1
+            ],
+            "erosion": [
+              0.50025,
+              2
+            ],
+            "temperature": [
+              -1,
+              -0.4
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "offset": 0,
+            "weirdness": [
+              -0.05,
+              1
+            ]
+          }
+        }
+      ],
+      "type": "minecraft:multi_noise"
+    },
+    "settings": "minecraft:end",
+    "type": "minecraft:noise"
+  }
+}

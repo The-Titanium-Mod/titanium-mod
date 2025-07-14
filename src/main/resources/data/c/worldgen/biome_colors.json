@@ -1,0 +1,17 @@
+{
+  "minecraft:small_end_islands": {
+    "r": 234,
+    "g": 247,
+    "b": 52
+  },
+  "minecraft:the_end": {
+    "r": 252,
+    "g": 244,
+    "b": 121
+  },
+  "minecraft:end_midlands": {
+    "r": 143,
+    "g": 154,
+    "b": 69
+  }
+}

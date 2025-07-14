@@ -1,0 +1,21 @@
+{
+  "type": "add",
+  "argument1": {
+    "type": "add",
+    "argument1": {
+      "type": "add",
+      "argument1": {
+        "type": "add",
+        "argument1": {
+          "type": "minecraft:add",
+          "argument2": "titanium:main_island",
+          "argument1": "titanium:outer_islands"
+        },
+        "argument2": "titanium:extra_islands/middle_higher/island"
+      },
+      "argument2": "titanium:extra_islands/middle_lower/island"
+    },
+    "argument2": "titanium:extra_islands/low/island"
+  },
+  "argument2": "titanium:extra_islands/high/island"
+}

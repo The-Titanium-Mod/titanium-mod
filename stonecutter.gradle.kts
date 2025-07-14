@@ -21,10 +21,6 @@ stonecutter registerChiseled tasks.register("chiseledPublishMods", stonecutter.c
 */
 
 stonecutter parameters {
-    /*
-    See src/main/java/com/example/TitaniumMod.java
-    and https://stonecutter.kikugie.dev/
-    */
     // Swaps replace the scope with a predefined value
     swap("mod_version", "\"${property("mod.version")}\";")
     // Constants add variables available in conditions

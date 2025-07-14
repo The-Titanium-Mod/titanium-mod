@@ -14,7 +14,7 @@
   "license": "ARR",
   "icon": "assets/titanium/icon.png",
   "environment": "*",
-  "accessWidener" : "${id}.accesswidener",
+  "accessWidener" : "titanium.accesswidener",
   "entrypoints": {
     "main": [
 		"net.rotgruengelb.titanium.Titanium"

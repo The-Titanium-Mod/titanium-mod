@@ -175,6 +175,5 @@ public class TitaniumBlocks {
 		return new StairsBlock(base.getDefaultState(), AbstractBlock.Settings.copy(base));
 	}
 
-	public static void initialize() {
-	}
+	public static void initialize() { }
 }
