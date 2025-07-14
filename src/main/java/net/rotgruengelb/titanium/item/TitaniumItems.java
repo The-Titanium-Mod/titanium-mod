@@ -7,7 +7,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
@@ -20,7 +19,7 @@ public class TitaniumItems {
 			.maxCount(1));
 
 	public static Item item(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
-		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Titanium.MOD_ID, name));
+		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Titanium.id(name));
 
 		Item item = factory.apply(settings);
 
