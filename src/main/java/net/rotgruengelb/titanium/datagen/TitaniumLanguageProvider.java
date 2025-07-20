@@ -4,10 +4,13 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.tag.FabricTagKey;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
+import net.rotgruengelb.titanium.entity.TitaniumEntities;
+import net.rotgruengelb.titanium.entity.WaspephantEntity;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 import net.rotgruengelb.titanium.registry.tag.TitaniumFluidTags;
@@ -19,6 +22,7 @@ import java.util.function.Function;
 
 import static net.rotgruengelb.titanium.block.TitaniumBlocks.*;
 import static net.rotgruengelb.titanium.item.TitaniumItems.BLOOD_BUCKET;
+import static net.rotgruengelb.titanium.item.TitaniumItems.WASPEPHANT_SPAWN_EGG;
 
 public class TitaniumLanguageProvider extends FabricLanguageProvider {
 	protected TitaniumLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
@@ -43,12 +47,14 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 		).autoWithOfNotation(
 				SOD_BATCH, ROTTEN_SOD_BATCH
 		).<Item>translation().auto(
-				BLOOD_BUCKET
+				BLOOD_BUCKET, WASPEPHANT_SPAWN_EGG
 		).<FabricTagKey>translation().auto(
 				TitaniumBlockTags.CLART, TitaniumBlockTags.VOLLON,
 				TitaniumFluidTags.BLOOD
 		).<RegistryKey<ItemGroup>>translation(t -> "itemGroup." + t.getValue().getPath()).auto(
 				TitaniumItemGroups.ITEM_GROUP_KEY
+		).<EntityType<?>>translation().auto(
+				TitaniumEntities.WASPEPHANT
 		);
 		//@formatter:on
 	}

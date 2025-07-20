@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
@@ -79,9 +81,27 @@ public class TitaniumModelProvider extends FabricModelProvider {
 	}
 
 	@Override
-	public void generateItemModels(ItemModelGenerator generator) {
+	public void generateItemModels(ItemModelGenerator baseGenerator) {
+		TitaniumItemModelGenerator generator = new TitaniumItemModelGenerator(baseGenerator);
+
 		generator.register(BLOOD_BUCKET, Models.GENERATED);
 		generator.register(GIANT_TOOTH.asItem(), Models.GENERATED);
+
+		generator.registerSpawnEgg(WASPEPHANT_SPAWN_EGG);
+	}
+
+	private static class TitaniumItemModelGenerator extends ItemModelGenerator {
+		public TitaniumItemModelGenerator(ItemModelGenerator itemModelGenerator) {
+			super(itemModelGenerator.writer);
+		}
+
+		public void registerSpawnEgg(Item item) {
+			if (!(item instanceof SpawnEggItem spawnEgg)) {
+				return;
+			}
+
+			//TODO: implement
+		}
 	}
 
 	private static class TitaniumBlockStateModelGenerator extends BlockStateModelGenerator {

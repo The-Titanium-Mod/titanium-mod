@@ -8,6 +8,7 @@ import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
+import net.rotgruengelb.titanium.entity.TitaniumEntities;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.item.TitaniumItems;
@@ -39,6 +40,7 @@ public class Titanium implements ModInitializer {
         TitaniumItemGroups.initialize();
         TitaniumBiomes.initialize();
         TitaniumDensityFunctionTypes.initialize();
+        TitaniumEntities.initialize();
 
         FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
             registerBuiltinResourcePack(modContainer, "new_terrain", ResourcePackActivationType.DEFAULT_ENABLED);
