@@ -23,7 +23,7 @@ public class TitaniumSurfaceRules {
                                         block(TitaniumBlocks.SOD.getDefaultState())
                                 ),
 
-                                // CLART ~7 block layer below surface
+                                // CLART: ~7 block layer below surface
                                 condition(
                                         stoneDepth(5, false, 5, VerticalSurfaceType.FLOOR),
                                         block(TitaniumBlocks.CLART.getDefaultState())

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "titanium:block/wildwood_planks",
+    "side": "titanium:block/wildwood_planks",
+    "top": "titanium:block/wildwood_planks"
+  }
+}

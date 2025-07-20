@@ -8,6 +8,7 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -35,11 +36,14 @@ public abstract class BloodFluid extends FlowableFluid {
 		return TitaniumFluids.BLOOD;
 	}
 
-	@Override
-	protected boolean isInfinite(World world) {
+    @Override
+    //? if 1.21.1 {
+    protected boolean isInfinite(World world) {
+    //?} else {
+    /*protected boolean isInfinite(ServerWorld world) {
+    *///?}
 		return world.getGameRules()
 				.getBoolean(TitaniumGameRules.BLOOD_SOURCE_CONVERSION);
-
 	}
 
 	@Override
