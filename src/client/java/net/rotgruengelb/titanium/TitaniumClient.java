@@ -1,19 +1,30 @@
 package net.rotgruengelb.titanium;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+
+import net.minecraft.client.render.RenderLayer;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
-import net.minecraft.client.render.RenderLayer;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
+
+//? if 1.21.1 {
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+//?} else {
+/*import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.BlockRenderLayer;
+*///?}
 
 public class TitaniumClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
 		//@formatter:off
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+        //? if 1.21.1 {
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+        //?} else {
+        /*BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
+		*///?}
 				TitaniumBlocks.WILDWOOD_GRASS,
 				TitaniumBlocks.WILDWOOD_LUMEN,
 				TitaniumBlocks.WILDWOOD_BLISTER,

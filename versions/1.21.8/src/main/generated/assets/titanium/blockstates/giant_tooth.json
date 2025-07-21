@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "fleshy=false,half=lower": {
+      "model": "titanium:block/giant_tooth_bottom_fleshless"
+    },
+    "fleshy=false,half=upper": {
+      "model": "titanium:block/giant_tooth_top"
+    },
+    "fleshy=true,half=lower": {
+      "model": "titanium:block/giant_tooth_bottom"
+    },
+    "fleshy=true,half=upper": {
+      "model": "titanium:block/giant_tooth_top"
+    }
+  }
+}
