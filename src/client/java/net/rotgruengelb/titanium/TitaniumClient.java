@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
-//? if =1.21.1 {
+//? if 1.21.1 {
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 //?} else {
 /*import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
@@ -20,7 +20,7 @@ public class TitaniumClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		//@formatter:off
-        //? if =1.21.1 {
+        //? if 1.21.1 {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
         //?} else {
         /*BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,

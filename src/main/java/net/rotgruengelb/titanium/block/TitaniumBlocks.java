@@ -207,7 +207,7 @@ public class TitaniumBlocks {
     }
 
     private static LeavesBlock createLeavesBlock(float leafParticleChance, AbstractBlock.Settings settings) {
-        //? if =1.21.8 {
+        //? if 1.21.8 {
         /*return new TintedParticleLeavesBlock(leafParticleChance, settings);
         *///?} else {
         return new LeavesBlock(settings);

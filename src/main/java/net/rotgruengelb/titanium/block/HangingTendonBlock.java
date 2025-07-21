@@ -12,7 +12,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-//? if =1.21.8 {
+//? if 1.21.8 {
 /*import net.minecraft.world.tick.ScheduledTickView;
 *///?}
 
@@ -36,7 +36,7 @@ public class HangingTendonBlock extends Block {
 		return blockState.isSideSolidFullSquare(world, blockPos, Direction.DOWN);
 	}
 
-    //? if =1.21.1 {
+    //? if 1.21.1 {
     @Override
 	protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (direction == Direction.UP && !this.canPlaceAt(state, world, pos)) {
