@@ -174,7 +174,7 @@ public class TitaniumBlocks {
 
     protected static Block blockAndItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         Block block = block(name, factory, settings);
-        TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), new BlockItem.Settings());
+        TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), TitaniumItems.createBlockItemSettingFor(block));
         return block;
     }
 
@@ -198,14 +198,11 @@ public class TitaniumBlocks {
         return block(name, Block::new, settings);
     }
 
-	protected static Block createStairsBlock(Block base) {
-		return new StairsBlock(base.getDefaultState(), AbstractBlock.Settings.copy(base));
-	}
-
     private static AbstractBlock.@NotNull Settings createSettings() {
         return AbstractBlock.Settings.create();
     }
 
+    @SuppressWarnings("unused")
     private static LeavesBlock createLeavesBlock(float leafParticleChance, AbstractBlock.Settings settings) {
         //? if 1.21.8 {
         /*return new TintedParticleLeavesBlock(leafParticleChance, settings);
