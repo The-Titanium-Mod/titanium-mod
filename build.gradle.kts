@@ -105,6 +105,12 @@ tasks.processResources {
     filesMatching("fabric.mod.json") { expand(map) }
 }
 
+stonecutter {
+    swaps["mod_version"] = "\"${property("mod.version")}\";"
+    dependencies["fapi"] = project.property("deps.fabric_api").toString()
+}
+
+
 tasks.register<Copy>("buildAndCollect") {
     group = "build"
     from(tasks.remapJar.get().archiveFile)
