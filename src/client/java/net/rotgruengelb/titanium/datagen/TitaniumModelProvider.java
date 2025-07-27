@@ -2,6 +2,7 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
+
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.rotgruengelb.titanium.state.property.TitaniumProperties;
@@ -14,6 +15,7 @@ import static net.minecraft.data.client.TexturedModel.makeFactory;
 //?} else 1.21.8 {
 /*import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.client.data.*;
+import net.minecraft.client.render.item.tint.GrassTintSource;
 import static net.minecraft.client.data.BlockStateModelGenerator.CrossType.NOT_TINTED;
 import static net.minecraft.client.data.TexturedModel.makeFactory;
  *///?}
@@ -78,8 +80,8 @@ public class TitaniumModelProvider extends FabricModelProvider {
 
 		generator.registerCross(HANGING_TENDON);
 
-		generator.registerDoubleBlock(TALL_WILDWOOD_GRASS, NOT_TINTED);
-		generator.registerDoubleBlock(ROTTEN_TOOTH, NOT_TINTED);
+		generator.registerSimpleDoubleBlock(TALL_WILDWOOD_GRASS);
+		generator.registerSimpleDoubleBlock(ROTTEN_TOOTH);
 
 		generator.registerGiantTooth(GIANT_TOOTH);
 
@@ -90,6 +92,7 @@ public class TitaniumModelProvider extends FabricModelProvider {
 	public void generateItemModels(ItemModelGenerator generator) {
 		generator.register(BLOOD_BUCKET, Models.GENERATED);
 		generator.register(GIANT_TOOTH.asItem(), Models.GENERATED);
+        generator.register(WILDWOOD_DOOR.asItem(), Models.GENERATED);
 	}
 
 	private static class TitaniumBlockStateModelGenerator extends BlockStateModelGenerator {
@@ -113,6 +116,14 @@ public class TitaniumModelProvider extends FabricModelProvider {
             .accept(createSingletonBlockState(block, Models.CUBE_BOTTOM_TOP.upload(block, textureMap, this.modelCollector)));
             //?} else {
             /*.accept(createSingletonBlockState(block, createWeightedVariant(Models.CUBE_BOTTOM_TOP.upload(block, textureMap, this.modelCollector))));
+             *///?}
+        }
+
+        public final void registerSimpleDoubleBlock(Block block) {
+            //? if 1.21.1 {
+            this.registerDoubleBlock(block, NOT_TINTED);
+            //?} else {
+            /*this.registerDoubleBlockAndItem(block, NOT_TINTED);
              *///?}
         }
 
