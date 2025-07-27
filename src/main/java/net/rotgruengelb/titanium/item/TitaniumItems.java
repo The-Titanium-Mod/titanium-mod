@@ -1,5 +1,6 @@
 package net.rotgruengelb.titanium.item;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
@@ -34,6 +35,16 @@ public class TitaniumItems {
         }
 
         return Registry.register(Registries.ITEM, key, item);
+    }
+
+    public static Item.Settings createBlockItemSettingFor(Block block) {
+        @SuppressWarnings({"UnnecessaryLocalVariable", "RedundantSuppression"})
+        Item.Settings settings = new BlockItem.Settings();
+        //? if 1.21.8 {
+        /*return settings.translationKey(block.getTranslationKey());
+         *///?} else {
+        return settings;
+        //?}
     }
 
 	public static void initialize() { }

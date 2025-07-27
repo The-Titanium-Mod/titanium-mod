@@ -12,6 +12,7 @@ import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 import net.rotgruengelb.titanium.registry.tag.TitaniumFluidTags;
 import net.rotgruengelb.titanium.util.Util;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
@@ -58,24 +59,24 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 		private final TranslationBuilder translationBuilder;
 		private final Function<T, String> tranlationKeyFunction;
 
-		protected TitaniumTranslationBuilder(TranslationBuilder translationBuilder, Function<T, String> tranlationKeyFunction) {
+		public TitaniumTranslationBuilder(TranslationBuilder translationBuilder, Function<T, String> tranlationKeyFunction) {
 			this.translationBuilder = translationBuilder;
 			this.tranlationKeyFunction = tranlationKeyFunction;
 		}
 
-		static protected <T> TitaniumTranslationBuilder<T> translation(TranslationBuilder translationBuilder) {
+        static public <T> @NotNull TitaniumTranslationBuilder<T> translation(TranslationBuilder translationBuilder) {
 			return new TitaniumTranslationBuilder<>(translationBuilder, Util::tryGetTranslationKey);
 		}
 
-		protected <Z> TitaniumTranslationBuilder<Z> translation() {
+        public <Z> TitaniumTranslationBuilder<Z> translation() {
 			return new TitaniumTranslationBuilder<>(this.translationBuilder, Util::tryGetTranslationKey);
 		}
 
-		protected <Z> TitaniumTranslationBuilder<Z> translation(Function<Z, String> tranlationKeyFunction) {
+        public <Z> TitaniumTranslationBuilder<Z> translation(Function<Z, String> tranlationKeyFunction) {
 			return new TitaniumTranslationBuilder<>(this.translationBuilder, tranlationKeyFunction);
 		}
 
-		public TitaniumTranslationBuilder<T> auto(String translationKey, String string, Function<String, String> transformationFunction) {
+		public TitaniumTranslationBuilder<T> auto(String translationKey, String string, @NotNull Function<String, String> transformationFunction) {
 			translationBuilder.add(translationKey, transformationFunction.apply(Util.snakeCaseToTitleCase(string)));
 			return this;
 		}
@@ -97,7 +98,7 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 		@SafeVarargs
 		public final TitaniumTranslationBuilder<T> autoWithOfNotation(T... objects) {
 			Arrays.stream(objects)
-					.forEach(o -> this.auto(o, Util::snakeCaseWithOfNotation));
+					.forEach(o -> this.auto(o, Util::titleCaseWithOfNotation));
 			return this;
 		}
 	}
