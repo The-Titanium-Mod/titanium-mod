@@ -7,10 +7,8 @@ import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.ConsumeItemCriterion;
-import net.minecraft.advancement.criterion.EffectsChangedCriterion;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Items;
-import net.minecraft.predicate.entity.EntityEffectPredicate;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
@@ -34,8 +32,12 @@ public class TitaniumAdvancementProvider extends FabricAdvancementProvider {
     }
 
     @Override
-    @SuppressWarnings("removal")
+    @SuppressWarnings({"removal", "unused"})
     public void generateAdvancement(RegistryWrapper.WrapperLookup wrapperLookup, Consumer<AdvancementEntry> consumer) {
+        //? if 1.21.8 {
+        /*RegistryWrapper<Item> itemLookup = wrapperLookup.getOrThrow(RegistryKeys.ITEM);
+        RegistryWrapper<Block> blockLookup = wrapperLookup.getOrThrow(RegistryKeys.BLOCK);
+         *///?}
         Identifier enterEndGateway = RegistryKey.of(RegistryKeys.ADVANCEMENT, Identifier.ofVanilla("end/enter_end_gateway")).getValue();
 
         Advancement.Builder.create()
@@ -52,7 +54,12 @@ public class TitaniumAdvancementProvider extends FabricAdvancementProvider {
                 .criterion(
                         Registries.ITEM.getId(TitaniumItems.BLOOD_BUCKET).getPath(),
                         ConsumeItemCriterion.Conditions.predicate(
-                                ItemPredicate.Builder.create().items(TitaniumItems.BLOOD_BUCKET)
+                                ItemPredicate.Builder.create().items(
+                                        //? if 1.21.8 {
+                                        /*itemLookup,
+                                         *///?}
+                                        TitaniumItems.BLOOD_BUCKET
+                                )
                         )
                 )
                 .build(consumer, Titanium.id("drink_blood").toString());
