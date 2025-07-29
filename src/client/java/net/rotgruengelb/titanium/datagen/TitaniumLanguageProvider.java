@@ -8,6 +8,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.util.Pair;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 import net.rotgruengelb.titanium.registry.tag.TitaniumFluidTags;
@@ -31,9 +34,9 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 	}
 
 	@Override
-	public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder baseTranslationBuilder) {
+	public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
 		//@formatter:off
-		TitaniumTranslationBuilder.<Block>translation(baseTranslationBuilder).auto(
+		TitaniumTranslationBuilder.<Block>translation(translationBuilder).auto(
 				CLART, SOD, WILDWOOD_GRASS, WILDWOOD_LUMEN, WILDWOOD_BLISTER, SMALL_TEETH, GIANT_TOOTH,
 				TALL_WILDWOOD_GRASS, ROTTEN_SOD, ROTTING_WILDWOOD_GRASS, ROTTEN_WILDWOOD_GRASS, ROTTEN_TOOTH,
 				VEINY_CLART, VEINY_SOD, BLUE_VOLLON, RED_VOLLON, BUNNY_CATCHER, VOLLON_NOODLES, VOLLON_BRONCHI,
@@ -50,9 +53,9 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 				TitaniumFluidTags.BLOOD
 		).<RegistryKey<ItemGroup>>translation(t -> "itemGroup." + t.getValue().getPath()).auto(
 				TitaniumItemGroups.ITEM_GROUP_KEY
-		);
+		).customPair(TitaniumAdvancementProvider.DRINK_BLOOD, "That's not cherry juice!", "I hope you're not a vampire...");
 		//@formatter:on
-	}
+    }
 
 	static class TitaniumTranslationBuilder<T> {
 
@@ -81,7 +84,18 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 			return this;
 		}
 
-		public TitaniumTranslationBuilder<T> auto(T object, Function<String, String> transformationFunction) {
+        public TitaniumTranslationBuilder<T > custom(String translationKey, String string) {
+            translationBuilder.add(translationKey, string);
+            return this;
+        }
+
+        public TitaniumTranslationBuilder<?> customPair(Pair<MutableText, MutableText> pair, String stringL, String stringR) {
+            translationBuilder.add(((TranslatableTextContent) pair.getLeft().getContent()).getKey(), stringL);
+            translationBuilder.add(((TranslatableTextContent) pair.getRight().getContent()).getKey(), stringR);
+            return this;
+        }
+
+        public TitaniumTranslationBuilder<T> auto(T object, Function<String, String> transformationFunction) {
 			String translationKey = tranlationKeyFunction.apply(object);
 			return this.auto(translationKey, Arrays.stream(translationKey.split("\\."))
 					.toList()
