@@ -17,6 +17,7 @@ public class TitaniumDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(TitaniumBlockLootTableProvider::new);
         pack.addProvider(TitaniumDynamicRegistryProvider::new);
         pack.addProvider(TitaniumBiomeTagProvider::new);
+        pack.addProvider(TitaniumAdvancementProvider::new);
     }
 
     @Override
