@@ -10,27 +10,27 @@
             "entries": [
               {
                 "data": {
-                  "Name": "titanium:wildwood_grass"
+                  "Name": "titanium:vollon_bronchi"
                 },
-                "weight": 83
+                "weight": 4
               },
               {
                 "data": {
-                  "Name": "titanium:small_teeth"
+                  "Name": "titanium:vollon_noodles"
                 },
-                "weight": 5
+                "weight": 7
               },
               {
                 "data": {
-                  "Name": "titanium:wildwood_lumen"
+                  "Name": "titanium:vollon_strings"
                 },
-                "weight": 8
+                "weight": 10
               },
               {
                 "data": {
-                  "Name": "titanium:wildwood_blister"
+                  "Name": "minecraft:air"
                 },
-                "weight": 1
+                "weight": 4
               }
             ]
           }

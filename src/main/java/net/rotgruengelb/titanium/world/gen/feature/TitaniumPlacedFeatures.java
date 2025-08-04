@@ -121,7 +121,7 @@ public class TitaniumPlacedFeatures {
                 CountPlacementModifier.of(2),
                 SquarePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(1),
-                EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlockTag(TitaniumBlockTags.CLART_SOIL), BlockPredicate.IS_AIR, 12),
+                EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
 
@@ -131,7 +131,7 @@ public class TitaniumPlacedFeatures {
                 CountPlacementModifier.of(2),
                 SquarePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(1),
-                EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlockTag(TitaniumBlockTags.CLART_SOIL), BlockPredicate.IS_AIR, 12),
+                EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, SMALL_BLUE_VOLLON_ARCH,
@@ -139,8 +139,7 @@ public class TitaniumPlacedFeatures {
                 PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 CountPlacementModifier.of(1),
                 SquarePlacementModifier.of(),
-                RarityFilterPlacementModifier.of(3),
-                EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlockTag(TitaniumBlockTags.CLART_SOIL), BlockPredicate.IS_AIR, 12),
+                EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
     }

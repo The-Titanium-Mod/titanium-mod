@@ -17,12 +17,11 @@
   "features": [
     [],
     [],
-    [
-      "titanium:small_red_vollon_arch"
-    ],
+    [],
     [],
     [
-      "minecraft:end_gateway_return"
+      "minecraft:end_gateway_return",
+      "titanium:small_red_vollon_arch"
     ],
     [],
     [],

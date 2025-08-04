@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
-
     public NaturalArchFeature(Codec<NaturalArchFeatureConfig> codec) {
         super(codec);
     }
@@ -22,63 +20,100 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
     @Override
     public boolean generate(FeatureContext<NaturalArchFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
+        BlockPos start = context.getOrigin();
         Random random = context.getRandom();
-        BlockPos origin = context.getOrigin();
         NaturalArchFeatureConfig config = context.getConfig();
 
-        List<BlockPos> potentialTargets = new ArrayList<>();
+        if (!world.getBlockState(start).isIn(config.targetTag())) return false;
 
-        int maxRange = config.maxRange().get(random);
-        int minY = config.minVerticalDelta().get(random);
-        int maxY = config.maxVerticalDelta().get(random);
+        int maxHoriz = config.horizontalDistance().getMax();
+        int maxVert = config.verticalDistance().getMax();
+        int minHoriz = config.horizontalDistance().getMin();
+        int minVert = config.verticalDistance().getMin();
 
-        for (int dx = -maxRange; dx <= maxRange; dx++) {
-            for (int dz = -maxRange; dz <= maxRange; dz++) {
-                if (dx == 0 && dz == 0) continue;
+        double minDistSq = minHoriz * minHoriz + minVert * minVert;
+        double maxDistSq = maxHoriz * maxHoriz + maxVert * maxVert;
 
-                for (int dy = minY; dy <= maxY; dy++) {
-                    BlockPos target = origin.add(dx, dy, dz);
-                    if (world.getBlockState(target).isIn(config.targetBlocks())) {
-                        potentialTargets.add(target);
-                    }
+        List<BlockPos> candidates = new ArrayList<>();
+
+        // Find all valid target blocks in posA hollow spherical shell
+        BlockPos.iterateOutwards(start, maxHoriz, maxVert, maxHoriz).forEach(pos -> {
+            if (pos.equals(start)) return;
+            double distSq = start.getSquaredDistance(pos);
+            if (distSq >= minDistSq && distSq <= maxDistSq) {
+                if (world.getBlockState(pos).isIn(config.targetTag())) {
+                    candidates.add(pos.toImmutable());
                 }
             }
-        }
+        });
 
-        if (!potentialTargets.isEmpty()) {
-            BlockPos chosenTarget = potentialTargets.get(random.nextInt(potentialTargets.size()));
-            drawArch(world, origin, chosenTarget, config, random);
-            return true;
-        }
+        if (candidates.isEmpty()) return false;
 
-        return false;
+        BlockPos end = candidates.get(random.nextInt(candidates.size()));
+
+        drawArch(world, start, end, config, random);
+        return true;
     }
 
-    private void drawArch(StructureWorldAccess world, BlockPos start, BlockPos end, NaturalArchFeatureConfig config, Random random) {
-        int steps = 16;
-        double height = config.archRadius().get(random);
+    private void drawArch(StructureWorldAccess world, BlockPos posA, BlockPos posB, NaturalArchFeatureConfig config, Random random) {
+        int dx = posB.getX() - posA.getX();
+        int dz = posB.getZ() - posA.getZ();
+        double distance = Math.sqrt(dx * dx + dz * dz);
+
+        int steps = (int) distance * 2;
+
+        int archHeight = 3 + random.nextInt(5);
+
+        BlockPos lastCore = null;
 
         for (int i = 0; i <= steps; i++) {
-            double t = i / (double) steps;
-            double x = MathHelper.lerp(start.getX(), end.getX(), t);
-            double z = MathHelper.lerp(start.getZ(), end.getZ(), t);
-            double y = parabolicLerp(start.getY(), end.getY(), t, height);
+            double t = (double) i / steps;
 
-            BlockPos pos = new BlockPos((int) x, (int) y, (int) z);
+            double x = posA.getX() + dx * t;
+            double z = posA.getZ() + dz * t;
 
-            for (int dx = -config.archThickness().get(random) / 2; dx <= config.archThickness().get(random) / 2; dx++) {
-                for (int dz = -config.archThickness().get(random) / 2; dz <= config.archThickness().get(random) / 2; dz++) {
-                    BlockPos offset = pos.add(dx, 0, dz);
-                    if (config.placementPredicate().test(world, offset)) {
-                        BlockState state = config.archBlockProvider().get(random, offset);
-                        world.setBlockState(offset, state, Block.NOTIFY_LISTENERS);
-                    }
+            double yArch = -4 * archHeight * (t - 0.5) * (t - 0.5) + archHeight;
+            double y = posA.getY() + (posB.getY() - posA.getY()) * t + yArch;
+
+            int width = 1 + random.nextInt(2);
+            int px = (int) Math.round(x) + random.nextInt(2) - 1;
+            int pz = (int) Math.round(z) + random.nextInt(2) - 1;
+            int py = (int) Math.round(y) + random.nextInt(2) - 1;
+
+            BlockPos core = new BlockPos((int) Math.round(x), (int) Math.round(y), (int) Math.round(z));
+            placeAndDecorate(world, config, random, core);
+
+            for (int wx = 0; wx < width; wx++) {
+                for (int wz = 0; wz < width; wz++) {
+                    BlockPos pos = new BlockPos(px + wx, py, pz + wz);
+                    if (pos.equals(core)) continue;
+
+                    placeAndDecorate(world, config, random, pos);
                 }
             }
+
+            if (lastCore != null && !lastCore.equals(core)) {
+                int stepsBetween = Math.max(Math.abs(core.getX() - lastCore.getX()), Math.max(Math.abs(core.getY() - lastCore.getY()), Math.abs(core.getZ() - lastCore.getZ())));
+                for (int j = 1; j < stepsBetween; j++) {
+                    double lerp = j / (double) stepsBetween;
+                    int ix = (int) Math.round(lastCore.getX() + (core.getX() - lastCore.getX()) * lerp);
+                    int iy = (int) Math.round(lastCore.getY() + (core.getY() - lastCore.getY()) * lerp);
+                    int iz = (int) Math.round(lastCore.getZ() + (core.getZ() - lastCore.getZ()) * lerp);
+                    BlockPos fillPos = new BlockPos(ix, iy, iz);
+                    world.setBlockState(fillPos, config.block().get(random, fillPos), Block.NOTIFY_LISTENERS);
+                }
+            }
+            lastCore = core;
         }
     }
 
-    private double parabolicLerp(double a, double b, double t, double height) {
-        return MathHelper.lerp(a, b, t) + (4 * height * t * (1 - t));
+    private void placeAndDecorate(StructureWorldAccess world, NaturalArchFeatureConfig config, Random random, BlockPos pos) {
+        world.setBlockState(pos, config.block().get(random, pos), Block.NOTIFY_LISTENERS);
+
+        BlockPos above = pos.up();
+        if (config.topDecorator() != null && world.isAir(above)) {
+            BlockState topState = config.topDecorator().get(random, above);
+            world.setBlockState(above, topState, Block.NOTIFY_LISTENERS);
+        }
     }
 }

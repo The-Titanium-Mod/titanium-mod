@@ -2,10 +2,12 @@ package net.rotgruengelb.titanium.world.gen.feature;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.collection.Pool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
@@ -43,11 +45,18 @@ public class TitaniumConfiguredFeatures {
         RegistryEntryLookup<PlacedFeature> placedFeatureLookup = featureRegisterable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
 
         WeightedBlockStateProvider wildwoodVegetationMixWeightedBlockStateProvider = new WeightedBlockStateProvider(
-                Pool.<BlockState>builder()
+                createBlockStatePool()
                         .add(TitaniumBlocks.WILDWOOD_GRASS.getDefaultState(), 83)
                         .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 5)
                         .add(TitaniumBlocks.WILDWOOD_LUMEN.getDefaultState(), 8)
                         .add(TitaniumBlocks.WILDWOOD_BLISTER.getDefaultState(), 1)
+        );
+        WeightedBlockStateProvider vollonArchTopDecoWeightedBlockStateProvider = new WeightedBlockStateProvider(
+                createBlockStatePool()
+                        .add(TitaniumBlocks.VOLLON_BRONCHI.getDefaultState(), 4)
+                        .add(TitaniumBlocks.VOLLON_NOODLES.getDefaultState(), 7)
+                        .add(TitaniumBlocks.VOLLON_STRINGS.getDefaultState(), 10)
+                        .add(Blocks.AIR.getDefaultState(), 4)
         );
         ConfiguredFeatures.register(
                 featureRegisterable,
@@ -72,7 +81,7 @@ public class TitaniumConfiguredFeatures {
                         PlacedFeatures.createEntry(
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockFeatureConfig(
-                                        wildwoodVegetationMixWeightedBlockStateProvider
+                                        vollonArchTopDecoWeightedBlockStateProvider
                                 ),
                                 BlockPredicate.bothOf(BlockPredicate.IS_AIR, BlockPredicate.not(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), TitaniumBlocks.ROTTEN_SOD)))
                         )
@@ -117,14 +126,12 @@ public class TitaniumConfiguredFeatures {
                 SMALL_BLUE_VOLLON_ARCH,
                 TitaniumFeatures.NATURAL_ARCH,
                 new NaturalArchFeatureConfig(
-                        SimpleBlockStateProvider.of(TitaniumBlocks.BLUE_VOLLON),
                         TitaniumBlockTags.CLART_SOIL,
-                        UniformIntProvider.create(1, 3),
-                        UniformIntProvider.create(2, 10),
-                        UniformIntProvider.create(3, 6),
-                        ConstantIntProvider.create(-5),
-                        ConstantIntProvider.create(5),
-                        BlockPredicate.IS_AIR
+                        UniformIntProvider.create(9, 13),
+                        UniformIntProvider.create(1, 15),
+                        UniformIntProvider.create(1, 2),
+                        SimpleBlockStateProvider.of(TitaniumBlocks.BLUE_VOLLON),
+                        vollonArchTopDecoWeightedBlockStateProvider
                 )
         );
     }
@@ -147,4 +154,14 @@ public class TitaniumConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 1)
         );
     }
+
+    //? if 1.21.1 {
+    private static DataPool.Builder<BlockState> createBlockStatePool() {
+        return DataPool.<BlockState>builder();
+    }
+     //?} else {
+    /*private static Pool.Builder<BlockState> createBlockStatePool() {
+        return Pool.<BlockState>builder();
+    }
+    *///?}
 }

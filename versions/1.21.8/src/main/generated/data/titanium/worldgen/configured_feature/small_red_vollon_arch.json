@@ -1,33 +1,55 @@
 {
   "type": "titanium:natural_arch",
   "config": {
-    "arch_block_provider": {
+    "block": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "titanium:blue_vollon"
       }
     },
-    "arch_radius": {
+    "horizontal_distance": {
       "type": "minecraft:uniform",
-      "max_inclusive": 6,
-      "min_inclusive": 3
+      "max_inclusive": 13,
+      "min_inclusive": 9
     },
-    "arch_thickness": {
+    "target_tag": "#titanium:clart_soil",
+    "thickness": {
       "type": "minecraft:uniform",
-      "max_inclusive": 3,
+      "max_inclusive": 2,
       "min_inclusive": 1
     },
-    "max_range": {
+    "topDecorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "titanium:vollon_bronchi"
+          },
+          "weight": 4
+        },
+        {
+          "data": {
+            "Name": "titanium:vollon_noodles"
+          },
+          "weight": 7
+        },
+        {
+          "data": {
+            "Name": "titanium:vollon_strings"
+          },
+          "weight": 10
+        },
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 4
+        }
+      ]
+    },
+    "vertical_distance": {
       "type": "minecraft:uniform",
-      "max_inclusive": 10,
-      "min_inclusive": 2
-    },
-    "max_vertical_delta": 5,
-    "min_vertical_delta": -5,
-    "placement_predicate": {
-      "type": "minecraft:matching_blocks",
-      "blocks": "minecraft:air"
-    },
-    "target_blocks": "#titanium:clart_soil"
+      "max_inclusive": 15,
+      "min_inclusive": 1
+    }
   }
 }

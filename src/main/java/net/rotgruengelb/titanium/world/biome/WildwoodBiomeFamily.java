@@ -13,7 +13,7 @@ public class WildwoodBiomeFamily {
     public static Biome forest(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup) {
         GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(featureLookup, carverLookup)
                 .feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN)
-                .feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, TitaniumPlacedFeatures.SMALL_BLUE_VOLLON_ARCH)
+                .feature(GenerationStep.Feature.SURFACE_STRUCTURES, TitaniumPlacedFeatures.SMALL_BLUE_VOLLON_ARCH)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, TitaniumPlacedFeatures.PATCH_WILDWOOD_WILD_OUTGROWTHS)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, TitaniumPlacedFeatures.WILDWOOD_TREES)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, TitaniumPlacedFeatures.PATCH_WILDWOOD_GRASS_FOREST)
@@ -29,7 +29,7 @@ public class WildwoodBiomeFamily {
     public static Biome wastes(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup) {
         GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(featureLookup, carverLookup)
                 .feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN)
-                .feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, TitaniumPlacedFeatures.SMALL_BLUE_VOLLON_ARCH)
+                .feature(GenerationStep.Feature.SURFACE_STRUCTURES, TitaniumPlacedFeatures.SMALL_BLUE_VOLLON_ARCH)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, TitaniumPlacedFeatures.PATCH_WILDWOOD_WILD_OUTGROWTHS)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, TitaniumPlacedFeatures.PATCH_WILDWOOD_GRASS_WASTES)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, TitaniumPlacedFeatures.PATCH_WILDWOOD_GRASS)
