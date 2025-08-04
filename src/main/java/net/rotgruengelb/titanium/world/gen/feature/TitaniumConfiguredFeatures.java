@@ -157,7 +157,7 @@ public class TitaniumConfiguredFeatures {
 
     //? if 1.21.1 {
     private static DataPool.Builder<BlockState> createBlockStatePool() {
-        return DataPool.<BlockState>builder();
+        return DataPool.builder();
     }
      //?} else {
     /*private static Pool.Builder<BlockState> createBlockStatePool() {
