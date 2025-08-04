@@ -7,6 +7,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.world.biome.TitaniumBiomes;
+import net.rotgruengelb.titanium.world.gen.feature.TitaniumConfiguredFeatures;
+import net.rotgruengelb.titanium.world.gen.feature.TitaniumPlacedFeatures;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -18,11 +20,15 @@ public class TitaniumDynamicRegistryProvider extends FabricDynamicRegistryProvid
 
     public static void buildRegistry(RegistryBuilder registryBuilder) {
         registryBuilder.addRegistry(RegistryKeys.BIOME, TitaniumBiomes::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, TitaniumConfiguredFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, TitaniumPlacedFeatures::bootstrap);
     }
 
     @Override
     public void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
         addAll(entries, getRegistryWrapperOrThrow(registries, RegistryKeys.BIOME), Titanium.MOD_ID);
+        addAll(entries, getRegistryWrapperOrThrow(registries, RegistryKeys.CONFIGURED_FEATURE), Titanium.MOD_ID);
+        addAll(entries, getRegistryWrapperOrThrow(registries, RegistryKeys.PLACED_FEATURE), Titanium.MOD_ID);
     }
 
     @SuppressWarnings("SameParameterValue")

@@ -10,6 +10,10 @@ import net.rotgruengelb.titanium.state.property.TitaniumProperties;
 //? if 1.21.1 {
 import net.minecraft.data.client.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static net.minecraft.data.client.BlockStateModelGenerator.TintType.NOT_TINTED;
 import static net.minecraft.data.client.TexturedModel.makeFactory;
 //?} else 1.21.8 {
@@ -106,16 +110,17 @@ public class TitaniumModelProvider extends FabricModelProvider {
 
 
         public final void registerSod(Block block, Block from) {
+
             TextureMap textureMap = new TextureMap()
                     .put(TextureKey.BOTTOM, TextureMap.getId(from))
                     .put(TextureKey.TOP, TextureMap.getSubId(block, "_top"))
                     .put(TextureKey.SIDE, TextureMap.getSubId(block, "_side"));
             this.blockStateCollector
             //? if 1.21.1 {
-            .accept(createSingletonBlockState(block, Models.CUBE_BOTTOM_TOP.upload(block, textureMap, this.modelCollector)));
+            .accept(createBlockStateWithRandomHorizontalRotations(block, Models.CUBE_BOTTOM_TOP.upload(block, textureMap, this.modelCollector)));
             //?} else {
-            /*.accept(createSingletonBlockState(block, createWeightedVariant(Models.CUBE_BOTTOM_TOP.upload(block, textureMap, this.modelCollector))));
-             *///?}
+            /*.accept(createSingletonBlockState(block, modelWithYRotation(createModelVariant(Models.CUBE_BOTTOM_TOP.upload(block, textureMap, this.modelCollector)))));
+            *///?}
         }
 
         public final void registerSimpleDoubleBlock(Block block) {

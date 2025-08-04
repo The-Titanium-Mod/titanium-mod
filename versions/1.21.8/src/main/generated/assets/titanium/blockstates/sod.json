@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "titanium:block/sod"
-    }
+    "": [
+      {
+        "model": "titanium:block/sod"
+      },
+      {
+        "model": "titanium:block/sod",
+        "y": 90
+      },
+      {
+        "model": "titanium:block/sod",
+        "y": 180
+      },
+      {
+        "model": "titanium:block/sod",
+        "y": 270
+      }
+    ]
   }
 }

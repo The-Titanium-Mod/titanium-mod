@@ -7,7 +7,7 @@ import net.rotgruengelb.titanium.Titanium;
 
 public class TitaniumBlockTags {
 
-	public static final TagKey<Block> CLART = tag("clart");
+	public static final TagKey<Block> CLART_SOIL = tag("clart_soil");
 	public static final TagKey<Block> VOLLON = tag("vollon");
 
 	private static TagKey<Block> tag(String id) {

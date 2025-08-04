@@ -30,10 +30,12 @@
     [],
     [
       "titanium:patch_wildwood_wild_outgrowths",
-      "titanium:patch_wildwood_grass_wastes",
+      "titanium:wildwood_trees",
+      "titanium:patch_wildwood_grass_forest",
       "titanium:patch_wildwood_grass",
       "titanium:patch_wildwood_grass_depths",
       "titanium:patch_wildwood_grass_mid_depths",
+      "titanium:patch_wildwood_lumen_forest",
       "titanium:patch_wildwood_blister",
       "titanium:patch_tall_wildwood_grass"
     ]

@@ -1,0 +1,33 @@
+{
+  "type": "titanium:natural_arch",
+  "config": {
+    "arch_block_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "titanium:blue_vollon"
+      }
+    },
+    "arch_radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 6,
+      "min_inclusive": 3
+    },
+    "arch_thickness": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 1
+    },
+    "max_range": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 10,
+      "min_inclusive": 2
+    },
+    "max_vertical_delta": 5,
+    "min_vertical_delta": -5,
+    "placement_predicate": {
+      "type": "minecraft:matching_blocks",
+      "blocks": "minecraft:air"
+    },
+    "target_blocks": "#titanium:clart_soil"
+  }
+}

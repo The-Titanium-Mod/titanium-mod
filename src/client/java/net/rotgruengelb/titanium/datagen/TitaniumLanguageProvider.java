@@ -49,7 +49,7 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 		).<Item>translation().auto(
 				BLOOD_BUCKET
 		).<FabricTagKey>translation().auto(
-				TitaniumBlockTags.CLART, TitaniumBlockTags.VOLLON,
+				TitaniumBlockTags.CLART_SOIL, TitaniumBlockTags.VOLLON,
 				TitaniumFluidTags.BLOOD
 		).<RegistryKey<ItemGroup>>translation(t -> "itemGroup." + t.getValue().getPath()).auto(
 				TitaniumItemGroups.ITEM_GROUP_KEY
