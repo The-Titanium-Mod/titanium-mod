@@ -7,8 +7,6 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.collection.DataPool;
-import net.minecraft.util.collection.Pool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -23,55 +21,48 @@ import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
+import net.rotgruengelb.titanium.world.gen.feature.config.HangingBlobFeatureConfig;
+import net.rotgruengelb.titanium.world.gen.feature.config.NaturalArchFeatureConfig;
+import net.rotgruengelb.titanium.world.gen.feature.config.UndergroundVeinsFeatureConfig;
+//? if 1.21.1 {
+import net.minecraft.util.collection.DataPool;
+//?} else {
+/*import net.minecraft.util.collection.Pool;
+ *///?}
 
 public class TitaniumConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> WILDWOOD_TREE = configuredFeature("wildwood_tree");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WILDWOOD_WILD_OUTGROWTHS = configuredFeature("patch_wildwood_wild_outgrowths");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WILD_ROTTEN_WILDWOOD_GRASS = configuredFeature("patch_wild_rotten_wildwood_grass");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WILDWOOD_GRASS = configuredFeature("patch_wildwood_grass");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_TALL_WILDWOOD_GRASS = configuredFeature("patch_tall_wildwood_grass");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WILDWOOD_LUMEN = configuredFeature("patch_wildwood_lumen");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WILDWOOD_BLISTER = configuredFeature("patch_wildwood_blister");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> SMALL_BLUE_VOLLON_ARCH = configuredFeature("small_red_vollon_arch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> BLUE_VOLLON_ARCH = configuredFeature("blue_vollon_arch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> RED_VOLLON_ARCH = configuredFeature("red_vollon_arch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TENDON_ARCH = configuredFeature("tendon_arch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TENDON_VEINS = configuredFeature("blood_veins");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> HANGING_TUMOR_GROWTH = configuredFeature("hanging_tumor_growth");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> HANGING_SALT_CRYSTAL = configuredFeature("hanging_salt_crystal");
 
     public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeature(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Titanium.id(name));
     }
 
-    private static RandomPatchFeatureConfig createRandomPatchFeatureConfig(BlockStateProvider block, int tries) {
-        return ConfiguredFeatures.createRandomPatchFeatureConfig(tries, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(block)));
-    }
-
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> featureRegisterable) {
         RegistryEntryLookup<PlacedFeature> placedFeatureLookup = featureRegisterable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
 
-        WeightedBlockStateProvider wildwoodVegetationMixWeightedBlockStateProvider = new WeightedBlockStateProvider(
-                createBlockStatePool()
-                        .add(TitaniumBlocks.WILDWOOD_GRASS.getDefaultState(), 83)
-                        .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 5)
-                        .add(TitaniumBlocks.WILDWOOD_LUMEN.getDefaultState(), 8)
-                        .add(TitaniumBlocks.WILDWOOD_BLISTER.getDefaultState(), 1)
-        );
-        WeightedBlockStateProvider vollonArchTopDecoWeightedBlockStateProvider = new WeightedBlockStateProvider(
-                createBlockStatePool()
-                        .add(TitaniumBlocks.VOLLON_BRONCHI.getDefaultState(), 4)
-                        .add(TitaniumBlocks.VOLLON_NOODLES.getDefaultState(), 7)
-                        .add(TitaniumBlocks.VOLLON_STRINGS.getDefaultState(), 10)
-                        .add(Blocks.AIR.getDefaultState(), 4)
-        );
-        ConfiguredFeatures.register(
-                featureRegisterable,
+        ConfiguredFeatures.register(featureRegisterable,
                 PATCH_WILDWOOD_GRASS,
                 Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(TitaniumBlocks.WILDWOOD_GRASS)))
         );
-        ConfiguredFeatures.register(
-                featureRegisterable,
+        ConfiguredFeatures.register(featureRegisterable,
                 PATCH_TALL_WILDWOOD_GRASS,
                 Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(TitaniumBlocks.TALL_WILDWOOD_GRASS)))
         );
-        ConfiguredFeatures.register(
-                featureRegisterable,
+        ConfiguredFeatures.register(featureRegisterable,
                 PATCH_WILDWOOD_WILD_OUTGROWTHS,
                 Feature.RANDOM_PATCH,
                 new RandomPatchFeatureConfig(
@@ -81,14 +72,39 @@ public class TitaniumConfiguredFeatures {
                         PlacedFeatures.createEntry(
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockFeatureConfig(
-                                        vollonArchTopDecoWeightedBlockStateProvider
+                                        new WeightedBlockStateProvider(
+                                                createBlockStatePool()
+                                                        .add(TitaniumBlocks.WILDWOOD_GRASS.getDefaultState(), 83)
+                                                        .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 5)
+                                                        .add(TitaniumBlocks.WILDWOOD_LUMEN.getDefaultState(), 8)
+                                                        .add(TitaniumBlocks.WILDWOOD_BLISTER.getDefaultState(), 1)
+                                        )
                                 ),
                                 BlockPredicate.bothOf(BlockPredicate.IS_AIR, BlockPredicate.not(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), TitaniumBlocks.ROTTEN_SOD)))
                         )
                 )
         );
-        ConfiguredFeatures.register(
-                featureRegisterable,
+        ConfiguredFeatures.register(featureRegisterable,
+                PATCH_WILD_ROTTEN_WILDWOOD_GRASS,
+                Feature.RANDOM_PATCH,
+                new RandomPatchFeatureConfig(
+                        32,
+                        9,
+                        9,
+                        PlacedFeatures.createEntry(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockFeatureConfig(
+                                        new WeightedBlockStateProvider(
+                                                createBlockStatePool()
+                                                        .add(TitaniumBlocks.ROTTEN_WILDWOOD_GRASS.getDefaultState(), 1)
+                                                        .add(TitaniumBlocks.ROTTING_WILDWOOD_GRASS.getDefaultState(), 10)
+                                        )
+                                ),
+                                BlockPredicate.allOf(BlockPredicate.IS_AIR)
+                        )
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
                 PATCH_WILDWOOD_LUMEN,
                 Feature.RANDOM_PATCH,
                 new RandomPatchFeatureConfig(
@@ -102,8 +118,7 @@ public class TitaniumConfiguredFeatures {
                                         ))
                         ))
         );
-        ConfiguredFeatures.register(
-                featureRegisterable,
+        ConfiguredFeatures.register(featureRegisterable,
                 PATCH_WILDWOOD_BLISTER,
                 Feature.RANDOM_PATCH,
                 new RandomPatchFeatureConfig(
@@ -121,17 +136,123 @@ public class TitaniumConfiguredFeatures {
                 WILDWOOD_TREE,
                 Feature.TREE, wildwoodTreeFeatureBuilder().build()
         );
-        ConfiguredFeatures.register(
-                featureRegisterable,
-                SMALL_BLUE_VOLLON_ARCH,
+        ConfiguredFeatures.register(featureRegisterable,
+                BLUE_VOLLON_ARCH,
                 TitaniumFeatures.NATURAL_ARCH,
                 new NaturalArchFeatureConfig(
-                        TitaniumBlockTags.CLART_SOIL,
+                        TitaniumBlockTags.SOD,
                         UniformIntProvider.create(9, 13),
-                        UniformIntProvider.create(1, 15),
+                        UniformIntProvider.create(-1, 15),
                         UniformIntProvider.create(1, 2),
                         SimpleBlockStateProvider.of(TitaniumBlocks.BLUE_VOLLON),
-                        vollonArchTopDecoWeightedBlockStateProvider
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(TitaniumBlocks.VOLLON_BRONCHI.getDefaultState(), 4)
+                                        .add(TitaniumBlocks.VOLLON_NOODLES.getDefaultState(), 7)
+                                        .add(TitaniumBlocks.VOLLON_STRINGS.getDefaultState(), 10)
+                                        .add(Blocks.AIR.getDefaultState(), 6)
+                        )
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
+                RED_VOLLON_ARCH,
+                TitaniumFeatures.NATURAL_ARCH,
+                new NaturalArchFeatureConfig(
+                        TitaniumBlockTags.SOD,
+                        UniformIntProvider.create(5, 13),
+                        UniformIntProvider.create(1, 32),
+                        UniformIntProvider.create(1, 2),
+                        SimpleBlockStateProvider.of(TitaniumBlocks.RED_VOLLON),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(TitaniumBlocks.VOLLON_BRONCHI.getDefaultState(), 6)
+                                        .add(TitaniumBlocks.VOLLON_NOODLES.getDefaultState(), 2)
+                                        .add(TitaniumBlocks.VOLLON_STRINGS.getDefaultState(), 10)
+                                        .add(Blocks.AIR.getDefaultState(), 8)
+                        )
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
+                TENDON_ARCH,
+                TitaniumFeatures.NATURAL_ARCH,
+                new NaturalArchFeatureConfig(
+                        TitaniumBlockTags.SOD,
+                        UniformIntProvider.create(9, 11),
+                        UniformIntProvider.create(15, 50),
+                        UniformIntProvider.create(2, 3),
+                        SimpleBlockStateProvider.of(TitaniumBlocks.TENDON),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(Blocks.AIR.getDefaultState(), 4)
+                        )
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
+                TENDON_VEINS,
+                TitaniumFeatures.UNDERGROUND_VEINS,
+                new UndergroundVeinsFeatureConfig(
+                        TitaniumBlockTags.WILDWOOD_TERRAIN,
+                        UniformIntProvider.create(31, 48),
+                        UniformIntProvider.create(50, 70),
+                        UniformIntProvider.create(30, 50),
+                        UniformIntProvider.create(13, 14),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(Blocks.AIR.getDefaultState(), 2)
+                                        .add(TitaniumBlocks.BRAWN.getDefaultState(), 5)
+                                        .add(TitaniumBlocks.TENDON.getDefaultState(), 7)
+                        )
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
+                HANGING_TUMOR_GROWTH,
+                TitaniumFeatures.HANGING_BLOB,
+                new HangingBlobFeatureConfig(
+                        TitaniumBlockTags.WILDWOOD_TERRAIN,
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(TitaniumBlocks.ROTTEN_SOD_BATCH.getDefaultState(), 7)
+                                        .add(TitaniumBlocks.BRAWN.getDefaultState(), 9)
+                                        .add(TitaniumBlocks.RED_VOLLON.getDefaultState(), 4)
+                                        .add(TitaniumBlocks.BLUE_VOLLON.getDefaultState(), 5)
+                                        .add(TitaniumBlocks.TENDON.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.WILDWOOD_WOOD.getDefaultState(), 1)
+                        ),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(Blocks.AIR.getDefaultState(), 7)
+                                        .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.VOLLON_BRONCHI.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.VOLLON_STRINGS.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.VOLLON_NOODLES.getDefaultState(), 1)
+                        ),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(Blocks.AIR.getDefaultState(), 8)
+                                        .add(TitaniumBlocks.VEINY_CLART.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.HANGING_TENDON.getDefaultState(), 1)
+                        )
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
+                HANGING_SALT_CRYSTAL,
+                TitaniumFeatures.HANGING_BLOB,
+                new HangingBlobFeatureConfig(
+                        TitaniumBlockTags.WILDWOOD_TERRAIN,
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(TitaniumBlocks.SALT.getDefaultState(), 1)
+                        ),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(Blocks.AIR.getDefaultState(), 24)
+                                        .add(TitaniumBlocks.SALT.getDefaultState(), 1)
+                        ),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(Blocks.AIR.getDefaultState(), 14)
+                                        .add(TitaniumBlocks.SALT.getDefaultState(), 1)
+                        )
                 )
         );
     }
@@ -161,7 +282,7 @@ public class TitaniumConfiguredFeatures {
     }
      //?} else {
     /*private static Pool.Builder<BlockState> createBlockStatePool() {
-        return Pool.<BlockState>builder();
+        return Pool.builder();
     }
     *///?}
 }

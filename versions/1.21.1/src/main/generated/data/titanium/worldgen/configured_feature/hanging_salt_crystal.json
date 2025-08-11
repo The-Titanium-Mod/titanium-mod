@@ -1,0 +1,48 @@
+{
+  "type": "titanium:hanging_blob",
+  "config": {
+    "block": {
+      "entries": [
+        {
+          "data": {
+            "Name": "titanium:salt"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "bottom_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 14
+        },
+        {
+          "data": {
+            "Name": "titanium:salt"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "target_tag": "#titanium:wildwood_terrain",
+    "top_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 24
+        },
+        {
+          "data": {
+            "Name": "titanium:salt"
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

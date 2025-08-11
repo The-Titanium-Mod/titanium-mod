@@ -31,9 +31,9 @@ public class TitaniumBiomes {
         registerable.register(WILDWOOD_WASTES, WildwoodBiomeFamily.wastes(featureLookup, carverLookup));
     }
 
-    protected static Biome createEndBiome(GenerationSettings.LookupBackedBuilder builder) {
-        SpawnSettings.Builder builder2 = new SpawnSettings.Builder();
-        DefaultBiomeFeatures.addEndMobs(builder2);
+    protected static Biome createEndBiome(GenerationSettings.LookupBackedBuilder generationSettingsBuilder) {
+        SpawnSettings.Builder spawnSettingsBuilder = new SpawnSettings.Builder();
+        DefaultBiomeFeatures.addEndMobs(spawnSettingsBuilder);
         return new Biome.Builder()
                 .precipitation(false)
                 .temperature(0.5F)
@@ -44,8 +44,8 @@ public class TitaniumBiomes {
                         .fogColor(10518688)
                         .skyColor(0)
                         .moodSound(BiomeMoodSound.CAVE).build())
-                .spawnSettings(builder2.build())
-                .generationSettings(builder.build())
+                .spawnSettings(spawnSettingsBuilder.build())
+                .generationSettings(generationSettingsBuilder.build())
                 .build();
     }
 

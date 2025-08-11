@@ -41,7 +41,7 @@
               0.55
             ],
             "depth": [
-              -0.3,
+              -0.5,
               0.2
             ],
             "erosion": [
@@ -97,11 +97,11 @@
           "biome": "titanium:wildwood_forest",
           "parameters": {
             "continentalness": [
-              -0.55,
-              0.45
+              -0.19,
+              1
             ],
             "depth": [
-              -0.35,
+              -0.5,
               1
             ],
             "erosion": [
@@ -109,12 +109,12 @@
               2
             ],
             "temperature": [
-              -0.4,
-              0.6
+              0.2,
+              1
             ],
             "humidity": [
-              -0.5,
-              1.5
+              -1,
+              1
             ],
             "offset": 0,
             "weirdness": [
@@ -127,24 +127,24 @@
           "biome": "titanium:wildwood_wastes",
           "parameters": {
             "continentalness": [
-              -0.55,
-              0.45
+              -0.455,
+              0.3
             ],
             "depth": [
               -0.5,
-              0.3
+              0.1
             ],
             "erosion": [
               0.50025,
               2
             ],
             "temperature": [
-              -0.7,
-              -0.2
+              -0.15,
+              0.3
             ],
             "humidity": [
-              -0.5,
-              1.5
+              -1,
+              1
             ],
             "offset": 0,
             "weirdness": [

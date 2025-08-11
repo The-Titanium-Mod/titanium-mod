@@ -8,6 +8,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.rotgruengelb.titanium.world.gen.feature.config.NaturalArchFeatureConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,6 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
 
         List<BlockPos> candidates = new ArrayList<>();
 
-        // Find all valid target blocks in posA hollow spherical shell
         BlockPos.iterateOutwards(start, maxHoriz, maxVert, maxHoriz).forEach(pos -> {
             if (pos.equals(start)) return;
             double distSq = start.getSquaredDistance(pos);
@@ -75,7 +75,7 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
             double yArch = -4 * archHeight * (t - 0.5) * (t - 0.5) + archHeight;
             double y = posA.getY() + (posB.getY() - posA.getY()) * t + yArch;
 
-            int width = 1 + random.nextInt(2);
+            int thickness = 1 + random.nextInt(config.thickness().get(random));
             int px = (int) Math.round(x) + random.nextInt(2) - 1;
             int pz = (int) Math.round(z) + random.nextInt(2) - 1;
             int py = (int) Math.round(y) + random.nextInt(2) - 1;
@@ -83,8 +83,8 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
             BlockPos core = new BlockPos((int) Math.round(x), (int) Math.round(y), (int) Math.round(z));
             placeAndDecorate(world, config, random, core);
 
-            for (int wx = 0; wx < width; wx++) {
-                for (int wz = 0; wz < width; wz++) {
+            for (int wx = 0; wx < thickness; wx++) {
+                for (int wz = 0; wz < thickness; wz++) {
                     BlockPos pos = new BlockPos(px + wx, py, pz + wz);
                     if (pos.equals(core)) continue;
 
@@ -111,9 +111,17 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
         world.setBlockState(pos, config.block().get(random, pos), Block.NOTIFY_LISTENERS);
 
         BlockPos above = pos.up();
-        if (config.topDecorator() != null && world.isAir(above)) {
+        if (config.topDecorator() != null && isAirAt(world, above)) {
             BlockState topState = config.topDecorator().get(random, above);
             world.setBlockState(above, topState, Block.NOTIFY_LISTENERS);
+        }
+    }
+
+    private static boolean isAirAt(StructureWorldAccess world, BlockPos pos) {
+        try {
+            return world.getBlockState(pos).isAir();
+        } catch (Exception e) {
+            return false;
         }
     }
 }

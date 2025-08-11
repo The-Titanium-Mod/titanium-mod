@@ -1,0 +1,55 @@
+{
+  "type": "titanium:natural_arch",
+  "config": {
+    "block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "titanium:red_vollon"
+      }
+    },
+    "horizontal_distance": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 13,
+      "min_inclusive": 5
+    },
+    "target_tag": "#titanium:sod",
+    "thickness": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 2,
+      "min_inclusive": 1
+    },
+    "top_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "titanium:vollon_bronchi"
+          },
+          "weight": 6
+        },
+        {
+          "data": {
+            "Name": "titanium:vollon_noodles"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "titanium:vollon_strings"
+          },
+          "weight": 10
+        },
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 8
+        }
+      ]
+    },
+    "vertical_distance": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 32,
+      "min_inclusive": 1
+    }
+  }
+}
