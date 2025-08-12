@@ -40,6 +40,11 @@ public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 TitaniumBlocks.RED_VOLLON
         );
 
+        tagBuilder(TitaniumBlockTags.SOD_BATCH).add(
+                TitaniumBlocks.SOD_BATCH,
+                TitaniumBlocks.ROTTEN_SOD_BATCH
+        );
+
 		tagBuilder(BlockTags.PLANKS).add(
 				TitaniumBlocks.WILDWOOD_PLANKS
 		);
