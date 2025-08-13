@@ -11,6 +11,7 @@ public class TitaniumBlockTags {
     public static final TagKey<Block> WILDWOOD_TERRAIN = tag("wildwood_terrain");
     public static final TagKey<Block> SOD = tag("sod");
 	public static final TagKey<Block> VOLLON = tag("vollon");
+    public static final TagKey<Block> SOD_BATCH = tag("sod_batch");
 
 	private static TagKey<Block> tag(String id) {
 		return TagKey.of(RegistryKeys.BLOCK, Titanium.id(id));

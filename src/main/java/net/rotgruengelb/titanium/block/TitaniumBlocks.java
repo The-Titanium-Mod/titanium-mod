@@ -4,13 +4,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
@@ -37,29 +35,55 @@ public class TitaniumBlocks {
                     .liquid()
                     .sounds(BlockSoundGroup.INTENTIONALLY_EMPTY));
     public static Block CLART = blockAndItem(
-            "clart", Block::new, createSettings().sounds(BlockSoundGroup.ROOTED_DIRT));
+            "clart",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.ROOTED_DIRT));
     public static Block SOD = blockAndItem(
-            "sod", Block::new, createSettings().sounds(BlockSoundGroup.NYLIUM));
+            "sod",
+            SodBlock::new,
+            createSettings().sounds(BlockSoundGroup.NYLIUM)
+                    .ticksRandomly());
     public static Block SOD_BATCH = blockAndItem(
-            "sod_batch", Block::new, createSettings().sounds(BlockSoundGroup.GRASS));
+            "sod_batch",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.GRASS));
     public static Block ROTTEN_SOD = blockAndItem(
-            "rotten_sod", Block::new, createSettings().sounds(BlockSoundGroup.NYLIUM));
+            "rotten_sod",
+            RottenSodBlock::new,
+            createSettings().sounds(BlockSoundGroup.NYLIUM)
+                    .ticksRandomly());
     public static Block ROTTEN_SOD_BATCH = blockAndItem(
-            "rotten_sod_batch", Block::new, createSettings().sounds(BlockSoundGroup.GRASS));
+            "rotten_sod_batch",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.GRASS));
     public static Block VEINY_CLART = blockAndItem(
-            "veiny_clart", Block::new, createSettings().sounds(BlockSoundGroup.ROOTED_DIRT));
+            "veiny_clart",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.ROOTED_DIRT));
     public static Block VEINY_SOD = blockAndItem(
-            "veiny_sod", Block::new, createSettings().sounds(BlockSoundGroup.NYLIUM));
+            "veiny_sod",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.NYLIUM));
     public static Block BRAWN = blockAndItem(
-            "brawn", Block::new, createSettings().sounds(BlockSoundGroup.MUD));
+            "brawn",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.MUD));
     public static Block TENDON = blockAndItem(
-            "tendon", Block::new, createSettings().sounds(BlockSoundGroup.SHROOMLIGHT));
+            "tendon",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.SHROOMLIGHT));
     public static Block BLUE_VOLLON = blockAndItem(
-            "blue_vollon", Block::new, createSettings().sounds(BlockSoundGroup.PACKED_MUD));
+            "blue_vollon",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.PACKED_MUD));
     public static Block RED_VOLLON = blockAndItem(
-            "red_vollon", Block::new, createSettings().sounds(BlockSoundGroup.PACKED_MUD));
+            "red_vollon",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.PACKED_MUD));
     public static Block SALT = blockAndItem(
-            "salt", Block::new, createSettings().sounds(BlockSoundGroup.SAND));
+            "salt",
+            Block::new,
+            createSettings().sounds(BlockSoundGroup.SAND));
     public static Block WILDWOOD_GRASS = blockAndItem(
             "wildwood_grass",
             SodPlantBlock::new,
@@ -105,7 +129,6 @@ public class TitaniumBlocks {
             "vollon_noodles",
             VollonPlantBlock::new,
             createOutgrowthsSettings(BlockSoundGroup.CORAL));
-
     public static Block VOLLON_BRONCHI = blockAndItem(
             "vollon_bronchi",
             VollonPlantBlock::new,
@@ -181,7 +204,7 @@ public class TitaniumBlocks {
     public static Block block(RegistryKey<Block> key, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         //? if 1.21.8 {
         /*settings = settings.registryKey(key);
-        *///?}
+         *///?}
         Block block = factory.apply(settings);
         return Registry.register(Registries.BLOCK, key, block);
     }
@@ -206,7 +229,7 @@ public class TitaniumBlocks {
     private static LeavesBlock createLeavesBlock(float leafParticleChance, AbstractBlock.Settings settings) {
         //? if 1.21.8 {
         /*return new TintedParticleLeavesBlock(leafParticleChance, settings);
-        *///?} else {
+         *///?} else {
         return new LeavesBlock(settings);
         //?}
     }
@@ -247,5 +270,6 @@ public class TitaniumBlocks {
         return createSettings().noCollision().strength(0.5F).pistonBehavior(PistonBehavior.DESTROY);
     }
 
-	public static void initialize() { }
+    public static void initialize() {
+    }
 }
