@@ -25,9 +25,17 @@ public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
 		//@formatter:off
-        tagBuilder(TitaniumBlockTags.CLART).add(
+        tagBuilder(TitaniumBlockTags.WILDWOOD_TERRAIN).add(
+                TitaniumBlocks.TENDON,
+                TitaniumBlocks.BRAWN
+        ).addTag(TitaniumBlockTags.CLART_SOIL);
+
+        tagBuilder(TitaniumBlockTags.CLART_SOIL).add(
                 TitaniumBlocks.CLART,
-                TitaniumBlocks.VEINY_CLART,
+                TitaniumBlocks.VEINY_CLART
+        ).addTag(TitaniumBlockTags.SOD);
+
+        tagBuilder(TitaniumBlockTags.SOD).add(
                 TitaniumBlocks.SOD,
                 TitaniumBlocks.VEINY_SOD,
                 TitaniumBlocks.SOD_BATCH,

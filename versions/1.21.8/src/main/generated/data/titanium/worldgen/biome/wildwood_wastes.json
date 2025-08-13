@@ -20,14 +20,26 @@
     [],
     [],
     [
-      "minecraft:end_gateway_return"
+      "minecraft:end_gateway_return",
+      "titanium:blue_vollon_arch",
+      "titanium:red_vollon_arch",
+      "titanium:tendon_arch"
+    ],
+    [],
+    [
+      "titanium:tendon_veins"
     ],
     [],
     [],
-    [],
-    [],
     [
-      "minecraft:chorus_plant"
+      "titanium:patch_wildwood_wild_outgrowths",
+      "titanium:patch_wildwood_grass_wastes",
+      "titanium:patch_wildwood_grass",
+      "titanium:patch_wildwood_grass_depths",
+      "titanium:patch_wildwood_grass_mid_depths",
+      "titanium:patch_wild_rotten_wildwood_grass",
+      "titanium:patch_wildwood_blister",
+      "titanium:patch_tall_wildwood_grass"
     ]
   ],
   "has_precipitation": false,

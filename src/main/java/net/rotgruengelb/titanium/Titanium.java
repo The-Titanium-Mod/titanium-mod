@@ -14,6 +14,7 @@ import net.rotgruengelb.titanium.item.TitaniumItems;
 import net.rotgruengelb.titanium.world.TitaniumGameRules;
 import net.rotgruengelb.titanium.world.biome.TitaniumBiomes;
 import net.rotgruengelb.titanium.world.gen.densityfunction.TitaniumDensityFunctionTypes;
+import net.rotgruengelb.titanium.world.gen.feature.TitaniumFeatures;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -39,6 +40,7 @@ public class Titanium implements ModInitializer {
         TitaniumItemGroups.initialize();
         TitaniumBiomes.initialize();
         TitaniumDensityFunctionTypes.initialize();
+        TitaniumFeatures.initialize();
 
         FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
             registerBuiltinResourcePack(modContainer, "new_terrain", ResourcePackActivationType.DEFAULT_ENABLED);

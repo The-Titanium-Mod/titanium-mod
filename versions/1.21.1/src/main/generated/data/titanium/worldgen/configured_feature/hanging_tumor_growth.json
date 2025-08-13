@@ -1,0 +1,105 @@
+{
+  "type": "titanium:hanging_blob",
+  "config": {
+    "block": {
+      "entries": [
+        {
+          "data": {
+            "Name": "titanium:rotten_sod_batch"
+          },
+          "weight": 7
+        },
+        {
+          "data": {
+            "Name": "titanium:brawn"
+          },
+          "weight": 9
+        },
+        {
+          "data": {
+            "Name": "titanium:red_vollon"
+          },
+          "weight": 4
+        },
+        {
+          "data": {
+            "Name": "titanium:blue_vollon"
+          },
+          "weight": 5
+        },
+        {
+          "data": {
+            "Name": "titanium:tendon"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "titanium:wildwood_wood",
+            "Properties": {
+              "axis": "y"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "bottom_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 8
+        },
+        {
+          "data": {
+            "Name": "titanium:veiny_clart"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "titanium:hanging_tendon"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "target_tag": "#titanium:wildwood_terrain",
+    "top_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 7
+        },
+        {
+          "data": {
+            "Name": "titanium:small_teeth"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "titanium:vollon_bronchi"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "titanium:vollon_strings"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "titanium:vollon_noodles"
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

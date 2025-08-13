@@ -14,6 +14,6 @@ public class SodPlantBlock extends RootsBlock {
 
 	@Override
 	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isIn(TitaniumBlockTags.CLART);
+		return floor.isIn(TitaniumBlockTags.CLART_SOIL);
 	}
 }

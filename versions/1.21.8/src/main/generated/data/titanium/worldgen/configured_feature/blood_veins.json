@@ -1,0 +1,48 @@
+{
+  "type": "titanium:underground_veins",
+  "config": {
+    "downward_step_chance": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 70,
+      "min_inclusive": 50
+    },
+    "max_distance_from_origin": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 14,
+      "min_inclusive": 13
+    },
+    "max_steps": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 48,
+      "min_inclusive": 31
+    },
+    "replaceable": "#titanium:wildwood_terrain",
+    "state_provider": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "titanium:brawn"
+          },
+          "weight": 5
+        },
+        {
+          "data": {
+            "Name": "titanium:tendon"
+          },
+          "weight": 7
+        }
+      ]
+    },
+    "vertical_step_chance": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 50,
+      "min_inclusive": 30
+    }
+  }
+}

@@ -25,6 +25,7 @@ public class TitaniumBiomeTagProvider extends FabricTagProvider<Biome> {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        tagBuilder(BiomeTags.IS_END).add(TitaniumBiomes.WILDWOOD_FOREST);
         tagBuilder(BiomeTags.IS_END).add(TitaniumBiomes.WILDWOOD_WASTES);
     }
 
