@@ -2,14 +2,14 @@
   "feature": "titanium:patch_wildwood_grass",
   "placement": [
     {
-      "type": "minecraft:heightmap",
-      "heightmap": "WORLD_SURFACE_WG"
-    },
-    {
       "type": "minecraft:noise_threshold_count",
       "above_noise": 13,
       "below_noise": 8,
       "noise_level": -0.8
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
     },
     {
       "type": "minecraft:in_square"

@@ -17,7 +17,10 @@
   "features": [
     [],
     [],
-    [],
+    [
+      "titanium:hanging_salt_crystal",
+      "titanium:hanging_tumor_growth"
+    ],
     [],
     [
       "minecraft:end_gateway_return",
@@ -32,18 +35,18 @@
     [],
     [],
     [
+      "titanium:patch_wildwood_grass",
+      "titanium:patch_wildwood_blister",
+      "titanium:patch_tall_wildwood_grass",
+      "titanium:patch_wild_rotten_wildwood_grass",
+      "titanium:patch_wildwood_grass_depths",
+      "titanium:patch_wildwood_grass_mid_depths",
       "titanium:patch_wildwood_wild_outgrowths",
       "titanium:wildwood_trees",
       "titanium:wildwood_trees_depths",
       "titanium:wildwood_trees_mid_depths",
       "titanium:patch_wildwood_grass_forest",
-      "titanium:patch_wildwood_grass",
-      "titanium:patch_wildwood_grass_depths",
-      "titanium:patch_wildwood_grass_mid_depths",
-      "titanium:patch_wildwood_lumen_forest",
-      "titanium:patch_wild_rotten_wildwood_grass",
-      "titanium:patch_wildwood_blister",
-      "titanium:patch_tall_wildwood_grass"
+      "titanium:patch_wildwood_lumen_forest"
     ]
   ],
   "has_precipitation": false,

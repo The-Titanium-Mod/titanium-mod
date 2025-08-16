@@ -7,6 +7,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -51,8 +52,8 @@ public class TitaniumPlacedFeatures {
 
         PlacedFeatures.register(featureRegisterable, WILDWOOD_TREES,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.WILDWOOD_TREE),
+                CountPlacementModifier.of(21),
                 PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
-                CountPlacementModifier.of(16),
                 SquarePlacementModifier.of(),
                 RandomOffsetPlacementModifier.horizontally(ConstantIntProvider.create(1)),
                 BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(TitaniumBlocks.WILDWOOD_SAPLING.getDefaultState(), BlockPos.ORIGIN)),
@@ -60,78 +61,82 @@ public class TitaniumPlacedFeatures {
         );
         PlacedFeatures.register(featureRegisterable, WILDWOOD_TREES_DEPTHS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.WILDWOOD_TREE),
-                BOTTOM_TO_30_RANGE,
-                CountPlacementModifier.of(19),
+                CountPlacementModifier.of(23),
                 SquarePlacementModifier.of(),
+                BOTTOM_TO_30_RANGE,
                 BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(TitaniumBlocks.WILDWOOD_SAPLING.getDefaultState(), BlockPos.ORIGIN)),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, WILDWOOD_TREES_MID_DEPTHS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.WILDWOOD_TREE),
-                FIXED_30_TO_85_RANGE,
-                CountPlacementModifier.of(12),
+                CountPlacementModifier.of(30),
                 SquarePlacementModifier.of(),
+                FIXED_30_TO_85_RANGE,
                 BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(TitaniumBlocks.WILDWOOD_SAPLING.getDefaultState(), BlockPos.ORIGIN)),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_WILD_OUTGROWTHS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_WILD_OUTGROWTHS),
-                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
-                CountPlacementModifier.of(30),
+                CountPlacementModifier.of(7),
+                PlacedFeatures.BOTTOM_TO_120_RANGE,
+                CountPlacementModifier.of(20),
                 SquarePlacementModifier.of(),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_GRASS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_GRASS),
-                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 NoiseBasedCountPlacementModifier.of(5, 50.0, 2.0),
+                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 SquarePlacementModifier.of(),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 16),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_GRASS_WASTES,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_GRASS),
-                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 NoiseThresholdCountPlacementModifier.of(-0.8, 8, 13),
+                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 SquarePlacementModifier.of(),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 16),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_GRASS_FOREST,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_GRASS),
-                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 NoiseThresholdCountPlacementModifier.of(-0.8, 4, 10),
+                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 SquarePlacementModifier.of(),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 16),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_TALL_WILDWOOD_GRASS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_TALL_WILDWOOD_GRASS),
-                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
-                NoiseThresholdCountPlacementModifier.of(-0.4, 4, 1),
+                NoiseThresholdCountPlacementModifier.of(-0.4, 4, 3),
                 SquarePlacementModifier.of(),
+                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 16),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_GRASS_DEPTHS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_GRASS),
-                BOTTOM_TO_30_RANGE,
-                NoiseBasedCountPlacementModifier.of(6, 80.0, 1.1),
+                CountPlacementModifier.of(UniformIntProvider.create(10, 13)),
                 SquarePlacementModifier.of(),
+                BOTTOM_TO_30_RANGE,
+                NoiseThresholdCountPlacementModifier.of(-0.8, 4, 10),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 16),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_GRASS_MID_DEPTHS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_GRASS),
-                FIXED_30_TO_85_RANGE,
-                NoiseBasedCountPlacementModifier.of(3, 70.0, 1.1),
+                CountPlacementModifier.of(UniformIntProvider.create(11, 20)),
                 SquarePlacementModifier.of(),
+                FIXED_30_TO_85_RANGE,
+                NoiseThresholdCountPlacementModifier.of(-0.8, 4, 10),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 16),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILD_ROTTEN_WILDWOOD_GRASS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILD_ROTTEN_WILDWOOD_GRASS),
+                CountPlacementModifier.of(UniformIntProvider.create(6, 12)),
                 PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 NoiseBasedCountPlacementModifier.of(3, 30.0, 0.2),
                 SquarePlacementModifier.of(),
@@ -140,8 +145,8 @@ public class TitaniumPlacedFeatures {
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_LUMEN_FOREST,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_LUMEN),
-                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 CountPlacementModifier.of(2),
+                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 SquarePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(1),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
@@ -149,8 +154,8 @@ public class TitaniumPlacedFeatures {
         );
         PlacedFeatures.register(featureRegisterable, PATCH_WILDWOOD_BLISTER,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.PATCH_WILDWOOD_BLISTER),
-                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 CountPlacementModifier.of(2),
+                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 SquarePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(1),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
@@ -158,33 +163,33 @@ public class TitaniumPlacedFeatures {
         );
         PlacedFeatures.register(featureRegisterable, BLUE_VOLLON_ARCH,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.BLUE_VOLLON_ARCH),
-                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 CountPlacementModifier.of(1),
+                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 SquarePlacementModifier.of(),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, RED_VOLLON_ARCH,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.RED_VOLLON_ARCH),
-                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 CountPlacementModifier.of(2),
                 RarityFilterPlacementModifier.of(2),
+                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 SquarePlacementModifier.of(),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, TENDON_ARCH,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.TENDON_ARCH),
-                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 CountPlacementModifier.of(1),
+                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 SquarePlacementModifier.of(),
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlocks(TitaniumBlocks.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
         PlacedFeatures.register(featureRegisterable, TENDON_VEINS,
                 configureFeatureLookup.getOrThrow(TitaniumConfiguredFeatures.TENDON_VEINS),
-                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 CountPlacementModifier.of(2),
+                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
                 EnvironmentScanPlacementModifier.of(Direction.DOWN, BlockPredicate.matchingBlockTag(TitaniumBlockTags.SOD), BlockPredicate.IS_AIR, 12),
                 BiomePlacementModifier.of()
         );
