@@ -7,6 +7,7 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -23,12 +24,9 @@ import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 import net.rotgruengelb.titanium.world.gen.feature.config.HangingBlobFeatureConfig;
 import net.rotgruengelb.titanium.world.gen.feature.config.NaturalArchFeatureConfig;
+import net.rotgruengelb.titanium.world.gen.feature.config.TerrainDecorationFeatureConfig;
 import net.rotgruengelb.titanium.world.gen.feature.config.UndergroundVeinsFeatureConfig;
-//? if 1.21.1 {
-import net.minecraft.util.collection.DataPool;
-//?} else {
-/*import net.minecraft.util.collection.Pool;
- *///?}
+//?}
 
 public class TitaniumConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> WILDWOOD_TREE = configuredFeature("wildwood_tree");
@@ -44,6 +42,8 @@ public class TitaniumConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TENDON_VEINS = configuredFeature("blood_veins");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HANGING_TUMOR_GROWTH = configuredFeature("hanging_tumor_growth");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HANGING_SALT_CRYSTAL = configuredFeature("hanging_salt_crystal");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ROTTEN_SOD_VEGETATION_BONEMEAL = configuredFeature("rotten_sod_vegetation_bonemeal");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SOD_VEGETATION_BONEMEAL = configuredFeature("sod_vegetation_bonemeal");
 
     public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeature(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Titanium.id(name));
@@ -82,6 +82,40 @@ public class TitaniumConfiguredFeatures {
                                 ),
                                 BlockPredicate.bothOf(BlockPredicate.IS_AIR, BlockPredicate.not(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), TitaniumBlocks.ROTTEN_SOD)))
                         )
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
+                SOD_VEGETATION_BONEMEAL,
+                TitaniumFeatures.TERRAIN_DECORATION,
+                new TerrainDecorationFeatureConfig(
+                        UniformIntProvider.create(3, 5),
+                        ConstantIntProvider.create(1),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(TitaniumBlocks.WILDWOOD_GRASS.getDefaultState(), 40)
+                                        .add(TitaniumBlocks.TALL_WILDWOOD_GRASS.getDefaultState(), 12)
+                                        .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.WILDWOOD_LUMEN.getDefaultState(), 8)
+                                        .add(TitaniumBlocks.WILDWOOD_BLISTER.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.WILDWOOD_SAPLING.getDefaultState(), 1)
+                        ),
+                        BlockPredicate.allOf(BlockPredicate.IS_AIR, BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), TitaniumBlocks.SOD), BlockPredicate.matchingBlocks(Direction.UP.getVector(), Blocks.AIR))
+                )
+        );
+        ConfiguredFeatures.register(featureRegisterable,
+                ROTTEN_SOD_VEGETATION_BONEMEAL,
+                TitaniumFeatures.TERRAIN_DECORATION,
+                new TerrainDecorationFeatureConfig(
+                        UniformIntProvider.create(3, 4),
+                        ConstantIntProvider.create(1),
+                        new WeightedBlockStateProvider(
+                                createBlockStatePool()
+                                        .add(TitaniumBlocks.ROTTEN_WILDWOOD_GRASS.getDefaultState(), 48)
+                                        .add(TitaniumBlocks.ROTTING_WILDWOOD_GRASS.getDefaultState(), 24)
+                                        .add(TitaniumBlocks.WILDWOOD_BLISTER.getDefaultState(), 1)
+                                        .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 1)
+                        ),
+                        BlockPredicate.allOf(BlockPredicate.IS_AIR, BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), TitaniumBlocks.ROTTEN_SOD), BlockPredicate.matchingBlocks(Direction.UP.getVector(), Blocks.AIR))
                 )
         );
         ConfiguredFeatures.register(featureRegisterable,
@@ -257,16 +291,15 @@ public class TitaniumConfiguredFeatures {
         );
     }
 
-
     private static TreeFeatureConfig.Builder wildwoodTreeFeatureBuilder() {
-        return treeFeatureBuilder(TitaniumBlocks.WILDWOOD_LOG,
+        return genericTreeBuilder(TitaniumBlocks.WILDWOOD_LOG,
                 TitaniumBlocks.WILDWOOD_LEAVES, 5, 3, 5, 2)
                 .ignoreVines()
                 .dirtProvider(BlockStateProvider.of(TitaniumBlocks.VEINY_CLART))
                 .forceDirt();
     }
 
-    private static TreeFeatureConfig.Builder treeFeatureBuilder(Block log, Block leaves, int baseHeight, int firstRandomHeight, int secondRandomHeight, int radius) {
+    private static TreeFeatureConfig.Builder genericTreeBuilder(Block log, Block leaves, int baseHeight, int firstRandomHeight, int secondRandomHeight, int radius) {
         return new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(log),
                 new StraightTrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight),
@@ -280,7 +313,7 @@ public class TitaniumConfiguredFeatures {
     private static DataPool.Builder<BlockState> createBlockStatePool() {
         return DataPool.builder();
     }
-     //?} else {
+    //?} else {
     /*private static Pool.Builder<BlockState> createBlockStatePool() {
         return Pool.builder();
     }
