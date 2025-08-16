@@ -2,6 +2,10 @@
   "feature": "titanium:blue_vollon_arch",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",
@@ -12,10 +16,6 @@
           "above_bottom": 0
         }
       }
-    },
-    {
-      "type": "minecraft:count",
-      "count": 1
     },
     {
       "type": "minecraft:in_square"

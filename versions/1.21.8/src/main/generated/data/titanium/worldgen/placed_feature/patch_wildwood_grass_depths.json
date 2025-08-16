@@ -2,6 +2,17 @@
   "feature": "titanium:patch_wildwood_grass",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 13,
+        "min_inclusive": 10
+      }
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",
@@ -14,13 +25,10 @@
       }
     },
     {
-      "type": "minecraft:noise_based_count",
-      "noise_factor": 80.0,
-      "noise_offset": 1.1,
-      "noise_to_count_ratio": 6
-    },
-    {
-      "type": "minecraft:in_square"
+      "type": "minecraft:noise_threshold_count",
+      "above_noise": 10,
+      "below_noise": 4,
+      "noise_level": -0.8
     },
     {
       "type": "minecraft:environment_scan",

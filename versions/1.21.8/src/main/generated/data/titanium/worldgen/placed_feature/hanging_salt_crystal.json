@@ -1,9 +1,9 @@
 {
-  "feature": "titanium:wildwood_tree",
+  "feature": "titanium:hanging_salt_crystal",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 23
+      "count": 5
     },
     {
       "type": "minecraft:in_square"
@@ -13,22 +13,10 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 30
+          "below_top": 0
         },
         "min_inclusive": {
           "above_bottom": 0
-        }
-      }
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:would_survive",
-        "state": {
-          "Name": "titanium:wildwood_sapling",
-          "Properties": {
-            "stage": "0"
-          }
         }
       }
     },

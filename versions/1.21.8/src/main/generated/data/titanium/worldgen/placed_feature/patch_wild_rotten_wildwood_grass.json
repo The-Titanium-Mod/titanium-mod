@@ -2,6 +2,14 @@
   "feature": "titanium:patch_wild_rotten_wildwood_grass",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 12,
+        "min_inclusive": 6
+      }
+    },
+    {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",

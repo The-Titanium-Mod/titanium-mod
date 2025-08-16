@@ -2,6 +2,14 @@
   "feature": "titanium:red_vollon_arch",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": 2
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 2
+    },
+    {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",
@@ -12,14 +20,6 @@
           "above_bottom": 0
         }
       }
-    },
-    {
-      "type": "minecraft:count",
-      "count": 2
-    },
-    {
-      "type": "minecraft:rarity_filter",
-      "chance": 2
     },
     {
       "type": "minecraft:in_square"
