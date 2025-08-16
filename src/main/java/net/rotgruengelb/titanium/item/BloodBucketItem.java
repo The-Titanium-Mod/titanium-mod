@@ -61,7 +61,6 @@ public class BloodBucketItem extends BucketItem {
     /*public ActionResult use(World world, PlayerEntity user, Hand hand) {
     *///?}
         // try to use the bucket as a normal item first
-
         var result = super.use(world, user, hand);
         boolean resultAccepted = //? if 1.21.1 {
                 result.getResult().isAccepted(); //?} else {
