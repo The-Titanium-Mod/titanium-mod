@@ -7,7 +7,7 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.collection.DataPool;
+
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -26,7 +26,12 @@ import net.rotgruengelb.titanium.world.gen.feature.config.HangingBlobFeatureConf
 import net.rotgruengelb.titanium.world.gen.feature.config.NaturalArchFeatureConfig;
 import net.rotgruengelb.titanium.world.gen.feature.config.TerrainDecorationFeatureConfig;
 import net.rotgruengelb.titanium.world.gen.feature.config.UndergroundVeinsFeatureConfig;
-//?}
+
+//? if 1.21.1 {
+import net.minecraft.util.collection.DataPool;
+//?} else {
+/*import net.minecraft.util.collection.Pool;
+*///?}
 
 public class TitaniumConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> WILDWOOD_TREE = configuredFeature("wildwood_tree");

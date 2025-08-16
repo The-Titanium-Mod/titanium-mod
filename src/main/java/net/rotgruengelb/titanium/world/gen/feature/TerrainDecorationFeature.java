@@ -3,7 +3,6 @@ package net.rotgruengelb.titanium.world.gen.feature;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.TallFlowerBlock;
 import net.minecraft.block.TallPlantBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -30,7 +29,7 @@ public class TerrainDecorationFeature extends Feature<TerrainDecorationFeatureCo
             return false;
         } else {
             int posY = originBlockPos.getY();
-            if (posY >= structureWorldAccess.getBottomY() + 1 && posY + 1 < structureWorldAccess.getTopY()) {
+            if (posY >= structureWorldAccess.getBottomY() + 1 && posY + 1 < (structureWorldAccess.getBottomY() + structureWorldAccess.getHeight())) {
                 int passes = 0;
                 for (int k = 0; k < spreadHeight * spreadWith; k++) {
                     BlockPos blockPos = originBlockPos.add(
