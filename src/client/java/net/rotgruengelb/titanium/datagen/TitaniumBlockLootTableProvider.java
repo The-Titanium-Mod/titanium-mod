@@ -3,6 +3,7 @@ package net.rotgruengelb.titanium.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -43,8 +44,8 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
         addVollonDrop(VOLLON_STRINGS, 0, 1, 2, 3);
         addVollonDrop(VOLLON_BRONCHI, 2, 3, 0, 1);
 
-        addShearsOrSilkTouchDrop(WILDWOOD_BLISTER);
-        addShearsOrSilkTouchDrop(BUNNY_CATCHER);
+        addOnlyShearsOrSilkTouchDrop(WILDWOOD_BLISTER);
+        addOnlyShearsOrSilkTouchDrop(BUNNY_CATCHER);
 
         addDrop(WILDWOOD_LEAVES, leavesDrops(WILDWOOD_LEAVES, WILDWOOD_SAPLING));
 
@@ -83,8 +84,12 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
         this.addDrop(block, dropsWithShears(block));
     }
 
-    public void addShearsOrSilkTouchDrop(Block block) {
-        this.addDrop(block, dropsWithSilkTouchOrShears(block, this.addSurvivesExplosionCondition(block, ItemEntry.builder(block))));
+    public void addOnlyShearsOrSilkTouchDrop(Block block) {
+        this.addDrop(block, dropsOnlyWithSilkTouchOrShears(block));
+    }
+
+    public LootTable.Builder dropsOnlyWithSilkTouchOrShears(ItemConvertible drop) {
+        return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).conditionally(WITH_SHEARS.or(this.createSilkTouchCondition())).with(ItemEntry.builder(drop)));
     }
 
     public void addVollonDrop(Block block, int minClump, int maxClump, int minStrands, int maxStrands) {

@@ -184,17 +184,17 @@ public class TitaniumBlocks {
             s -> new WildwoodSaplingBlock(null, s),
             wildwoodSaplingSettings());
 
-    protected static Block blockAndItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
+    private static Block blockAndItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         Block block = block(name, factory, settings);
         TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), TitaniumItems.createBlockItemSettingFor(block));
         return block;
     }
 
-    protected static Block blockAndItem(String name, AbstractBlock.Settings settings) {
+    private static Block blockAndItem(String name, AbstractBlock.Settings settings) {
         return blockAndItem(name, Block::new, settings);
     }
 
-    public static Block block(RegistryKey<Block> key, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
+    private static Block block(RegistryKey<Block> key, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         //? if 1.21.8 {
         /*settings = settings.registryKey(key);
          *///?}
@@ -202,7 +202,7 @@ public class TitaniumBlocks {
         return Registry.register(Registries.BLOCK, key, block);
     }
 
-    public static Block block(RegistryKey<Block> key, AbstractBlock.Settings settings) {
+    private static Block block(RegistryKey<Block> key, AbstractBlock.Settings settings) {
         return block(key, Block::new, settings);
     }
 
@@ -261,35 +261,35 @@ public class TitaniumBlocks {
                 .solidBlock(Blocks::never);
     }
 
-    public static AbstractBlock.Settings logSettings(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup sounds) {
+    private static AbstractBlock.Settings logSettings(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup sounds) {
         return woodenSettings(sounds)
                 .mapColor(state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
                 .strength(2.0F);
     }
 
-    public static AbstractBlock.Settings woodSettings(BlockSoundGroup sounds) {
+    private static AbstractBlock.Settings woodSettings(BlockSoundGroup sounds) {
         return woodenSettings(sounds)
                 .strength(2.0F);
     }
 
-    public static AbstractBlock.Settings woodenSettings(BlockSoundGroup sounds) {
+    private static AbstractBlock.Settings woodenSettings(BlockSoundGroup sounds) {
         return settings(MapColor.DULL_RED, sounds, 2.0F, 3.0F)
                 .instrument(NoteBlockInstrument.BASS)
                 .burnable();
     }
 
-    public static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds) {
+    private static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds) {
         return outgrowthsSettings(sounds, false);
     }
 
-    public static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds, boolean isStrong) {
+    private static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds, boolean isStrong) {
         return settings(MapColor.TERRACOTTA_RED, sounds, isStrong ? 0.45F : 0.0F)
                 .noCollision()
                 .offset(AbstractBlock.OffsetType.XZ)
                 .pistonBehavior(PistonBehavior.DESTROY);
     }
 
-    public static AbstractBlock.Settings createSoilSettings(MapColor mapColor, BlockSoundGroup sounds, boolean isTopSoil) {
+    private static AbstractBlock.Settings createSoilSettings(MapColor mapColor, BlockSoundGroup sounds, boolean isTopSoil) {
         return settings(mapColor, sounds, isTopSoil ? 0.6F : 0.5F);
     }
 
