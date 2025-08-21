@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "titanium:block/rotten_giant_tooth_bottom"
+    },
+    "half=upper": {
+      "model": "titanium:block/rotten_giant_tooth_top"
+    }
+  }
+}

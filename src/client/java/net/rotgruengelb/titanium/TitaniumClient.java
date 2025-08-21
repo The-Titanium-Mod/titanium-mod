@@ -1,8 +1,8 @@
 package net.rotgruengelb.titanium;
 
 import net.fabricmc.api.ClientModInitializer;
-
-import net.minecraft.client.render.RenderLayer;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.client.color.block.BlockColorProvider;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
@@ -10,6 +10,7 @@ import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
 //? if 1.21.1 {
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.RenderLayer;
 //?} else {
 /*import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.BlockRenderLayer;
@@ -25,7 +26,7 @@ public class TitaniumClient implements ClientModInitializer {
         //?} else {
         /*BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
 		*///?}
-				TitaniumBlocks.WILDWOOD_GRASS,
+				TitaniumBlocks.SHORT_WILDWOOD_GRASS,
 				TitaniumBlocks.WILDWOOD_LUMEN,
 				TitaniumBlocks.WILDWOOD_BLISTER,
 				TitaniumBlocks.BUNNY_CATCHER,
@@ -34,7 +35,7 @@ public class TitaniumClient implements ClientModInitializer {
 				TitaniumBlocks.ROTTING_WILDWOOD_GRASS,
 				TitaniumBlocks.ROTTEN_WILDWOOD_GRASS,
 				TitaniumBlocks.GIANT_TOOTH,
-				TitaniumBlocks.ROTTEN_TOOTH,
+				TitaniumBlocks.ROTTEN_GIANT_TOOTH,
 				TitaniumBlocks.VOLLON_NOODLES,
 				TitaniumBlocks.VOLLON_BRONCHI,
 				TitaniumBlocks.VOLLON_STRINGS,
@@ -53,6 +54,12 @@ public class TitaniumClient implements ClientModInitializer {
 						null
 				)
 		);
+
+        ColorProviderRegistry.BLOCK.register(colorProvider(0xFFFC50B7), TitaniumBlocks.WILDWOOD_LEAVES);
 		//@formatter:on
 	}
+
+    public static BlockColorProvider colorProvider(int color) {
+        return (state, view, pos, tintIndex) -> color;
+    }
 }

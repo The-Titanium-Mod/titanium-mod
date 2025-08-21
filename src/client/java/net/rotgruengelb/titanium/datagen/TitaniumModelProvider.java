@@ -11,9 +11,6 @@ import net.rotgruengelb.titanium.state.property.TitaniumProperties;
 import net.minecraft.data.client.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static net.minecraft.data.client.BlockStateModelGenerator.TintType.NOT_TINTED;
 import static net.minecraft.data.client.TexturedModel.makeFactory;
 //?} else 1.21.8 {
@@ -70,7 +67,7 @@ public class TitaniumModelProvider extends FabricModelProvider {
 		generator.registerSimpleCubeAll(WILDWOOD_LEAVES);
 		generator.registerCross(WILDWOOD_SAPLING);
 
-		generator.registerCross(WILDWOOD_GRASS);
+		generator.registerCross(SHORT_WILDWOOD_GRASS);
 		generator.registerCross(WILDWOOD_LUMEN);
 		generator.registerCross(WILDWOOD_BLISTER);
 		generator.registerCross(BUNNY_CATCHER);
@@ -85,7 +82,7 @@ public class TitaniumModelProvider extends FabricModelProvider {
 		generator.registerCross(HANGING_TENDON);
 
 		generator.registerSimpleDoubleBlock(TALL_WILDWOOD_GRASS);
-		generator.registerSimpleDoubleBlock(ROTTEN_TOOTH);
+		generator.registerSimpleDoubleBlock(ROTTEN_GIANT_TOOTH);
 
 		generator.registerGiantTooth(GIANT_TOOTH);
 

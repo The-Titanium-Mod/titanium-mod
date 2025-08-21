@@ -11,11 +11,11 @@ import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.item.TitaniumItems;
+import net.rotgruengelb.titanium.registry.TitaniumGameplayContent;
 import net.rotgruengelb.titanium.world.TitaniumGameRules;
 import net.rotgruengelb.titanium.world.biome.TitaniumBiomes;
 import net.rotgruengelb.titanium.world.gen.densityfunction.TitaniumDensityFunctionTypes;
 import net.rotgruengelb.titanium.world.gen.feature.TitaniumFeatures;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +38,9 @@ public class Titanium implements ModInitializer {
         TitaniumFluids.initialize();
         TitaniumGameRules.initialize();
         TitaniumItemGroups.initialize();
+        TitaniumGameplayContent.initialize();
+
+        // Worldgen
         TitaniumBiomes.initialize();
         TitaniumDensityFunctionTypes.initialize();
         TitaniumFeatures.initialize();
