@@ -16,7 +16,6 @@ import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
 //? if 1.21.8 {
 /*import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ConsumableComponents;
  *///?}
 

@@ -60,7 +60,7 @@ public class TitaniumConfiguredFeatures {
         ConfiguredFeatures.register(featureRegisterable,
                 PATCH_WILDWOOD_GRASS,
                 Feature.RANDOM_PATCH,
-                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(TitaniumBlocks.WILDWOOD_GRASS)))
+                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(TitaniumBlocks.SHORT_WILDWOOD_GRASS)))
         );
         ConfiguredFeatures.register(featureRegisterable,
                 PATCH_TALL_WILDWOOD_GRASS,
@@ -79,7 +79,7 @@ public class TitaniumConfiguredFeatures {
                                 new SimpleBlockFeatureConfig(
                                         new WeightedBlockStateProvider(
                                                 createBlockStatePool()
-                                                        .add(TitaniumBlocks.WILDWOOD_GRASS.getDefaultState(), 83)
+                                                        .add(TitaniumBlocks.SHORT_WILDWOOD_GRASS.getDefaultState(), 83)
                                                         .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 5)
                                                         .add(TitaniumBlocks.WILDWOOD_LUMEN.getDefaultState(), 8)
                                                         .add(TitaniumBlocks.WILDWOOD_BLISTER.getDefaultState(), 1)
@@ -97,7 +97,7 @@ public class TitaniumConfiguredFeatures {
                         ConstantIntProvider.create(1),
                         new WeightedBlockStateProvider(
                                 createBlockStatePool()
-                                        .add(TitaniumBlocks.WILDWOOD_GRASS.getDefaultState(), 40)
+                                        .add(TitaniumBlocks.SHORT_WILDWOOD_GRASS.getDefaultState(), 40)
                                         .add(TitaniumBlocks.TALL_WILDWOOD_GRASS.getDefaultState(), 12)
                                         .add(TitaniumBlocks.SMALL_TEETH.getDefaultState(), 1)
                                         .add(TitaniumBlocks.WILDWOOD_LUMEN.getDefaultState(), 8)

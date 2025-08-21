@@ -9,12 +9,13 @@ public class TitaniumDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+
+        var blockTagProvider = pack.addProvider(TitaniumBlockTagProvider::new);
+        pack.addProvider((o, r) -> new TitaniumItemTagProvider(o, r, blockTagProvider));
+        pack.addProvider(TitaniumBlockLootTableProvider::new);
         pack.addProvider(TitaniumLanguageProvider::new);
         pack.addProvider(TitaniumModelProvider::new);
-        pack.addProvider(TitaniumBlockTagProvider::new);
         pack.addProvider(TitaniumFluidTagProvider::new);
-        pack.addProvider(TitaniumItemTagProvider::new);
-        pack.addProvider(TitaniumBlockLootTableProvider::new);
         pack.addProvider(TitaniumDynamicRegistryProvider::new);
         pack.addProvider(TitaniumBiomeTagProvider::new);
         pack.addProvider(TitaniumAdvancementProvider::new);

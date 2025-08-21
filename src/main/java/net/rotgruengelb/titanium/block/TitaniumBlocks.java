@@ -52,7 +52,8 @@ public class TitaniumBlocks {
             createSoilSettings(MapColor.PINK, BlockSoundGroup.NYLIUM, true));
     public static Block BRAWN = blockAndItem(
             "brawn",
-            settings(MapColor.BLACK, BlockSoundGroup.MUD, 1.5F, 6.0F));
+            settings(MapColor.BLACK, BlockSoundGroup.MUD, 1.5F, 6.0F)
+                    .requiresTool());
     public static Block TENDON = blockAndItem(
             "tendon",
             settings(MapColor.DARK_RED, BlockSoundGroup.SHROOMLIGHT, 1.3F, 5.0F));
@@ -64,11 +65,12 @@ public class TitaniumBlocks {
             settings(MapColor.TERRACOTTA_RED, BlockSoundGroup.PACKED_MUD, 0.95F));
     public static Block SALT = blockAndItem(
             "salt",
-            createSoilSettings(MapColor.OFF_WHITE, BlockSoundGroup.SAND, true));
-    public static Block WILDWOOD_GRASS = blockAndItem(
-            "wildwood_grass",
+            createSoilSettings(MapColor.OFF_WHITE, BlockSoundGroup.SAND, true)
+                    .requiresTool());
+    public static Block SHORT_WILDWOOD_GRASS = blockAndItem(
+            "short_wildwood_grass",
             SodPlantBlock::new,
-            outgrowthsSettings(BlockSoundGroup.GRASS));
+            outgrowthsSettings(BlockSoundGroup.GRASS).replaceable());
     public static Block WILDWOOD_LUMEN = blockAndItem(
             "wildwood_lumen",
             SodPlantBlock::new,
@@ -93,17 +95,17 @@ public class TitaniumBlocks {
     public static Block TALL_WILDWOOD_GRASS = blockAndItem(
             "tall_wildwood_grass",
             TallSodPlantBlock::new,
-            outgrowthsSettings(BlockSoundGroup.GRASS));
+            outgrowthsSettings(BlockSoundGroup.GRASS).replaceable());
     public static Block ROTTING_WILDWOOD_GRASS = blockAndItem(
             "rotting_wildwood_grass",
             SodPlantBlock::new,
-            outgrowthsSettings(BlockSoundGroup.WET_GRASS));
+            outgrowthsSettings(BlockSoundGroup.WET_GRASS).replaceable());
     public static Block ROTTEN_WILDWOOD_GRASS = blockAndItem(
             "rotten_wildwood_grass",
             SodPlantBlock::new,
-            outgrowthsSettings(BlockSoundGroup.WET_GRASS));
-    public static Block ROTTEN_TOOTH = blockAndItem(
-            "rotten_tooth",
+            outgrowthsSettings(BlockSoundGroup.WET_GRASS).replaceable());
+    public static Block ROTTEN_GIANT_TOOTH = blockAndItem(
+            "rotten_giant_tooth",
             TallSodPlantBlock::new,
             outgrowthsSettings(BlockSoundGroup.ROOTS, true));
     public static Block VOLLON_NOODLES = blockAndItem(
@@ -117,7 +119,7 @@ public class TitaniumBlocks {
     public static Block VOLLON_STRINGS = blockAndItem(
             "vollon_strings",
             VollonPlantBlock::new,
-            outgrowthsSettings(BlockSoundGroup.CORAL));
+            outgrowthsSettings(BlockSoundGroup.CORAL).replaceable());
     public static Block HANGING_TENDON = blockAndItem(
             "hanging_tendon",
             HangingTendonBlock::new,
@@ -175,7 +177,7 @@ public class TitaniumBlocks {
             wildwoodFenceSettings());
     public static Block WILDWOOD_LEAVES = blockAndItem(
             "wildwood_leaves",
-            s -> createLeavesBlock(0.005F, s),
+            s -> createLeavesBlock(0.08F, s),
             leavesSettings(BlockSoundGroup.GRASS, MapColor.DULL_PINK));
     public static Block WILDWOOD_SAPLING = blockAndItem(
             "wildwood_sapling",
@@ -239,18 +241,16 @@ public class TitaniumBlocks {
 
     @SuppressWarnings("SameParameterValue")
     private static AbstractBlock.Settings liquidSettings(MapColor mapColor) {
-        return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY)
+        return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY, 100.0F)
                 .replaceable()
                 .noCollision()
-                .strength(100.0F)
                 .pistonBehavior(PistonBehavior.DESTROY)
                 .dropsNothing()
                 .liquid();
     }
 
     public static AbstractBlock.Settings leavesSettings(BlockSoundGroup sounds, MapColor mapColor) {
-        return settings(mapColor, sounds)
-                .strength(0.2F)
+        return settings(mapColor, sounds, 0.2F)
                 .ticksRandomly()
                 .nonOpaque()
                 .allowsSpawning(Blocks::canSpawnOnLeaves)
@@ -273,27 +273,24 @@ public class TitaniumBlocks {
     }
 
     public static AbstractBlock.Settings woodenSettings(BlockSoundGroup sounds) {
-        return settings(MapColor.DULL_RED, sounds)
+        return settings(MapColor.DULL_RED, sounds, 2.0F, 3.0F)
                 .instrument(NoteBlockInstrument.BASS)
-                .hardness(2.0F)
-                .resistance(3.0F)
-                .burnable()
-                .sounds(sounds);
+                .burnable();
+    }
+
+    public static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds) {
+        return outgrowthsSettings(sounds, false);
     }
 
     public static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds, boolean isStrong) {
-        return settings(MapColor.TERRACOTTA_RED, sounds)
-                .sounds(sounds)
+        return settings(MapColor.TERRACOTTA_RED, sounds, isStrong ? 0.45F : 0.0F)
                 .noCollision()
-                .strength(isStrong ? 0.45F : 0.0F)
                 .offset(AbstractBlock.OffsetType.XZ)
                 .pistonBehavior(PistonBehavior.DESTROY);
     }
 
     public static AbstractBlock.Settings createSoilSettings(MapColor mapColor, BlockSoundGroup sounds, boolean isTopSoil) {
-        return settings(mapColor, sounds)
-                .sounds(sounds)
-                .strength(isTopSoil ? 0.6F : 0.5F);
+        return settings(mapColor, sounds, isTopSoil ? 0.6F : 0.5F);
     }
 
     private static AbstractBlock.Settings wildwoodLogSettings() {
@@ -309,18 +306,15 @@ public class TitaniumBlocks {
     }
 
     private static AbstractBlock.Settings wildwoodFenceSettings() {
-        return settings(MapColor.DULL_RED, BlockSoundGroup.NETHER_WOOD)
-                .solid()
+        return settings(MapColor.DULL_RED, BlockSoundGroup.NETHER_WOOD, 2.0F, 3.0F)
                 .instrument(NoteBlockInstrument.BASS)
-                .strength(2.0F, 3.0F)
-                .burnable();
+                .burnable()
+                .solid();
     }
 
     private static AbstractBlock.Settings wildwoodDoorSettings() {
-        return settings(MapColor.DULL_RED, BlockSoundGroup.NETHER_WOOD)
-                .sounds(BlockSoundGroup.NETHER_WOOD)
+        return settings(MapColor.DULL_RED, BlockSoundGroup.NETHER_WOOD, 3.0F)
                 .instrument(NoteBlockInstrument.BASS)
-                .strength(3.0F)
                 .nonOpaque()
                 .burnable()
                 .pistonBehavior(PistonBehavior.DESTROY);
@@ -340,24 +334,18 @@ public class TitaniumBlocks {
     }
 
     private static AbstractBlock.Settings wildwoodButtonSettings() {
-        return settings(MapColor.CLEAR, BlockSoundGroup.NETHER_WOOD)
+        return settings(MapColor.CLEAR, BlockSoundGroup.NETHER_WOOD, 0.5F)
                 .noCollision()
-                .strength(0.5F)
                 .pistonBehavior(PistonBehavior.DESTROY);
     }
 
     private static AbstractBlock.Settings wildwoodPressurePlateSettings() {
-        return settings(MapColor.CLEAR, BlockSoundGroup.NETHER_WOOD)
+        return settings(MapColor.CLEAR, BlockSoundGroup.NETHER_WOOD, 0.5F)
                 .solid()
                 .instrument(NoteBlockInstrument.BASS)
                 .noCollision()
-                .strength(0.5F)
                 .burnable()
                 .pistonBehavior(PistonBehavior.DESTROY);
-    }
-
-    public static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds) {
-        return outgrowthsSettings(sounds, false);
     }
 
     public static void initialize() {
