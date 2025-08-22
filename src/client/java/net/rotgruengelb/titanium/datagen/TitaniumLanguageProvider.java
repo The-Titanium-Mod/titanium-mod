@@ -14,6 +14,7 @@ import net.minecraft.util.Pair;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 import net.rotgruengelb.titanium.registry.tag.TitaniumFluidTags;
+import net.rotgruengelb.titanium.registry.tag.TitaniumItemTags;
 import net.rotgruengelb.titanium.util.Util;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,7 +23,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import static net.rotgruengelb.titanium.block.TitaniumBlocks.*;
-import static net.rotgruengelb.titanium.item.TitaniumItems.BLOOD_BUCKET;
+import static net.rotgruengelb.titanium.item.TitaniumItems.*;
 
 public class TitaniumLanguageProvider extends FabricLanguageProvider {
 	protected TitaniumLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
@@ -47,9 +48,12 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 		).autoWithOfNotation(
 				SOD_BATCH, ROTTEN_SOD_BATCH
 		).<Item>translation().auto(
-				BLOOD_BUCKET
+				BLOOD_BUCKET, HARLIC
 		).<FabricTagKey>translation().auto(
-				TitaniumBlockTags.CLART_SOIL, TitaniumBlockTags.VOLLON,
+				TitaniumBlockTags.CLART_SOIL, TitaniumBlockTags.VOLLON, TitaniumBlockTags.SOD, TitaniumBlockTags.SOD_BATCH, TitaniumBlockTags.TEETH,
+                TitaniumBlockTags.VOLLON_OUTGROWTHS, TitaniumBlockTags.WILDWOOD_LOGS, TitaniumBlockTags.WILDWOOD_TERRAIN, TitaniumBlockTags.WILDWOOD_OUTGROWTHS,
+                TitaniumItemTags.CLART_SOIL, TitaniumItemTags.VOLLON, TitaniumItemTags.SOD, TitaniumItemTags.SOD_BATCH, TitaniumItemTags.TEETH,
+                TitaniumItemTags.VOLLON_OUTGROWTHS, TitaniumItemTags.WILDWOOD_LOGS, TitaniumItemTags.WILDWOOD_TERRAIN, TitaniumItemTags.WILDWOOD_OUTGROWTHS,
 				TitaniumFluidTags.BLOOD
 		).<RegistryKey<ItemGroup>>translation(t -> "itemGroup." + t.getValue().getPath()).auto(
 				TitaniumItemGroups.ITEM_GROUP_KEY

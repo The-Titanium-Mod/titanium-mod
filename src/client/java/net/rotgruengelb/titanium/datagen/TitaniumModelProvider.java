@@ -93,6 +93,7 @@ public class TitaniumModelProvider extends FabricModelProvider {
 	public void generateItemModels(ItemModelGenerator generator) {
 		generator.register(BLOOD_BUCKET, Models.GENERATED);
 		generator.register(GIANT_TOOTH.asItem(), Models.GENERATED);
+        generator.register(HARLIC, Models.GENERATED);
 	}
 
 	private static class TitaniumBlockStateModelGenerator extends BlockStateModelGenerator {

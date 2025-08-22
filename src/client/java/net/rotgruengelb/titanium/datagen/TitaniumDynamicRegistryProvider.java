@@ -32,7 +32,7 @@ public class TitaniumDynamicRegistryProvider extends FabricDynamicRegistryProvid
     }
 
     @SuppressWarnings("SameParameterValue")
-    private <T> RegistryWrapper.Impl<T> getRegistryWrapperOrThrow(RegistryWrapper.WrapperLookup registries, RegistryKey<Registry<T>> registryKey) {
+    public  <T> RegistryWrapper.Impl<T> getRegistryWrapperOrThrow(RegistryWrapper.WrapperLookup registries, RegistryKey<Registry<T>> registryKey) {
         //? if 1.21.1 {
         return registries.getWrapperOrThrow(registryKey);
          //?} else {
