@@ -8,10 +8,12 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -89,7 +91,15 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
     }
 
     public LootTable.Builder dropsOnlyWithSilkTouchOrShears(ItemConvertible drop) {
-        return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).conditionally(WITH_SHEARS.or(this.createSilkTouchCondition())).with(ItemEntry.builder(drop)));
+        return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).conditionally(this.createWithShearsCondition().or(this.createSilkTouchCondition())).with(ItemEntry.builder(drop)));
+    }
+
+    public LootCondition.Builder createWithShearsCondition() {
+        //? if 1.21.1 {
+        return MatchToolLootCondition.builder(ItemPredicate.Builder.create().items(Items.SHEARS));
+        //?} else {
+        /*return super.createWithShearsCondition();
+        *///?}
     }
 
     public void addVollonDrop(Block block, int minClump, int maxClump, int minStrands, int maxStrands) {
