@@ -2,6 +2,7 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryWrapper;
@@ -30,6 +31,8 @@ public class TitaniumItemTagProvider extends FabricTagProvider.ItemTagProvider {
 		//@formatter:off
         tagBuilder(ConventionalItemTags.BUCKETS).add(
 				TitaniumItems.BLOOD_BUCKET);
+        tagBuilder(ConventionalItemTags.FRUIT_FOODS).add(
+                TitaniumItems.HARLIC);
 
         copy(TitaniumBlockTags.WILDWOOD_TERRAIN, TitaniumItemTags.WILDWOOD_TERRAIN);
         copy(TitaniumBlockTags.CLART_SOIL, TitaniumItemTags.CLART_SOIL);
@@ -50,6 +53,11 @@ public class TitaniumItemTagProvider extends FabricTagProvider.ItemTagProvider {
         copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
         copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
         copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+        copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
+        copy(ConventionalBlockTags.WOODEN_FENCES, ConventionalItemTags.WOODEN_FENCES);
+        copy(ConventionalBlockTags.WOODEN_FENCE_GATES, ConventionalItemTags.WOODEN_FENCE_GATES);
+        copy(ConventionalBlockTags.STRIPPED_LOGS, ConventionalItemTags.STRIPPED_LOGS);
+        copy(ConventionalBlockTags.STRIPPED_WOODS, ConventionalItemTags.STRIPPED_WOODS);
 		//@formatter:on
 	}
 
