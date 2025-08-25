@@ -2,6 +2,7 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -89,6 +90,17 @@ public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 WILDWOOD_STAIRS);
 		tagBuilder(BlockTags.WOODEN_TRAPDOORS).add(
                 WILDWOOD_TRAPDOOR);
+        tagBuilder(BlockTags.SAPLINGS).add(
+                WILDWOOD_SAPLING);
+
+        tagBuilder(ConventionalBlockTags.WOODEN_FENCE_GATES).add(
+                WILDWOOD_FENCE_GATE);
+        tagBuilder(ConventionalBlockTags.WOODEN_FENCES).add(
+                WILDWOOD_FENCE);
+        tagBuilder(ConventionalBlockTags.STRIPPED_LOGS).add(
+                STRIPPED_WILDWOOD_LOG);
+        tagBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(
+                STRIPPED_WILDWOOD_WOOD);
 
         tagBuilder(BlockTags.SHOVEL_MINEABLE).add(
                 SOD,

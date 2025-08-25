@@ -3,22 +3,29 @@ package net.rotgruengelb.titanium.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.MatchToolLootCondition;
+import net.minecraft.loot.condition.TableBonusLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
 import static net.rotgruengelb.titanium.block.TitaniumBlocks.*;
+import static net.rotgruengelb.titanium.item.TitaniumItems.*;
 
 public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider {
 
@@ -49,7 +56,7 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
         addOnlyShearsOrSilkTouchDrop(WILDWOOD_BLISTER);
         addOnlyShearsOrSilkTouchDrop(BUNNY_CATCHER);
 
-        addDrop(WILDWOOD_LEAVES, leavesDrops(WILDWOOD_LEAVES, WILDWOOD_SAPLING));
+        addDrop(WILDWOOD_LEAVES, wildwoodLeavesDrops(WILDWOOD_LEAVES, WILDWOOD_SAPLING, HARLIC));
 
         addDrop(BLUE_VOLLON);
         addDrop(RED_VOLLON);
@@ -140,7 +147,25 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
         *///?}
     }
 
-    protected LootTable.Builder leavesDrops(Block leaves, Block sapling) {
-        return this.leavesDrops(leaves, sapling, SAPLING_DROP_CHANCE);
+    protected LootTable.Builder wildwoodLeavesDrops(Block leaves, Block sapling, ItemConvertible fruit) {
+        RegistryWrapper.Impl<Enchantment> impl = getRegistryWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        return this.leavesDrops(leaves, sapling, SAPLING_DROP_CHANCE)
+                .pool(LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .conditionally(this.createWithoutShearsOrSilkTouchCondition())
+                                .with(
+                                        this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(fruit))
+                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+                                )
+                );
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    public  <T> RegistryWrapper.Impl<T> getRegistryWrapperOrThrow(RegistryKey<Registry<T>> registryKey) {
+        //? if 1.21.1 {
+        return this.registryLookup.getWrapperOrThrow(registryKey);
+        //?} else {
+        /*return this.registries.getOrThrow(registryKey);
+         *///?}
     }
 }

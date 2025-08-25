@@ -23,8 +23,14 @@ import java.util.function.Function;
 
 public class TitaniumItems {
 
-	public static final Item BLOOD_BUCKET = item("blood_bucket",
-			settings -> new BloodBucketItem(TitaniumFluids.BLOOD, settings), createBloodBucketItemSettings());
+	public static final Item BLOOD_BUCKET = item(
+            "blood_bucket",
+			settings -> new BloodBucketItem(TitaniumFluids.BLOOD, settings),
+            createBloodBucketItemSettings());
+    public static final Item HARLIC = item(
+            "harlic",
+            Item::new,
+            harlicSettings());
 
     public static Item item(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
         return item(RegistryKey.of(RegistryKeys.ITEM, Titanium.id(name)), factory, settings);
@@ -42,18 +48,16 @@ public class TitaniumItems {
         return Registry.register(Registries.ITEM, key, item);
     }
 
-    public static Item.Settings createBlockItemSettingFor(Block block) {
-        @SuppressWarnings({"UnnecessaryLocalVariable", "RedundantSuppression"})
-        Item.Settings settings = new BlockItem.Settings();
+    public static Item.Settings blockItemSettingFor(Block block) {
         //? if 1.21.8 {
-        /*return settings.translationKey(block.getTranslationKey());
+        /*return blockItemSettings().translationKey(block.getTranslationKey());
          *///?} else {
-        return settings;
+        return settings();
         //?}
     }
 
-    public static Item.Settings createBloodBucketItemSettings() {
-        Item.Settings settings = new BlockItem.Settings()
+    private static Item.Settings createBloodBucketItemSettings() {
+        Item.Settings settings = blockItemSettings()
                 .recipeRemainder(Items.BUCKET)
                 .maxCount(1);
          FoodComponent.Builder foodBuilder = new FoodComponent.Builder().alwaysEdible().nutrition(1).saturationModifier(0);
@@ -71,6 +75,18 @@ public class TitaniumItems {
                 .useRemainder(Items.BUCKET);
         *///?}
         return settings;
+    }
+
+    private static Item.Settings blockItemSettings() {
+        return new BlockItem.Settings();
+    }
+
+    private static Item.Settings settings() {
+        return new BlockItem.Settings();
+    }
+
+    private static Item.Settings harlicSettings() {
+        return settings().food(new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build());
     }
 
 	public static void initialize() { }

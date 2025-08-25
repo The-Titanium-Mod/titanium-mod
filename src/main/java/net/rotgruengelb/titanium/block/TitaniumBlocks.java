@@ -186,7 +186,7 @@ public class TitaniumBlocks {
 
     private static Block blockAndItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         Block block = block(name, factory, settings);
-        TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), TitaniumItems.createBlockItemSettingFor(block));
+        TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), TitaniumItems.blockItemSettingFor(block));
         return block;
     }
 
