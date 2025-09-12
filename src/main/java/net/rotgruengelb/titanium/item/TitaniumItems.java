@@ -29,11 +29,20 @@ public class TitaniumItems {
             createBloodBucketItemSettings());
     public static final Item HARLIC = item(
             "harlic",
-            Item::new,
             harlicSettings());
+    public static final Item VOLLON_ALVEOLI = item(
+            "vollon_alveoli",
+            settings());
+    public static final Item VOLLON_LIGAMENTS = item(
+            "vollon_ligaments",
+            settings());
 
     public static Item item(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
         return item(RegistryKey.of(RegistryKeys.ITEM, Titanium.id(name)), factory, settings);
+    }
+
+    public static Item item(String name, Item.Settings settings) {
+        return item(RegistryKey.of(RegistryKeys.ITEM, Titanium.id(name)), Item::new, settings);
     }
 
     public static Item item(RegistryKey<Item> key, Function<Item.Settings, Item> factory, Item.Settings settings) {

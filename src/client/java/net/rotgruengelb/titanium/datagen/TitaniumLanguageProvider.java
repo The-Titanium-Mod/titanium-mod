@@ -48,7 +48,7 @@ public class TitaniumLanguageProvider extends FabricLanguageProvider {
 		).autoWithOfNotation(
 				SOD_BATCH, ROTTEN_SOD_BATCH
 		).<Item>translation().auto(
-				BLOOD_BUCKET, HARLIC
+				BLOOD_BUCKET, HARLIC, VOLLON_ALVEOLI, VOLLON_LIGAMENTS
 		).<FabricTagKey>translation().auto(
 				TitaniumBlockTags.CLART_SOIL, TitaniumBlockTags.VOLLON, TitaniumBlockTags.SOD, TitaniumBlockTags.SOD_BATCH, TitaniumBlockTags.TEETH,
                 TitaniumBlockTags.VOLLON_OUTGROWTHS, TitaniumBlockTags.WILDWOOD_LOGS, TitaniumBlockTags.WILDWOOD_TERRAIN, TitaniumBlockTags.WILDWOOD_OUTGROWTHS,

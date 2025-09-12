@@ -109,7 +109,7 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
         *///?}
     }
 
-    public void addVollonDrop(Block block, int minClump, int maxClump, int minStrands, int maxStrands) {
+    public void addVollonDrop(Block block, int minAlveoli, int maxAlveoli, int minLigaments, int maxLigaments) {
         this.addDrop(block, LootTable.builder()
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1.0F))
@@ -121,9 +121,9 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
                         .conditionally(this.getWithSilkTouchOrShearsCondition().invert())
                         .with(this.applyExplosionDecay(
                                 block,
-                                ItemEntry.builder(Items.GOLD_INGOT)
+                                ItemEntry.builder(VOLLON_ALVEOLI)
                                         .apply(SetCountLootFunction.builder(
-                                                UniformLootNumberProvider.create(minClump, maxClump)))
+                                                UniformLootNumberProvider.create(minAlveoli, maxAlveoli)))
                         ))
                 )
                 .pool(LootPool.builder()
@@ -131,9 +131,9 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
                         .conditionally(this.getWithSilkTouchOrShearsCondition().invert())
                         .with(this.applyExplosionDecay(
                                 block,
-                                ItemEntry.builder(Items.IRON_NUGGET)
+                                ItemEntry.builder(VOLLON_LIGAMENTS)
                                         .apply(SetCountLootFunction.builder(
-                                                UniformLootNumberProvider.create(minStrands, maxStrands)))
+                                                UniformLootNumberProvider.create(minLigaments, maxLigaments)))
                         ))
                 )
         );
