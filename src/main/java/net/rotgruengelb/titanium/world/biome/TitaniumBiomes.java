@@ -58,5 +58,7 @@ public class TitaniumBiomes {
     public static void initialize() {
         addEndBiomeToVanilla(WILDWOOD_FOREST, 1.25);
         addEndBiomeToVanilla(WILDWOOD_WASTES, 0.95);
+
+        Titanium.LOGGER.debug("Initialized TitaniumBiomes");
     }
 }

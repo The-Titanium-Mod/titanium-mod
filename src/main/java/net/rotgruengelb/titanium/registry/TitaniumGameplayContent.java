@@ -2,6 +2,7 @@ package net.rotgruengelb.titanium.registry;
 
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 
 public class TitaniumGameplayContent {
@@ -23,5 +24,7 @@ public class TitaniumGameplayContent {
         CompostingChanceRegistry.INSTANCE.add(TitaniumBlocks.VOLLON_STRINGS, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(TitaniumBlocks.WILDWOOD_LEAVES, 0.30F);
         CompostingChanceRegistry.INSTANCE.add(TitaniumBlocks.WILDWOOD_SAPLING, 0.30F);
+
+        Titanium.LOGGER.debug("Initialized TitaniumGameplayContent");
     }
 }

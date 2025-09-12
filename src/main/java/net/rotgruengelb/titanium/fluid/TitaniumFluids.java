@@ -14,5 +14,7 @@ public class TitaniumFluids {
 		return Registry.register(Registries.FLUID, Titanium.id(id), value);
 	}
 
-	public static void initialize() { }
+	public static void initialize() {
+        Titanium.LOGGER.debug("Initialized TitaniumFluids");
+    }
 }

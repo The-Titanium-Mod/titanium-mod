@@ -89,5 +89,7 @@ public class TitaniumItems {
         return settings().food(new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build());
     }
 
-	public static void initialize() { }
+	public static void initialize() {
+        Titanium.LOGGER.debug("Initialized TitaniumItems");
+    }
 }

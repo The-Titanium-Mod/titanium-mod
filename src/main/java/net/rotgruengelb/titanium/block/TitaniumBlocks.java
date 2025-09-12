@@ -349,5 +349,6 @@ public class TitaniumBlocks {
     }
 
     public static void initialize() {
+        Titanium.LOGGER.debug("Initialized TitaniumBlocks");
     }
 }
