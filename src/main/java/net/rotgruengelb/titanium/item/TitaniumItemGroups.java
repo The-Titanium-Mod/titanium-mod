@@ -47,6 +47,8 @@ public class TitaniumItemGroups {
 						WILDWOOD_BUTTON, WILDWOOD_LEAVES, WILDWOOD_SAPLING, HARLIC
 				)));
 		//@formatter:on
+
+        Titanium.LOGGER.debug("Initialized TitaniumItemGroups");
 	}
 
 	private static Collection<ItemStack> toItemStackCollection(ItemConvertible... itemConvertibles) {

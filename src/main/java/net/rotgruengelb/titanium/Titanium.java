@@ -48,6 +48,8 @@ public class Titanium implements ModInitializer {
         FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
             registerBuiltinResourcePack(modContainer, "new_terrain", ResourcePackActivationType.DEFAULT_ENABLED);
         });
+
+        LOGGER.debug("{} ({}) has been initialized!", MOD_ID, VERSION);
     }
 
     static void registerBuiltinResourcePack(ModContainer modContainer, String path, ResourcePackActivationType activationType) {

@@ -21,5 +21,6 @@ public class TitaniumFeatures {
     }
 
     public static void initialize() {
+        Titanium.LOGGER.debug("Initialized TitaniumFeatures");
     }
 }

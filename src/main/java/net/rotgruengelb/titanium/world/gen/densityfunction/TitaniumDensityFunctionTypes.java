@@ -11,11 +11,27 @@ import net.minecraft.world.gen.densityfunction.DensityFunction;
 import net.rotgruengelb.titanium.Titanium;
 
 public class TitaniumDensityFunctionTypes {
-    static final Codec<Double> NOISE_VALUE_CODEC = Codec.doubleRange(-1000000.0, 1000000.0);
+    public static final MapCodec<?> DISTANCE_FROM_CENTER_GRADIENT = densityFunctionType("distance_from_center_gradient", DistanceFromCenterGradient.CODEC);
+
+    private static MapCodec<? extends DensityFunction> densityFunctionType(String path, CodecHolder<? extends DensityFunction> dispatch) {
+        return Registry.register(Registries.DENSITY_FUNCTION_TYPE, Titanium.id(path), dispatch.codec());
+    }
+
+    public static void initialize() {
+        Titanium.LOGGER.debug("Initialized TitaniumDensityFunctionTypes");
+    }
 
     record DistanceFromCenterGradient(int minDistance, int maxDistance, double fromValue,
                                       double toValue) implements DensityFunction.Base {
-        private static final MapCodec<DistanceFromCenterGradient> DATA_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(Codec.INT.fieldOf("min_distance").forGetter(DistanceFromCenterGradient::minDistance), Codec.INT.fieldOf("max_distance").forGetter(DistanceFromCenterGradient::maxDistance), NOISE_VALUE_CODEC.fieldOf("from_value").forGetter(DistanceFromCenterGradient::fromValue), NOISE_VALUE_CODEC.fieldOf("to_value").forGetter(DistanceFromCenterGradient::toValue)).apply(instance, DistanceFromCenterGradient::new));
+        static final Codec<Double> NOISE_VALUE_CODEC = Codec.doubleRange(-1000000.0, 1000000.0);
+
+        private static final MapCodec<DistanceFromCenterGradient> DATA_CODEC = RecordCodecBuilder.mapCodec(
+                instance -> instance
+                        .group(Codec.INT.fieldOf("min_distance").forGetter(DistanceFromCenterGradient::minDistance),
+                                Codec.INT.fieldOf("max_distance").forGetter(DistanceFromCenterGradient::maxDistance),
+                                NOISE_VALUE_CODEC.fieldOf("from_value").forGetter(DistanceFromCenterGradient::fromValue),
+                                NOISE_VALUE_CODEC.fieldOf("to_value").forGetter(DistanceFromCenterGradient::toValue))
+                        .apply(instance, DistanceFromCenterGradient::new));
 
         public static final CodecHolder<DistanceFromCenterGradient> CODEC = CodecHolder.of(DATA_CODEC);
 
@@ -43,13 +59,5 @@ public class TitaniumDensityFunctionTypes {
         public CodecHolder<? extends DensityFunction> getCodecHolder() {
             return CODEC;
         }
-    }
-
-    private static MapCodec<? extends DensityFunction> register(String string, CodecHolder<? extends DensityFunction> dispatch) {
-        return Registry.register(Registries.DENSITY_FUNCTION_TYPE, Titanium.id(string), dispatch.codec());
-    }
-
-    public static void initialize() {
-        register("distance_from_center_gradient", DistanceFromCenterGradient.CODEC);
     }
 }
