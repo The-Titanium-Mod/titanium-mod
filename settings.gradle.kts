@@ -3,11 +3,12 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven("https://maven.fabricmc.net/")
+		maven("https://maven.kikugie.dev/snapshots") { name = "KikuGie Snapshots" }
     }
 }
 
 plugins {
-    id("dev.kikugie.stonecutter") version "0.7.6"
+	id("dev.kikugie.stonecutter") version "0.7.10"
 }
 
 stonecutter {
