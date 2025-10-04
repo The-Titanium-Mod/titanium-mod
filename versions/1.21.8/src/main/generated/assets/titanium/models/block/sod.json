@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "titanium:block/clart",
+    "side": "titanium:block/sod_side",
+    "top": "titanium:block/sod_top"
+  }
+}

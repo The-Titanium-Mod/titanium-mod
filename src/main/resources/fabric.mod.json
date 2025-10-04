@@ -3,9 +3,14 @@
   "id": "${id}",
   "version": "${version}+${mc_title}",
   "name": "${name}",
-  "description": "",
+  "description": "A mod that expands upon the End with three diverse and expansive biomes. Delve into the roots of the universe, whether it be flora or code.",
   "authors": [
-    "rotgruengelb"
+    "NanoBotΣ",
+    "rotgruengelb",
+    "Steaf23"
+  ],
+  "contributors": [
+    "Oddity2004"
   ],
   "contact": {
     "homepage": "",
@@ -14,10 +19,10 @@
   "license": "ARR",
   "icon": "assets/titanium/icon.png",
   "environment": "*",
-  "accessWidener" : "titanium.accesswidener",
+  "accessWidener": "titanium.accesswidener",
   "entrypoints": {
     "main": [
-		"net.rotgruengelb.titanium.Titanium"
+      "net.rotgruengelb.titanium.Titanium"
     ],
     "client": [
       "net.rotgruengelb.titanium.TitaniumClient"

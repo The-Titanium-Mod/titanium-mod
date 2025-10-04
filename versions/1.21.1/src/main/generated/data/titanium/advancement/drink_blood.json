@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:end/enter_end_gateway",
+  "criteria": {
+    "blood_bucket": {
+      "conditions": {
+        "item": {
+          "items": "titanium:blood_bucket"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.titanium.drink_blood.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "titanium:blood_bucket"
+    },
+    "title": {
+      "translate": "advancement.titanium.drink_blood"
+    }
+  },
+  "requirements": [
+    [
+      "blood_bucket"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

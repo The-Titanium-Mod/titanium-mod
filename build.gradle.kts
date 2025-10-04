@@ -59,8 +59,11 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${deps["fabric_loader"]}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
-    modLocalRuntime("dev.emi:emi-fabric:${deps["emi_version"]}")
     modLocalRuntime("com.terraformersmc:modmenu:${deps["modmenu_version"]}")
+
+    if (stonecutter.eval(mcVersion, "=1.21.1")) {
+        modLocalRuntime("dev.emi:emi-fabric:${deps["emi_version"]}")
+    }
 }
 
 loom {
@@ -77,10 +80,9 @@ loom {
     }
 }
 
-fabricApi {
-    configureDataGeneration()
+fabricApi.configureDataGeneration {
+    client = true
 }
-
 
 java {
     withSourcesJar()
@@ -102,6 +104,12 @@ tasks.processResources {
 
     filesMatching("fabric.mod.json") { expand(map) }
 }
+
+stonecutter {
+    swaps["mod_version"] = "\"${property("mod.version")}\";"
+    dependencies["fapi"] = project.property("deps.fabric_api").toString()
+}
+
 
 tasks.register<Copy>("buildAndCollect") {
     group = "build"

@@ -24,8 +24,13 @@ public abstract class MinecraftServerMixin {
 
     @Inject(at = @At("TAIL"), method = "createWorlds")
     private void addSurfaceRules(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
-        Titanium.LOGGER.info("Adding Surface Rules");
-        Registry<DimensionOptions> value = getRegistryManager().get(RegistryKeys.DIMENSION);
+        Titanium.LOGGER.debug("Adding Surface Rules");
+        Registry<DimensionOptions> value =
+                //? if 1.21.1 {
+                getRegistryManager().get(RegistryKeys.DIMENSION);
+                 //?} else {
+                /*getRegistryManager().getOrThrow(RegistryKeys.DIMENSION);
+                *///?}
         DimensionOptions dimensionOptions = value.get(DimensionOptions.END);
 
         if (dimensionOptions != null && dimensionOptions.chunkGenerator() instanceof NoiseChunkGenerator generator) {

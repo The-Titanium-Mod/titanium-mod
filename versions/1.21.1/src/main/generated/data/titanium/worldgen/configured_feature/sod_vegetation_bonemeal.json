@@ -1,0 +1,84 @@
+{
+  "type": "titanium:terrain_decoration",
+  "config": {
+    "decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "titanium:short_wildwood_grass"
+          },
+          "weight": 40
+        },
+        {
+          "data": {
+            "Name": "titanium:tall_wildwood_grass",
+            "Properties": {
+              "half": "lower"
+            }
+          },
+          "weight": 12
+        },
+        {
+          "data": {
+            "Name": "titanium:small_teeth"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "titanium:wildwood_lumen"
+          },
+          "weight": 8
+        },
+        {
+          "data": {
+            "Name": "titanium:wildwood_blister"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "titanium:wildwood_sapling",
+            "Properties": {
+              "stage": "0"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "predicate": {
+      "type": "minecraft:all_of",
+      "predicates": [
+        {
+          "type": "minecraft:matching_blocks",
+          "blocks": "minecraft:air"
+        },
+        {
+          "type": "minecraft:matching_blocks",
+          "blocks": "titanium:sod",
+          "offset": [
+            0,
+            -1,
+            0
+          ]
+        },
+        {
+          "type": "minecraft:matching_blocks",
+          "blocks": "minecraft:air",
+          "offset": [
+            0,
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "spread_height": 1,
+    "spread_width": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 3
+    }
+  }
+}

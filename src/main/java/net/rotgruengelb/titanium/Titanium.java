@@ -12,10 +12,11 @@ import net.rotgruengelb.titanium.entity.TitaniumEntities;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.item.TitaniumItems;
+import net.rotgruengelb.titanium.registry.TitaniumGameplayContent;
 import net.rotgruengelb.titanium.world.TitaniumGameRules;
 import net.rotgruengelb.titanium.world.biome.TitaniumBiomes;
 import net.rotgruengelb.titanium.world.gen.densityfunction.TitaniumDensityFunctionTypes;
-import org.jetbrains.annotations.Contract;
+import net.rotgruengelb.titanium.world.gen.feature.TitaniumFeatures;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,13 +39,19 @@ public class Titanium implements ModInitializer {
         TitaniumFluids.initialize();
         TitaniumGameRules.initialize();
         TitaniumItemGroups.initialize();
+        TitaniumGameplayContent.initialize();
+        TitaniumEntities.initialize();
+
+        // Worldgen
         TitaniumBiomes.initialize();
         TitaniumDensityFunctionTypes.initialize();
-        TitaniumEntities.initialize();
+        TitaniumFeatures.initialize();
 
         FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
             registerBuiltinResourcePack(modContainer, "new_terrain", ResourcePackActivationType.DEFAULT_ENABLED);
         });
+
+        LOGGER.debug("{} ({}) has been initialized!", MOD_ID, VERSION);
     }
 
     static void registerBuiltinResourcePack(ModContainer modContainer, String path, ResourcePackActivationType activationType) {

@@ -1,6 +1,7 @@
 package net.rotgruengelb.titanium.block;
 
 import net.minecraft.block.*;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.registry.Registries;
@@ -8,6 +9,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.Direction;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItems;
@@ -19,161 +21,334 @@ import static net.rotgruengelb.titanium.block.TitaniumBlockTypes.TitaniumWoodTyp
 
 public class TitaniumBlocks {
 
-	public static final Block BLOOD = block("blood", settings -> new FluidBlock(TitaniumFluids.BLOOD, settings), AbstractBlock.Settings.create()
-			.mapColor(MapColor.DARK_RED)
-			.replaceable()
-			.noCollision()
-			.strength(100.0F)
-			.pistonBehavior(PistonBehavior.DESTROY)
-			.dropsNothing()
-			.liquid()
-			.sounds(BlockSoundGroup.INTENTIONALLY_EMPTY));
-	public static Block CLART = blockWithItem("clart", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.ROOTED_DIRT));
-	public static Block SOD = blockWithItem("sod", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NYLIUM));
-	public static Block SOD_BATCH = blockWithItem("sod_batch", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.GRASS));
-	public static Block ROTTEN_SOD = blockWithItem("rotten_sod", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NYLIUM));
-	public static Block ROTTEN_SOD_BATCH = blockWithItem("rotten_sod_batch", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.GRASS));
-	public static Block VEINY_CLART = blockWithItem("veiny_clart", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.ROOTED_DIRT));
-	public static Block VEINY_SOD = blockWithItem("veiny_sod", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NYLIUM));
-	public static Block BRAWN = blockWithItem("brawn", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.MUD));
-	public static Block TENDON = blockWithItem("tendon", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.SHROOMLIGHT));
-	public static Block BLUE_VOLLON = blockWithItem("blue_vollon", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.PACKED_MUD));
-	public static Block RED_VOLLON = blockWithItem("red_vollon", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.PACKED_MUD));
-	public static Block SALT = blockWithItem("salt", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.SAND));
-	public static Block WILDWOOD_GRASS = blockWithItem("wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.GRASS)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block WILDWOOD_LUMEN = blockWithItem("wildwood_lumen", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.GRASS)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.luminance(state -> 8)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block WILDWOOD_BLISTER = blockWithItem("wildwood_blister", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.CORAL)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block BUNNY_CATCHER = blockWithItem("bunny_catcher", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.ROOTS)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block SMALL_TEETH = blockWithItem("small_teeth", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.BONE)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block GIANT_TOOTH = blockWithItem("giant_tooth", GiantToothBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.BONE)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block TALL_WILDWOOD_GRASS = blockWithItem("tall_wildwood_grass", TallSodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.GRASS)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block ROTTING_WILDWOOD_GRASS = blockWithItem("rotting_wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.WET_GRASS)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block ROTTEN_WILDWOOD_GRASS = blockWithItem("rotten_wildwood_grass", SodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.WET_GRASS)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block ROTTEN_TOOTH = blockWithItem("rotten_tooth", TallSodPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.ROOTS)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block VOLLON_NOODLES = blockWithItem("vollon_noodles", VollonPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.CORAL)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block VOLLON_BRONCHI = blockWithItem("vollon_bronchi", VollonPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.CORAL)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block VOLLON_STRINGS = blockWithItem("vollon_strings", VollonPlantBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.CORAL)
-			.noCollision()
-			.offset(AbstractBlock.OffsetType.XZ)
-			.pistonBehavior(PistonBehavior.DESTROY));
-	public static Block HANGING_TENDON = blockWithItem("hanging_tendon", HangingTendonBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.SHROOMLIGHT));
-	public static Block WILDWOOD_LOG = blockWithItem("wildwood_log", settings -> Blocks.createLogBlock(MapColor.DULL_RED, MapColor.DULL_RED), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_WOOD = blockWithItem("wildwood_wood", PillarBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block STRIPPED_WILDWOOD_LOG = blockWithItem("stripped_wildwood_log", settings -> Blocks.createLogBlock(MapColor.DULL_RED, MapColor.DULL_RED), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block STRIPPED_WILDWOOD_WOOD = blockWithItem("stripped_wildwood_wood", PillarBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_PLANKS = blockWithItem("wildwood_planks", Block::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_SLAB = blockWithItem("wildwood_slab", SlabBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_STAIRS = blockWithItem("wildwood_stairs", settings -> createStairsBlock(TitaniumBlocks.WILDWOOD_PLANKS), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_BUTTON = blockWithItem("wildwood_button", settings -> Blocks.createWoodenButtonBlock(TitaniumBlockSetTypes.WILDWOOD), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_PRESSURE_PLATE = blockWithItem("wildwood_pressure_plate", settings -> new PressurePlateBlock(TitaniumBlockSetTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_DOOR = blockWithItem("wildwood_door", settings -> new DoorBlock(TitaniumBlockSetTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD)
-			.nonOpaque());
-	public static Block WILDWOOD_TRAPDOOR = blockWithItem("wildwood_trapdoor", settings -> new TrapdoorBlock(TitaniumBlockSetTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD)
-			.allowsSpawning(Blocks::never)
-			.nonOpaque());
-	public static Block WILDWOOD_FENCE = blockWithItem("wildwood_fence", FenceBlock::new, AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD)
-			.solid());
-	public static Block WILDWOOD_FENCE_GATE = blockWithItem("wildwood_fence_gate", settings -> new FenceGateBlock(TitaniumWoodTypes.WILDWOOD, settings), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.NETHER_WOOD));
-	public static Block WILDWOOD_LEAVES = blockWithItem("wildwood_leaves", settings -> Blocks.createLeavesBlock(BlockSoundGroup.GRASS), AbstractBlock.Settings.create());
-	public static Block WILDWOOD_SAPLING = blockWithItem("wildwood_sapling", settings -> new WildwoodSaplingBlock(null, settings), AbstractBlock.Settings.create()
-			.sounds(BlockSoundGroup.GRASS)
-			.noCollision());
+    public static final Block BLOOD = block(
+            "blood",
+            s -> new FluidBlock(TitaniumFluids.BLOOD, s),
+            liquidSettings(MapColor.DARK_RED));
+    public static Block CLART = blockAndItem(
+            "clart",
+            createSoilSettings(MapColor.TERRACOTTA_BLACK, BlockSoundGroup.ROOTED_DIRT, false));
+    public static Block SOD = blockAndItem(
+            "sod",
+            SodBlock::new,
+            createSoilSettings(MapColor.PINK, BlockSoundGroup.NYLIUM, true)
+                    .ticksRandomly());
+    public static Block SOD_BATCH = blockAndItem(
+            "sod_batch",
+            createSoilSettings(MapColor.PINK, BlockSoundGroup.GRASS, true));
+    public static Block ROTTEN_SOD = blockAndItem(
+            "rotten_sod",
+            RottenSodBlock::new,
+            createSoilSettings(MapColor.TERRACOTTA_PURPLE, BlockSoundGroup.NYLIUM, true)
+                    .ticksRandomly());
+    public static Block ROTTEN_SOD_BATCH = blockAndItem(
+            "rotten_sod_batch",
+            createSoilSettings(MapColor.TERRACOTTA_PURPLE, BlockSoundGroup.GRASS, true));
+    public static Block VEINY_CLART = blockAndItem(
+            "veiny_clart",
+            createSoilSettings(MapColor.TERRACOTTA_BLACK, BlockSoundGroup.ROOTED_DIRT, false));
+    public static Block VEINY_SOD = blockAndItem(
+            "veiny_sod",
+            createSoilSettings(MapColor.PINK, BlockSoundGroup.NYLIUM, true));
+    public static Block BRAWN = blockAndItem(
+            "brawn",
+            settings(MapColor.BLACK, BlockSoundGroup.MUD, 1.5F, 6.0F)
+                    .requiresTool());
+    public static Block TENDON = blockAndItem(
+            "tendon",
+            settings(MapColor.DARK_RED, BlockSoundGroup.SHROOMLIGHT, 1.3F, 5.0F));
+    public static Block BLUE_VOLLON = blockAndItem(
+            "blue_vollon",
+            settings(MapColor.DIAMOND_BLUE, BlockSoundGroup.PACKED_MUD, 0.95F));
+    public static Block RED_VOLLON = blockAndItem(
+            "red_vollon",
+            settings(MapColor.TERRACOTTA_RED, BlockSoundGroup.PACKED_MUD, 0.95F));
+    public static Block SALT = blockAndItem(
+            "salt",
+            createSoilSettings(MapColor.OFF_WHITE, BlockSoundGroup.SAND, true)
+                    .requiresTool());
+    public static Block SHORT_WILDWOOD_GRASS = blockAndItem(
+            "short_wildwood_grass",
+            SodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.GRASS).replaceable());
+    public static Block WILDWOOD_LUMEN = blockAndItem(
+            "wildwood_lumen",
+            SodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.GRASS)
+                    .luminance(state -> 8));
+    public static Block WILDWOOD_BLISTER = blockAndItem(
+            "wildwood_blister",
+            SodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.CORAL));
+    public static Block BUNNY_CATCHER = blockAndItem(
+            "bunny_catcher",
+            SodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.ROOTS));
+    public static Block SMALL_TEETH = blockAndItem(
+            "small_teeth",
+            SodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.BONE, true));
+    public static Block GIANT_TOOTH = blockAndItem(
+            "giant_tooth",
+            GiantToothBlock::new,
+            outgrowthsSettings(BlockSoundGroup.BONE, true));
+    public static Block TALL_WILDWOOD_GRASS = blockAndItem(
+            "tall_wildwood_grass",
+            TallSodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.GRASS).replaceable());
+    public static Block ROTTING_WILDWOOD_GRASS = blockAndItem(
+            "rotting_wildwood_grass",
+            SodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.WET_GRASS).replaceable());
+    public static Block ROTTEN_WILDWOOD_GRASS = blockAndItem(
+            "rotten_wildwood_grass",
+            SodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.WET_GRASS).replaceable());
+    public static Block ROTTEN_GIANT_TOOTH = blockAndItem(
+            "rotten_giant_tooth",
+            TallSodPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.ROOTS, true));
+    public static Block VOLLON_NOODLES = blockAndItem(
+            "vollon_noodles",
+            VollonPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.CORAL));
+    public static Block VOLLON_BRONCHI = blockAndItem(
+            "vollon_bronchi",
+            VollonPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.CORAL));
+    public static Block VOLLON_STRINGS = blockAndItem(
+            "vollon_strings",
+            VollonPlantBlock::new,
+            outgrowthsSettings(BlockSoundGroup.CORAL).replaceable());
+    public static Block HANGING_TENDON = blockAndItem(
+            "hanging_tendon",
+            HangingTendonBlock::new,
+            outgrowthsSettings(BlockSoundGroup.SHROOMLIGHT));
+    public static Block WILDWOOD_LOG = blockAndItem(
+            "wildwood_log",
+            PillarBlock::new,
+            wildwoodLogSettings());
+    public static Block WILDWOOD_WOOD = blockAndItem(
+            "wildwood_wood",
+            PillarBlock::new,
+            wildwoodWoodSettings());
+    public static Block STRIPPED_WILDWOOD_LOG = blockAndItem(
+            "stripped_wildwood_log",
+            PillarBlock::new,
+            wildwoodLogSettings());
+    public static Block STRIPPED_WILDWOOD_WOOD = blockAndItem(
+            "stripped_wildwood_wood",
+            PillarBlock::new,
+            wildwoodWoodSettings());
+    public static Block WILDWOOD_PLANKS = blockAndItem(
+            "wildwood_planks",
+            wildwoodWoodenSettings());
+    public static Block WILDWOOD_SLAB = blockAndItem(
+            "wildwood_slab",
+            SlabBlock::new,
+            wildwoodWoodenSettings());
+    public static Block WILDWOOD_STAIRS = blockAndItem(
+            "wildwood_stairs",
+            s -> new StairsBlock(WILDWOOD_PLANKS.getDefaultState(), s),
+            wildwoodWoodenSettings());
+    public static Block WILDWOOD_BUTTON = blockAndItem(
+            "wildwood_button",
+            s -> new ButtonBlock(TitaniumBlockSetTypes.WILDWOOD, 30, s),
+            wildwoodButtonSettings());
+    public static Block WILDWOOD_PRESSURE_PLATE = blockAndItem(
+            "wildwood_pressure_plate",
+            s -> new PressurePlateBlock(TitaniumBlockSetTypes.WILDWOOD, s),
+            wildwoodPressurePlateSettings());
+    public static Block WILDWOOD_DOOR = blockAndItem(
+            "wildwood_door",
+            s -> new DoorBlock(TitaniumBlockSetTypes.WILDWOOD, s),
+            wildwoodDoorSettings());
+    public static Block WILDWOOD_TRAPDOOR = blockAndItem(
+            "wildwood_trapdoor",
+            s -> new TrapdoorBlock(TitaniumBlockSetTypes.WILDWOOD, s),
+            wildwoodTrapdoorSettings());
+    public static Block WILDWOOD_FENCE = blockAndItem(
+            "wildwood_fence",
+            FenceBlock::new,
+            wildwoodFenceSettings());
+    public static Block WILDWOOD_FENCE_GATE = blockAndItem(
+            "wildwood_fence_gate",
+            s -> new FenceGateBlock(TitaniumWoodTypes.WILDWOOD, s),
+            wildwoodFenceSettings());
+    public static Block WILDWOOD_LEAVES = blockAndItem(
+            "wildwood_leaves",
+            s -> createLeavesBlock(0.08F, s),
+            leavesSettings(BlockSoundGroup.GRASS, MapColor.DULL_PINK));
+    public static Block WILDWOOD_SAPLING = blockAndItem(
+            "wildwood_sapling",
+            s -> new WildwoodSaplingBlock(null, s),
+            wildwoodSaplingSettings());
 
-	protected static Block blockWithItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
-		RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Titanium.id(name));
-		Block block = block(blockKey, factory.apply(settings));
-		TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), new BlockItem.Settings());
-		return block;
-	}
+    private static Block blockAndItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
+        Block block = block(name, factory, settings);
+        TitaniumItems.item(name, itemSettings -> new BlockItem(block, itemSettings), TitaniumItems.blockItemSettingFor(block));
+        return block;
+    }
 
-	protected static Block block(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
-		RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Titanium.id(name));
-		return block(blockKey, factory.apply(settings));
-	}
+    private static Block blockAndItem(String name, AbstractBlock.Settings settings) {
+        return blockAndItem(name, Block::new, settings);
+    }
 
-	protected static Block block(RegistryKey<Block> blockRegistryKey, Block block) {
-		return Registry.register(Registries.BLOCK, blockRegistryKey, block);
-	}
+    private static Block block(RegistryKey<Block> key, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
+        //? if 1.21.8 {
+        /*settings = settings.registryKey(key);
+         *///?}
+        Block block = factory.apply(settings);
+        return Registry.register(Registries.BLOCK, key, block);
+    }
 
-	protected static Block createStairsBlock(Block base) {
-		return new StairsBlock(base.getDefaultState(), AbstractBlock.Settings.copy(base));
-	}
+    private static Block block(RegistryKey<Block> key, AbstractBlock.Settings settings) {
+        return block(key, Block::new, settings);
+    }
 
-	public static void initialize() { }
+    private static Block block(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
+        return block(RegistryKey.of(RegistryKeys.BLOCK, Titanium.id(name)), factory, settings);
+    }
+
+    private static Block block(String name, AbstractBlock.Settings settings) {
+        return block(name, Block::new, settings);
+    }
+
+    private static AbstractBlock.Settings settings(MapColor mapColor, BlockSoundGroup soundGroup) {
+        return AbstractBlock.Settings.create()
+                .mapColor(mapColor)
+                .sounds(soundGroup);
+    }
+
+    private static AbstractBlock.Settings settings(MapColor mapColor, BlockSoundGroup soundGroup, float strength) {
+        return settings(mapColor, soundGroup)
+                .strength(strength);
+    }
+
+    private static AbstractBlock.Settings settings(MapColor mapColor, BlockSoundGroup soundGroup, float hardness, float resistance) {
+        return settings(mapColor, soundGroup)
+                .strength(hardness, resistance);
+    }
+
+    @SuppressWarnings({"unused", "SameParameterValue"})
+    private static LeavesBlock createLeavesBlock(float leafParticleChance, AbstractBlock.Settings settings) {
+        //? if 1.21.8 {
+        /*return new TintedParticleLeavesBlock(leafParticleChance, settings);
+         *///?} else {
+        return new LeavesBlock(settings);
+        //?}
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private static AbstractBlock.Settings liquidSettings(MapColor mapColor) {
+        return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY, 100.0F)
+                .replaceable()
+                .noCollision()
+                .pistonBehavior(PistonBehavior.DESTROY)
+                .dropsNothing()
+                .liquid();
+    }
+
+    public static AbstractBlock.Settings leavesSettings(BlockSoundGroup sounds, MapColor mapColor) {
+        return settings(mapColor, sounds, 0.2F)
+                .ticksRandomly()
+                .nonOpaque()
+                .allowsSpawning(Blocks::canSpawnOnLeaves)
+                .suffocates(Blocks::never)
+                .blockVision(Blocks::never)
+                .burnable()
+                .pistonBehavior(PistonBehavior.DESTROY)
+                .solidBlock(Blocks::never);
+    }
+
+    private static AbstractBlock.Settings logSettings(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup sounds) {
+        return woodenSettings(sounds)
+                .mapColor(state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
+                .strength(2.0F);
+    }
+
+    private static AbstractBlock.Settings woodSettings(BlockSoundGroup sounds) {
+        return woodenSettings(sounds)
+                .strength(2.0F);
+    }
+
+    private static AbstractBlock.Settings woodenSettings(BlockSoundGroup sounds) {
+        return settings(MapColor.DULL_RED, sounds, 2.0F, 3.0F)
+                .instrument(NoteBlockInstrument.BASS)
+                .burnable();
+    }
+
+    private static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds) {
+        return outgrowthsSettings(sounds, false);
+    }
+
+    private static AbstractBlock.Settings outgrowthsSettings(BlockSoundGroup sounds, boolean isStrong) {
+        return settings(MapColor.TERRACOTTA_RED, sounds, isStrong ? 0.45F : 0.0F)
+                .noCollision()
+                .offset(AbstractBlock.OffsetType.XZ)
+                .pistonBehavior(PistonBehavior.DESTROY);
+    }
+
+    private static AbstractBlock.Settings createSoilSettings(MapColor mapColor, BlockSoundGroup sounds, boolean isTopSoil) {
+        return settings(mapColor, sounds, isTopSoil ? 0.6F : 0.5F);
+    }
+
+    private static AbstractBlock.Settings wildwoodLogSettings() {
+        return logSettings(MapColor.DULL_RED, MapColor.DULL_RED, BlockSoundGroup.NETHER_WOOD);
+    }
+
+    private static AbstractBlock.Settings wildwoodWoodSettings() {
+        return woodSettings(BlockSoundGroup.NETHER_WOOD);
+    }
+
+    private static AbstractBlock.Settings wildwoodWoodenSettings() {
+        return woodenSettings(BlockSoundGroup.NETHER_WOOD);
+    }
+
+    private static AbstractBlock.Settings wildwoodFenceSettings() {
+        return settings(MapColor.DULL_RED, BlockSoundGroup.NETHER_WOOD, 2.0F, 3.0F)
+                .instrument(NoteBlockInstrument.BASS)
+                .burnable()
+                .solid();
+    }
+
+    private static AbstractBlock.Settings wildwoodDoorSettings() {
+        return settings(MapColor.DULL_RED, BlockSoundGroup.NETHER_WOOD, 3.0F)
+                .instrument(NoteBlockInstrument.BASS)
+                .nonOpaque()
+                .burnable()
+                .pistonBehavior(PistonBehavior.DESTROY);
+    }
+
+    private static AbstractBlock.Settings wildwoodTrapdoorSettings() {
+        return wildwoodDoorSettings()
+                .allowsSpawning(Blocks::never);
+    }
+
+    private static AbstractBlock.Settings wildwoodSaplingSettings() {
+        return settings(MapColor.TERRACOTTA_RED, BlockSoundGroup.GRASS)
+                .noCollision()
+                .ticksRandomly()
+                .breakInstantly()
+                .pistonBehavior(PistonBehavior.DESTROY);
+    }
+
+    private static AbstractBlock.Settings wildwoodButtonSettings() {
+        return settings(MapColor.CLEAR, BlockSoundGroup.NETHER_WOOD, 0.5F)
+                .noCollision()
+                .pistonBehavior(PistonBehavior.DESTROY);
+    }
+
+    private static AbstractBlock.Settings wildwoodPressurePlateSettings() {
+        return settings(MapColor.CLEAR, BlockSoundGroup.NETHER_WOOD, 0.5F)
+                .solid()
+                .instrument(NoteBlockInstrument.BASS)
+                .noCollision()
+                .burnable()
+                .pistonBehavior(PistonBehavior.DESTROY);
+    }
+
+    public static void initialize() {
+        Titanium.LOGGER.debug("Initialized TitaniumBlocks");
+    }
 }

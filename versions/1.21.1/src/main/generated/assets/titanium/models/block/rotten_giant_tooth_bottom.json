@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "titanium:block/rotten_giant_tooth_bottom"
+  }
+}
