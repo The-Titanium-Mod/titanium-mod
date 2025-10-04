@@ -42,3 +42,7 @@ replay_*.log
 
 # dont track datagen cache files
 versions/**/.cache/
+
+# sound event scripts input/output
+/scripts/sound_events/out.txt
+/scripts/sound_events/in.txt

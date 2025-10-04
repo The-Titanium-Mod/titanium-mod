@@ -26,7 +26,7 @@ public class TitaniumItems {
 	public static final Item BLOOD_BUCKET = item(
             "blood_bucket",
 			settings -> new BloodBucketItem(TitaniumFluids.BLOOD, settings),
-            createBloodBucketItemSettings());
+            bloodBucketItemSettings());
     public static final Item HARLIC = item(
             "harlic",
             harlicSettings());
@@ -57,16 +57,17 @@ public class TitaniumItems {
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    @SuppressWarnings("unused")
     public static Item.Settings blockItemSettingFor(Block block) {
         //? if 1.21.8 {
         /*return blockItemSettings().translationKey(block.getTranslationKey());
          *///?} else {
-        return settings();
+        return blockItemSettings();
         //?}
     }
 
-    private static Item.Settings createBloodBucketItemSettings() {
-        Item.Settings settings = blockItemSettings()
+    private static Item.Settings bloodBucketItemSettings() {
+        Item.Settings settings = settings()
                 .recipeRemainder(Items.BUCKET)
                 .maxCount(1);
          FoodComponent.Builder foodBuilder = new FoodComponent.Builder().alwaysEdible().nutrition(1).saturationModifier(0);
@@ -91,7 +92,7 @@ public class TitaniumItems {
     }
 
     private static Item.Settings settings() {
-        return new BlockItem.Settings();
+        return new Item.Settings();
     }
 
     private static Item.Settings harlicSettings() {
