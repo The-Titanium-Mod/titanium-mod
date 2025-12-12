@@ -1,22 +1,23 @@
 package net.rotgruengelb.titanium.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.component.type.FoodComponent;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
 //? if 1.21.8 {
-/*import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
-import net.minecraft.component.type.ConsumableComponents;
+/*import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
  *///?}
 
 import java.util.function.Function;
@@ -37,65 +38,65 @@ public class TitaniumItems {
             "vollon_ligaments",
             settings());
 
-    public static Item item(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
-        return item(RegistryKey.of(RegistryKeys.ITEM, Titanium.id(name)), factory, settings);
+    public static Item item(String name, Function<Item.Properties, Item> factory, Item.Properties settings) {
+        return item(ResourceKey.create(Registries.ITEM, Titanium.id(name)), factory, settings);
     }
 
-    public static Item item(String name, Item.Settings settings) {
-        return item(RegistryKey.of(RegistryKeys.ITEM, Titanium.id(name)), Item::new, settings);
+    public static Item item(String name, Item.Properties settings) {
+        return item(ResourceKey.create(Registries.ITEM, Titanium.id(name)), Item::new, settings);
     }
 
-    public static Item item(RegistryKey<Item> key, Function<Item.Settings, Item> factory, Item.Settings settings) {
+    public static Item item(ResourceKey<Item> key, Function<Item.Properties, Item> factory, Item.Properties settings) {
         //? if 1.21.8 {
-        /*settings = settings.registryKey(key);
+        /*settings = settings.setId(key);
         *///?}
         Item item = factory.apply(settings);
         if (item instanceof BlockItem blockItem) {
-            blockItem.appendBlocks(Item.BLOCK_ITEMS, item);
+            blockItem.registerBlocks(Item.BY_BLOCK, item);
         }
 
-        return Registry.register(Registries.ITEM, key, item);
+        return Registry.register(BuiltInRegistries.ITEM, key, item);
     }
 
-    public static Item.Settings blockItemSettingFor(Block block) {
+    public static Item.Properties blockItemSettingFor(Block block) {
         //? if 1.21.8 {
-        /*return blockItemSettings().translationKey(block.getTranslationKey());
+        /*return blockItemSettings().overrideDescription(block.getDescriptionId());
          *///?} else {
         return settings();
         //?}
     }
 
-    private static Item.Settings createBloodBucketItemSettings() {
-        Item.Settings settings = blockItemSettings()
-                .recipeRemainder(Items.BUCKET)
-                .maxCount(1);
-         FoodComponent.Builder foodBuilder = new FoodComponent.Builder().alwaysEdible().nutrition(1).saturationModifier(0);
+    private static Item.Properties createBloodBucketItemSettings() {
+        Item.Properties settings = blockItemSettings()
+                .craftRemainder(Items.BUCKET)
+                .stacksTo(1);
+         FoodProperties.Builder foodBuilder = new FoodProperties.Builder().alwaysEdible().nutrition(1).saturationModifier(0);
         //? if 1.21.1 {
         settings.food(
-                foodBuilder.statusEffect(
-                        new StatusEffectInstance(StatusEffects.NAUSEA, 600, 0), 1.0F
+                foodBuilder.effect(
+                        new MobEffectInstance(MobEffects.CONFUSION, 600, 0), 1.0F
                 ).build()
         );
         //?} else {
-        /*settings.food(foodBuilder.build(), ConsumableComponents.drink()
+        /*settings.food(foodBuilder.build(), Consumables.defaultDrink()
                         .consumeSeconds(6.0F)
-                        .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 600, 0), 1.0F))
+                        .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA, 600, 0), 1.0F))
                         .build())
-                .useRemainder(Items.BUCKET);
+                .usingConvertsTo(Items.BUCKET);
         *///?}
         return settings;
     }
 
-    private static Item.Settings blockItemSettings() {
-        return new BlockItem.Settings();
+    private static Item.Properties blockItemSettings() {
+        return new BlockItem.Properties();
     }
 
-    private static Item.Settings settings() {
-        return new BlockItem.Settings();
+    private static Item.Properties settings() {
+        return new BlockItem.Properties();
     }
 
-    private static Item.Settings harlicSettings() {
-        return settings().food(new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build());
+    private static Item.Properties harlicSettings() {
+        return settings().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).build());
     }
 
 	public static void initialize() {

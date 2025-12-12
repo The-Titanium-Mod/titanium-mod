@@ -2,7 +2,7 @@ package net.rotgruengelb.titanium;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.client.color.block.BlockColorProvider;
+import net.minecraft.client.color.block.BlockColor;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
@@ -10,10 +10,10 @@ import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
 //? if 1.21.1 {
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.renderer.RenderType;
 //?} else {
 /*import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.BlockRenderLayer;
+import static net.minecraft.client.renderer.chunk.ChunkSectionLayer.CUTOUT;
 *///?}
 
 public class TitaniumClient implements ClientModInitializer {
@@ -22,9 +22,9 @@ public class TitaniumClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		//@formatter:off
         //? if 1.21.1 {
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(),
         //?} else {
-        /*BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
+        /*BlockRenderLayerMap.putBlocks(CUTOUT,
 		*///?}
 				TitaniumBlocks.SHORT_WILDWOOD_GRASS,
 				TitaniumBlocks.WILDWOOD_LUMEN,
@@ -59,7 +59,7 @@ public class TitaniumClient implements ClientModInitializer {
 		//@formatter:on
 	}
 
-    public static BlockColorProvider colorProvider(int color) {
+    public static BlockColor colorProvider(int color) {
         return (state, view, pos, tintIndex) -> color;
     }
 }

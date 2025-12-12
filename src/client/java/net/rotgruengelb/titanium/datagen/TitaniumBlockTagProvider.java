@@ -3,11 +3,13 @@ package net.rotgruengelb.titanium.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
-import net.minecraft.block.Block;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.TagKey;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.core.Holder;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
@@ -16,17 +18,17 @@ import java.util.concurrent.CompletableFuture;
 
 import static net.rotgruengelb.titanium.block.TitaniumBlocks.*;
 //? if 1.21.8 {
-/*import net.minecraft.data.tag.ProvidedTagBuilder;
+/*import net.minecraft.data.tags.TagAppender;
 *///?}
 
 public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
-    public TitaniumBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public TitaniumBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
         //@formatter:off
         tagBuilder(TitaniumBlockTags.WILDWOOD_TERRAIN).add(
                 TitaniumBlocks.TENDON,
@@ -102,20 +104,20 @@ public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider
         tagBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(
                 STRIPPED_WILDWOOD_WOOD);
 
-        tagBuilder(BlockTags.SHOVEL_MINEABLE).add(
+        tagBuilder(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 SOD,
                 VEINY_SOD,
                 ROTTEN_SOD,
                 CLART,
                 VEINY_CLART);
-        tagBuilder(BlockTags.HOE_MINEABLE).add(
+        tagBuilder(BlockTags.MINEABLE_WITH_HOE).add(
                 BLUE_VOLLON,
                 RED_VOLLON,
                 TENDON,
                 WILDWOOD_LEAVES)
                 .addTag(TitaniumBlockTags.SOD_BATCH)
                 .addTag(TitaniumBlockTags.VOLLON);
-        tagBuilder(BlockTags.PICKAXE_MINEABLE).add(
+        tagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 BRAWN,
                 SALT)
                 .addTag(TitaniumBlockTags.TEETH);
@@ -123,11 +125,11 @@ public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .addTag(TitaniumBlockTags.WILDWOOD_OUTGROWTHS);
 
         tagBuilder(BlockTags.REPLACEABLE)
-                .add(getRegistryWrapperOrThrow(wrapperLookup, RegistryKeys.BLOCK)
-                        .streamEntries()
-                        .filter(r -> r.getKey().get().getValue().getNamespace().equals(Titanium.MOD_ID))
-                        .map(RegistryEntry.Reference::value)
-                        .filter(block -> block.getDefaultState().isReplaceable())
+                .add(wrapperLookup.lookupOrThrow(Registries.BLOCK)
+                        .listElements()
+                        .filter(r -> r.unwrapKey().get().location().getNamespace().equals(Titanium.MOD_ID))
+                        .map(Holder.Reference::value)
+                        .filter(block -> block.defaultBlockState().canBeReplaced())
                         .toArray(Block[]::new));
         //@formatter:on
     }
@@ -137,17 +139,8 @@ public class TitaniumBlockTagProvider extends FabricTagProvider.BlockTagProvider
         return getOrCreateTagBuilder(tag);
     }
     //?} else {
-    /*protected ProvidedTagBuilder<Block, Block> tagBuilder(TagKey<Block> tag) {
+    /*protected TagAppender<Block, Block> tagBuilder(TagKey<Block> tag) {
         return super.valueLookupBuilder(tag);
     }
     *///?}
-
-    @SuppressWarnings("SameParameterValue")
-    private <T> RegistryWrapper.Impl<T> getRegistryWrapperOrThrow(RegistryWrapper.WrapperLookup registries, RegistryKey<Registry<T>> registryKey) {
-        //? if 1.21.1 {
-        return registries.getWrapperOrThrow(registryKey);
-         //?} else {
-        /*return registries.getOrThrow(registryKey);
-        *///?}
-    }
 }

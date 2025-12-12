@@ -1,19 +1,19 @@
 package net.rotgruengelb.titanium.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.TallPlantBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 
-public class TallSodPlantBlock extends TallPlantBlock {
+public class TallSodPlantBlock extends DoublePlantBlock {
 
-	public TallSodPlantBlock(Settings settings) {
+	public TallSodPlantBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isIn(TitaniumBlockTags.CLART_SOIL);
+	protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+		return floor.is(TitaniumBlockTags.CLART_SOIL);
 	}
 }

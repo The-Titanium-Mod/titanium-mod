@@ -5,8 +5,8 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
@@ -26,8 +26,8 @@ public class Titanium implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final String VERSION = /*$ mod_version*/ "0.1.0";
 
-    public static @NotNull Identifier id(String path) {
-        return Identifier.of(MOD_ID, path);
+    public static @NotNull ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
     @Override
@@ -53,6 +53,6 @@ public class Titanium implements ModInitializer {
     }
 
     static void registerBuiltinResourcePack(ModContainer modContainer, String path, ResourcePackActivationType activationType) {
-        ResourceManagerHelper.registerBuiltinResourcePack(Titanium.id(path), modContainer, Text.translatable("pack.titanium." + path), activationType);
+        ResourceManagerHelper.registerBuiltinResourcePack(Titanium.id(path), modContainer, Component.translatable("pack.titanium." + path), activationType);
     }
 }

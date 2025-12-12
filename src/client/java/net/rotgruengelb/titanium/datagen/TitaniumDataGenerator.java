@@ -2,7 +2,7 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.core.RegistrySetBuilder;
 
 public class TitaniumDataGenerator implements DataGeneratorEntrypoint {
 
@@ -22,7 +22,7 @@ public class TitaniumDataGenerator implements DataGeneratorEntrypoint {
     }
 
     @Override
-    public void buildRegistry(RegistryBuilder registryBuilder) {
+    public void buildRegistry(RegistrySetBuilder registryBuilder) {
         TitaniumDynamicRegistryProvider.buildRegistry(registryBuilder);
     }
 }

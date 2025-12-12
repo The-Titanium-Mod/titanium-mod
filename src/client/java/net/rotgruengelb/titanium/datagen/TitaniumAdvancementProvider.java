@@ -2,22 +2,22 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.advancement.AdvancementFrame;
-import net.minecraft.advancement.AdvancementRewards;
-import net.minecraft.advancement.criterion.ConsumeItemCriterion;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementType;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.critereon.ConsumeItemTrigger;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.item.TitaniumItems;
 
@@ -25,36 +25,36 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class TitaniumAdvancementProvider extends FabricAdvancementProvider {
-    public static Pair<MutableText, MutableText> DRINK_BLOOD = advancementTranslationKey("drink_blood");
+    public static Tuple<MutableComponent, MutableComponent> DRINK_BLOOD = advancementTranslationKey("drink_blood");
 
-    protected TitaniumAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    protected TitaniumAdvancementProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
     }
 
     @Override
     @SuppressWarnings({"removal", "unused"})
-    public void generateAdvancement(RegistryWrapper.WrapperLookup wrapperLookup, Consumer<AdvancementEntry> consumer) {
+    public void generateAdvancement(HolderLookup.Provider wrapperLookup, Consumer<AdvancementHolder> consumer) {
         //? if 1.21.8 {
-        /*RegistryWrapper<Item> itemLookup = wrapperLookup.getOrThrow(RegistryKeys.ITEM);
-        RegistryWrapper<Block> blockLookup = wrapperLookup.getOrThrow(RegistryKeys.BLOCK);
+        /*HolderLookup<Item> itemLookup = wrapperLookup.lookupOrThrow(Registries.ITEM);
+		HolderLookup<Block> blockLookup = wrapperLookup.lookupOrThrow(Registries.BLOCK);
          *///?}
-        Identifier enterEndGateway = RegistryKey.of(RegistryKeys.ADVANCEMENT, Identifier.ofVanilla("end/enter_end_gateway")).getValue();
+        ResourceLocation enterEndGateway = ResourceKey.create(Registries.ADVANCEMENT, ResourceLocation.withDefaultNamespace("end/enter_end_gateway")).location();
 
-        Advancement.Builder.create()
+        Advancement.Builder.advancement()
                 .parent(enterEndGateway)
                 .display(
                         TitaniumItems.BLOOD_BUCKET,
-                        DRINK_BLOOD.getLeft(),
-                        DRINK_BLOOD.getRight(),
+                        DRINK_BLOOD.getA(),
+                        DRINK_BLOOD.getB(),
                         null,
-                        AdvancementFrame.CHALLENGE,
+                        AdvancementType.CHALLENGE,
                         true, true, true
                 )
                 .rewards(AdvancementRewards.Builder.experience(50))
-                .criterion(
-                        Registries.ITEM.getId(TitaniumItems.BLOOD_BUCKET).getPath(),
-                        ConsumeItemCriterion.Conditions.predicate(
-                                ItemPredicate.Builder.create().items(
+                .addCriterion(
+                        BuiltInRegistries.ITEM.getKey(TitaniumItems.BLOOD_BUCKET).getPath(),
+                        ConsumeItemTrigger.TriggerInstance.usedItem(
+                                ItemPredicate.Builder.item().of(
                                         //? if 1.21.8 {
                                         /*itemLookup,
                                          *///?}
@@ -62,11 +62,11 @@ public class TitaniumAdvancementProvider extends FabricAdvancementProvider {
                                 )
                         )
                 )
-                .build(consumer, Titanium.id("drink_blood").toString());
+                .save(consumer, Titanium.id("drink_blood").toString());
     }
 
-    public static Pair<MutableText, MutableText> advancementTranslationKey(String name) {
+    public static Tuple<MutableComponent, MutableComponent> advancementTranslationKey(String name) {
         final String baseTranslationKey = "advancement.titanium." + name;
-        return new Pair<>(Text.translatable(baseTranslationKey), Text.translatable(baseTranslationKey + ".description"));
+        return new Tuple<>(Component.translatable(baseTranslationKey), Component.translatable(baseTranslationKey + ".description"));
     }
 }

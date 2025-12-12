@@ -1,57 +1,57 @@
 package net.rotgruengelb.titanium.world.gen.surfacebuilder;
 
-import net.minecraft.util.math.VerticalSurfaceType;
-import net.minecraft.world.gen.surfacebuilder.MaterialRules;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.world.biome.TitaniumBiomes;
 
-import static net.minecraft.world.gen.surfacebuilder.MaterialRules.*;
+import static net.minecraft.world.level.levelgen.SurfaceRules.*;
 
 public class TitaniumSurfaceRules {
 
-    public static MaterialRules.MaterialRule createTitaniumEndSurfaceRule() {
+    public static SurfaceRules.RuleSource createTitaniumEndSurfaceRule() {
         //@formatter:off
         return sequence(
-                condition(
-                        biome(TitaniumBiomes.WILDWOOD_FOREST),
+                ifTrue(
+                        isBiome(TitaniumBiomes.WILDWOOD_FOREST),
                         createWildwoodSurfaceRuleSequence()
                 ),
-                condition(
-                        biome(TitaniumBiomes.WILDWOOD_WASTES),
+                ifTrue(
+                        isBiome(TitaniumBiomes.WILDWOOD_WASTES),
                         createWildwoodSurfaceRuleSequence()
                 )
         );
         //@formatter:on
     }
 
-    private static MaterialRules.MaterialRule createWildwoodSurfaceRuleSequence() {
+    private static SurfaceRules.RuleSource createWildwoodSurfaceRuleSequence() {
         return
                 sequence(
                         // SOD: 1 block on surface
-                        condition(STONE_DEPTH_FLOOR,
-                                block(TitaniumBlocks.SOD.getDefaultState())
+                        ifTrue(ON_FLOOR,
+                                state(TitaniumBlocks.SOD.defaultBlockState())
                         ),
 
                         // CLART: ~7 block layer below surface
-                        condition(
-                                stoneDepth(5, false, 5, VerticalSurfaceType.FLOOR),
-                                block(TitaniumBlocks.CLART.getDefaultState())
+                        ifTrue(
+                                stoneDepthCheck(5, false, 5, CaveSurface.FLOOR),
+                                state(TitaniumBlocks.CLART.defaultBlockState())
                         ),
 
                         // VEINY_CLART: ~1 block as a transition layer
-                        condition(
-                                stoneDepth(8, false, 0, VerticalSurfaceType.FLOOR),
-                                block(TitaniumBlocks.VEINY_CLART.getDefaultState())
+                        ifTrue(
+                                stoneDepthCheck(8, false, 0, CaveSurface.FLOOR),
+                                state(TitaniumBlocks.VEINY_CLART.defaultBlockState())
                         ),
 
                         // TENDON: ~1–2 blocks as a transition layer
-                        condition(
-                                stoneDepth(10, false, 0, VerticalSurfaceType.FLOOR),
-                                block(TitaniumBlocks.TENDON.getDefaultState())
+                        ifTrue(
+                                stoneDepthCheck(10, false, 0, CaveSurface.FLOOR),
+                                state(TitaniumBlocks.TENDON.defaultBlockState())
                         ),
 
                         // BRAWN: everything deeper
-                        block(TitaniumBlocks.BRAWN.getDefaultState())
+                        state(TitaniumBlocks.BRAWN.defaultBlockState())
                 );
     }
 }

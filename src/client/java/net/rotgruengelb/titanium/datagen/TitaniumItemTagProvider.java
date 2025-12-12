@@ -4,30 +4,31 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
+
+import net.minecraft.world.item.Item;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.rotgruengelb.titanium.item.TitaniumItems;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 import net.rotgruengelb.titanium.registry.tag.TitaniumItemTags;
 import org.jetbrains.annotations.Nullable;
 
 //? if 1.21.8 {
-/*import net.minecraft.data.tag.ProvidedTagBuilder;
+/*import net.minecraft.data.tags.TagAppender;
 *///?}
 
 import java.util.concurrent.CompletableFuture;
 
 public class TitaniumItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
-    public TitaniumItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture, @Nullable BlockTagProvider blockTagProvider) {
+    public TitaniumItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable BlockTagProvider blockTagProvider) {
         super(output, completableFuture, blockTagProvider);
     }
 
     @Override
-	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		//@formatter:off
         tagBuilder(ConventionalItemTags.BUCKETS).add(
 				TitaniumItems.BLOOD_BUCKET);
@@ -66,7 +67,7 @@ public class TitaniumItemTagProvider extends FabricTagProvider.ItemTagProvider {
         return getOrCreateTagBuilder(tag);
     }
     //?} else {
-    /*protected ProvidedTagBuilder<Item, Item> tagBuilder(TagKey<Item> tag) {
+    /*protected TagAppender<Item, Item> tagBuilder(TagKey<Item> tag) {
         return super.valueLookupBuilder(tag);
     }
     *///?}

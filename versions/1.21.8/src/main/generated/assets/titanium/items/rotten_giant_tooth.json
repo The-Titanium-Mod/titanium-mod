@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "titanium:item/rotten_giant_tooth"
+    "model": "titanium:block/rotten_giant_tooth"
   }
 }

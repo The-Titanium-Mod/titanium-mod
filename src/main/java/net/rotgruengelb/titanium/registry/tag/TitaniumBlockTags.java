@@ -1,8 +1,8 @@
 package net.rotgruengelb.titanium.registry.tag;
 
-import net.minecraft.block.Block;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
 import net.rotgruengelb.titanium.Titanium;
 
 public class TitaniumBlockTags {
@@ -18,6 +18,6 @@ public class TitaniumBlockTags {
     public static final TagKey<Block> TEETH = tag("teeth");
 
 	private static TagKey<Block> tag(String id) {
-		return TagKey.of(RegistryKeys.BLOCK, Titanium.id(id));
+		return TagKey.create(Registries.BLOCK, Titanium.id(id));
 	}
 }

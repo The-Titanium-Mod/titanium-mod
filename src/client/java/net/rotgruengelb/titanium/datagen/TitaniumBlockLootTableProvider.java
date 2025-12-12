@@ -2,25 +2,25 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.condition.MatchToolLootCondition;
-import net.minecraft.loot.condition.TableBonusLootCondition;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.HolderLookup;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -29,7 +29,7 @@ import static net.rotgruengelb.titanium.item.TitaniumItems.*;
 
 public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider {
 
-    protected TitaniumBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    protected TitaniumBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
@@ -56,116 +56,108 @@ public class TitaniumBlockLootTableProvider extends FabricBlockLootTableProvider
         addOnlyShearsOrSilkTouchDrop(WILDWOOD_BLISTER);
         addOnlyShearsOrSilkTouchDrop(BUNNY_CATCHER);
 
-        addDrop(WILDWOOD_LEAVES, wildwoodLeavesDrops(WILDWOOD_LEAVES, WILDWOOD_SAPLING, HARLIC));
+        add(WILDWOOD_LEAVES, wildwoodLeavesDrops(WILDWOOD_LEAVES, WILDWOOD_SAPLING, HARLIC));
 
-        addDrop(BLUE_VOLLON);
-        addDrop(RED_VOLLON);
-        addDrop(TENDON);
-        addDrop(BRAWN);
-        addDrop(GIANT_TOOTH);
-        addDrop(ROTTEN_SOD_BATCH);
-        addDrop(SOD_BATCH);
-        addDrop(SALT);
-        addDrop(SMALL_TEETH);
-        addDrop(ROTTEN_GIANT_TOOTH);
+        dropSelf(BLUE_VOLLON);
+        dropSelf(RED_VOLLON);
+        dropSelf(TENDON);
+        dropSelf(BRAWN);
+        dropSelf(GIANT_TOOTH);
+        dropSelf(ROTTEN_SOD_BATCH);
+        dropSelf(SOD_BATCH);
+        dropSelf(SALT);
+        dropSelf(SMALL_TEETH);
+        dropSelf(ROTTEN_GIANT_TOOTH);
 
-        addDrop(WILDWOOD_SAPLING);
-        addDrop(WILDWOOD_LOG);
-        addDrop(WILDWOOD_WOOD);
-        addDrop(STRIPPED_WILDWOOD_LOG);
-        addDrop(STRIPPED_WILDWOOD_WOOD);
-        addDrop(WILDWOOD_PLANKS);
-        addDrop(WILDWOOD_SLAB);
-        addDrop(WILDWOOD_STAIRS);
-        addDrop(WILDWOOD_BUTTON);
-        addDrop(WILDWOOD_PRESSURE_PLATE);
-        addDrop(WILDWOOD_DOOR, doorDrops(WILDWOOD_DOOR));
-        addDrop(WILDWOOD_TRAPDOOR);
-        addDrop(WILDWOOD_FENCE);
-        addDrop(WILDWOOD_FENCE_GATE);
+        dropSelf(WILDWOOD_SAPLING);
+        dropSelf(WILDWOOD_LOG);
+        dropSelf(WILDWOOD_WOOD);
+        dropSelf(STRIPPED_WILDWOOD_LOG);
+        dropSelf(STRIPPED_WILDWOOD_WOOD);
+        dropSelf(WILDWOOD_PLANKS);
+        dropSelf(WILDWOOD_SLAB);
+        dropSelf(WILDWOOD_STAIRS);
+        dropSelf(WILDWOOD_BUTTON);
+        dropSelf(WILDWOOD_PRESSURE_PLATE);
+        add(WILDWOOD_DOOR, createDoorTable(WILDWOOD_DOOR));
+        dropSelf(WILDWOOD_TRAPDOOR);
+        dropSelf(WILDWOOD_FENCE);
+        dropSelf(WILDWOOD_FENCE_GATE);
     }
 
     public void addClartDrop(Block block) {
-        this.addDrop(block, block1 -> this.drops(block1, CLART));
+        this.add(block, block1 -> this.createSingleItemTableWithSilkTouch(block1, CLART));
     }
 
     public void addShearsDrop(Block block) {
-        this.addDrop(block, dropsWithShears(block));
+        this.add(block, createShearsOnlyDrop(block));
     }
 
     public void addOnlyShearsOrSilkTouchDrop(Block block) {
-        this.addDrop(block, dropsOnlyWithSilkTouchOrShears(block));
+        this.add(block, dropsOnlyWithSilkTouchOrShears(block));
     }
 
-    public LootTable.Builder dropsOnlyWithSilkTouchOrShears(ItemConvertible drop) {
-        return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).conditionally(this.createWithShearsCondition().or(this.createSilkTouchCondition())).with(ItemEntry.builder(drop)));
+    public LootTable.Builder dropsOnlyWithSilkTouchOrShears(ItemLike drop) {
+        return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(this.createWithShearsCondition().or(this.hasSilkTouch())).add(LootItem.lootTableItem(drop)));
     }
 
-    public LootCondition.Builder createWithShearsCondition() {
+    public LootItemCondition.Builder createWithShearsCondition() {
         //? if 1.21.1 {
-        return MatchToolLootCondition.builder(ItemPredicate.Builder.create().items(Items.SHEARS));
+        return MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
         //?} else {
-        /*return super.createWithShearsCondition();
+        /*return super.hasShears();
         *///?}
     }
 
     public void addVollonDrop(Block block, int minAlveoli, int maxAlveoli, int minLigaments, int maxLigaments) {
-        this.addDrop(block, LootTable.builder()
-                .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1.0F))
-                        .conditionally(this.getWithSilkTouchOrShearsCondition())
-                        .with(ItemEntry.builder(block))
+        this.add(block, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .when(this.getWithSilkTouchOrShearsCondition())
+                        .add(LootItem.lootTableItem(block))
                 )
-                .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1.0F))
-                        .conditionally(this.getWithSilkTouchOrShearsCondition().invert())
-                        .with(this.applyExplosionDecay(
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .when(this.getWithSilkTouchOrShearsCondition().invert())
+                        .add(this.applyExplosionDecay(
                                 block,
-                                ItemEntry.builder(VOLLON_ALVEOLI)
-                                        .apply(SetCountLootFunction.builder(
-                                                UniformLootNumberProvider.create(minAlveoli, maxAlveoli)))
+                                LootItem.lootTableItem(VOLLON_ALVEOLI)
+                                        .apply(SetItemCountFunction.setCount(
+                                                UniformGenerator.between(minAlveoli, maxAlveoli)))
                         ))
                 )
-                .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1.0F))
-                        .conditionally(this.getWithSilkTouchOrShearsCondition().invert())
-                        .with(this.applyExplosionDecay(
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .when(this.getWithSilkTouchOrShearsCondition().invert())
+                        .add(this.applyExplosionDecay(
                                 block,
-                                ItemEntry.builder(VOLLON_LIGAMENTS)
-                                        .apply(SetCountLootFunction.builder(
-                                                UniformLootNumberProvider.create(minLigaments, maxLigaments)))
+                                LootItem.lootTableItem(VOLLON_LIGAMENTS)
+                                        .apply(SetItemCountFunction.setCount(
+                                                UniformGenerator.between(minLigaments, maxLigaments)))
                         ))
                 )
         );
     }
 
-    public LootCondition.Builder getWithSilkTouchOrShearsCondition() {
-        //? if 1.21.1 {
-        return this.createWithShearsOrSilkTouchCondition();
-         //?} else {
-        /*return this.createWithSilkTouchOrShearsCondition();
-        *///?}
+    public LootItemCondition.Builder getWithSilkTouchOrShearsCondition() {
+		return this.hasShearsOrSilkTouch();
     }
 
-    protected LootTable.Builder wildwoodLeavesDrops(Block leaves, Block sapling, ItemConvertible fruit) {
-        RegistryWrapper.Impl<Enchantment> impl = getRegistryWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-        return this.leavesDrops(leaves, sapling, SAPLING_DROP_CHANCE)
-                .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .conditionally(this.createWithoutShearsOrSilkTouchCondition())
-                                .with(
-                                        this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(fruit))
-                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+    protected LootTable.Builder wildwoodLeavesDrops(Block leaves, Block sapling, ItemLike fruit) {
+        HolderLookup.RegistryLookup<Enchantment> impl = getRegistryWrapperOrThrow(Registries.ENCHANTMENT);
+        return this.createLeavesDrops(leaves, sapling, NORMAL_LEAVES_SAPLING_CHANCES)
+                .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0F))
+                                .when(this.doesNotHaveShearsOrSilkTouch())
+                                .add(
+                                        this.applyExplosionCondition(leaves, LootItem.lootTableItem(fruit))
+                                                .when(BonusLevelTableCondition.bonusLevelFlatChance(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                                 )
                 );
     }
 
     @SuppressWarnings("SameParameterValue")
-    public  <T> RegistryWrapper.Impl<T> getRegistryWrapperOrThrow(RegistryKey<Registry<T>> registryKey) {
-        //? if 1.21.1 {
-        return this.registryLookup.getWrapperOrThrow(registryKey);
-        //?} else {
-        /*return this.registries.getOrThrow(registryKey);
-         *///?}
+    public <T> HolderLookup.RegistryLookup<T> getRegistryWrapperOrThrow(ResourceKey<Registry<T>> registryKey) {
+        return this.registries.lookupOrThrow(registryKey);
     }
 }

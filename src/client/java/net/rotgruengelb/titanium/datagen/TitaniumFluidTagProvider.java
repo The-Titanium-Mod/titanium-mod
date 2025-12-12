@@ -2,25 +2,26 @@ package net.rotgruengelb.titanium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.registry.tag.TagKey;
+
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.TagKey;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.registry.tag.TitaniumFluidTags;
 
 //? if 1.21.8 {
-/*import net.minecraft.data.tag.ProvidedTagBuilder;
+/*import net.minecraft.data.tags.TagAppender;
 *///?}
 
 import java.util.concurrent.CompletableFuture;
 
 public class TitaniumFluidTagProvider extends FabricTagProvider.FluidTagProvider {
 
-	public TitaniumFluidTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) { super(output, completableFuture); }
+	public TitaniumFluidTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) { super(output, completableFuture); }
 
 	@Override
-	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		//@formatter:off
         tagBuilder(TitaniumFluidTags.BLOOD).add(
 				TitaniumFluids.BLOOD,
@@ -40,7 +41,7 @@ public class TitaniumFluidTagProvider extends FabricTagProvider.FluidTagProvider
         return getOrCreateTagBuilder(tag);
     }
     //?} else {
-    /*protected ProvidedTagBuilder<Fluid, Fluid> tagBuilder(TagKey<Fluid> tag) {
+    /*protected TagAppender<Fluid, Fluid> tagBuilder(TagKey<Fluid> tag) {
         return super.valueLookupBuilder(tag);
     }
     *///?}
