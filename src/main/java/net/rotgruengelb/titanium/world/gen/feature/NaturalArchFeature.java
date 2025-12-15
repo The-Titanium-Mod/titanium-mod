@@ -1,13 +1,13 @@
 package net.rotgruengelb.titanium.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.rotgruengelb.titanium.world.gen.feature.config.NaturalArchFeatureConfig;
 
 import java.util.ArrayList;
@@ -19,30 +19,30 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
     }
 
     @Override
-    public boolean generate(FeatureContext<NaturalArchFeatureConfig> context) {
-        StructureWorldAccess world = context.getWorld();
-        BlockPos start = context.getOrigin();
-        Random random = context.getRandom();
-        NaturalArchFeatureConfig config = context.getConfig();
+    public boolean place(FeaturePlaceContext<NaturalArchFeatureConfig> context) {
+        WorldGenLevel world = context.level();
+        BlockPos start = context.origin();
+        RandomSource random = context.random();
+        NaturalArchFeatureConfig config = context.config();
 
-        if (!world.getBlockState(start).isIn(config.targetTag())) return false;
+        if (!world.getBlockState(start).is(config.targetTag())) return false;
 
-        int maxHoriz = config.horizontalDistance().getMax();
-        int maxVert = config.verticalDistance().getMax();
-        int minHoriz = config.horizontalDistance().getMin();
-        int minVert = config.verticalDistance().getMin();
+        int maxHoriz = config.horizontalDistance().getMaxValue();
+        int maxVert = config.verticalDistance().getMaxValue();
+        int minHoriz = config.horizontalDistance().getMinValue();
+        int minVert = config.verticalDistance().getMinValue();
 
         double minDistSq = minHoriz * minHoriz + minVert * minVert;
         double maxDistSq = maxHoriz * maxHoriz + maxVert * maxVert;
 
         List<BlockPos> candidates = new ArrayList<>();
 
-        BlockPos.iterateOutwards(start, maxHoriz, maxVert, maxHoriz).forEach(pos -> {
+        BlockPos.withinManhattan(start, maxHoriz, maxVert, maxHoriz).forEach(pos -> {
             if (pos.equals(start)) return;
-            double distSq = start.getSquaredDistance(pos);
+            double distSq = start.distSqr(pos);
             if (distSq >= minDistSq && distSq <= maxDistSq) {
-                if (world.getBlockState(pos).isIn(config.targetTag())) {
-                    candidates.add(pos.toImmutable());
+                if (world.getBlockState(pos).is(config.targetTag())) {
+                    candidates.add(pos.immutable());
                 }
             }
         });
@@ -55,7 +55,7 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
         return true;
     }
 
-    private void drawArch(StructureWorldAccess world, BlockPos posA, BlockPos posB, NaturalArchFeatureConfig config, Random random) {
+    private void drawArch(WorldGenLevel world, BlockPos posA, BlockPos posB, NaturalArchFeatureConfig config, RandomSource random) {
         int dx = posB.getX() - posA.getX();
         int dz = posB.getZ() - posA.getZ();
         double distance = Math.sqrt(dx * dx + dz * dz);
@@ -75,7 +75,7 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
             double yArch = -4 * archHeight * (t - 0.5) * (t - 0.5) + archHeight;
             double y = posA.getY() + (posB.getY() - posA.getY()) * t + yArch;
 
-            int thickness = 1 + random.nextInt(config.thickness().get(random));
+            int thickness = 1 + random.nextInt(config.thickness().sample(random));
             int px = (int) Math.round(x) + random.nextInt(2) - 1;
             int pz = (int) Math.round(z) + random.nextInt(2) - 1;
             int py = (int) Math.round(y) + random.nextInt(2) - 1;
@@ -100,24 +100,24 @@ public class NaturalArchFeature extends Feature<NaturalArchFeatureConfig> {
                     int iy = (int) Math.round(lastCore.getY() + (core.getY() - lastCore.getY()) * lerp);
                     int iz = (int) Math.round(lastCore.getZ() + (core.getZ() - lastCore.getZ()) * lerp);
                     BlockPos fillPos = new BlockPos(ix, iy, iz);
-                    world.setBlockState(fillPos, config.block().get(random, fillPos), Block.NOTIFY_LISTENERS);
+                    world.setBlock(fillPos, config.block().getState(random, fillPos), Block.UPDATE_CLIENTS);
                 }
             }
             lastCore = core;
         }
     }
 
-    private void placeAndDecorate(StructureWorldAccess world, NaturalArchFeatureConfig config, Random random, BlockPos pos) {
-        world.setBlockState(pos, config.block().get(random, pos), Block.NOTIFY_LISTENERS);
+    private void placeAndDecorate(WorldGenLevel world, NaturalArchFeatureConfig config, RandomSource random, BlockPos pos) {
+        world.setBlock(pos, config.block().getState(random, pos), Block.UPDATE_CLIENTS);
 
-        BlockPos above = pos.up();
+        BlockPos above = pos.above();
         if (config.topDecorator() != null && isAirAt(world, above)) {
-            BlockState topState = config.topDecorator().get(random, above);
-            world.setBlockState(above, topState, Block.NOTIFY_LISTENERS);
+            BlockState topState = config.topDecorator().getState(random, above);
+            world.setBlock(above, topState, Block.UPDATE_CLIENTS);
         }
     }
 
-    private static boolean isAirAt(StructureWorldAccess world, BlockPos pos) {
+    private static boolean isAirAt(WorldGenLevel world, BlockPos pos) {
         try {
             return world.getBlockState(pos).isAir();
         } catch (Exception e) {

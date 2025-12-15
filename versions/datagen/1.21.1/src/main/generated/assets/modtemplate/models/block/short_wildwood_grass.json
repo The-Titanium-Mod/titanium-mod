@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "modtemplate:block/short_wildwood_grass"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "type": "modtemplate:hanging_blob",
+  "config": {
+    "block": {
+      "entries": [
+        {
+          "data": {
+            "Name": "modtemplate:salt"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "bottom_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 14
+        },
+        {
+          "data": {
+            "Name": "modtemplate:salt"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "target_tag": "#modtemplate:wildwood_terrain",
+    "top_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 24
+        },
+        {
+          "data": {
+            "Name": "modtemplate:salt"
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

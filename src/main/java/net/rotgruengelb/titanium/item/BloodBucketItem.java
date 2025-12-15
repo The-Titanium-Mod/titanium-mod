@@ -1,78 +1,81 @@
 package net.rotgruengelb.titanium.item;
 
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.*;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 //? if 1.21.1 {
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-//?}
+/*import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.item.UseAnim;
+*///?}
 
 public class BloodBucketItem extends BucketItem {
     private static final int MAX_USE_TIME = 120; // 6 seconds
 
-    public BloodBucketItem(Fluid fluid, Settings settings) {
+    public BloodBucketItem(Fluid fluid, Properties settings) {
         super(fluid, settings);
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        super.finishUsing(stack, world, user);
-        if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+        super.finishUsingItem(stack, world, user);
+        if (user instanceof ServerPlayer serverPlayerEntity) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
+            serverPlayerEntity.awardStat(Stats.ITEM_USED.get(this));
         }
 
         //? if 1.21.1 {
-        if (user instanceof PlayerEntity playerEntity) {
-            return ItemUsage.exchangeStack(stack, playerEntity, new ItemStack(Items.BUCKET), false);
+        /*if (user instanceof Player playerEntity) {
+            return ItemUtils.createFilledResult(stack, playerEntity, new ItemStack(Items.BUCKET), false);
         } else {
-            stack.decrementUnlessCreative(1, user);
+            stack.consume(1, user);
             return stack;
         }
-        //?} else {
-        /*return stack;
-         *///?}
+        *///?} else {
+        return stack;
+         //?}
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+    public int getUseDuration(ItemStack stack, LivingEntity user) {
         return MAX_USE_TIME;
     }
 
     //? if 1.21.1 {
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
+    /*@Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.DRINK;
     }
-     //?}
+     *///?}
 
     @Override
     //? if 1.21.1 {
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-    //?} else {
-    /*public ActionResult use(World world, PlayerEntity user, Hand hand) {
-    *///?}
+    /*public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+    *///?} else {
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
+    //?}
         // try to use the bucket as a normal item first
         var result = super.use(world, user, hand);
         boolean resultAccepted = //? if 1.21.1 {
-                result.getResult().isAccepted(); //?} else {
-                /*result.isAccepted(); *///?}
+                /*result.getResult().consumesAction(); *///?} else {
+                result.consumesAction(); //?}
 
         // if accepted and user not sneaking return result
-        if (resultAccepted || !user.isSneaking()) {
+        if (resultAccepted || !user.isShiftKeyDown()) {
             return result;
         }
 
         // other start consuming the item
-        user.setCurrentHand(hand);
-        return ItemUsage.consumeHeldItem(world, user, hand);
+        user.startUsingItem(hand);
+        return ItemUtils.startUsingInstantly(world, user, hand);
     }
 }

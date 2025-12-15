@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "modtemplate:block/wildwood_slab"
+    },
+    "type=double": {
+      "model": "modtemplate:block/wildwood_planks"
+    },
+    "type=top": {
+      "model": "modtemplate:block/wildwood_slab_top"
+    }
+  }
+}

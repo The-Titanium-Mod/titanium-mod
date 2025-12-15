@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "modtemplate:block/stripped_wildwood_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "modtemplate:block/stripped_wildwood_wood"
+    },
+    "axis=z": {
+      "model": "modtemplate:block/stripped_wildwood_wood",
+      "x": 90
+    }
+  }
+}

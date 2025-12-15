@@ -1,46 +1,39 @@
 {
   "schemaVersion": 1,
   "id": "${id}",
-  "version": "${version}+${mc_title}",
   "name": "${name}",
-  "description": "A mod that expands upon the End with three diverse and expansive biomes. Delve into the roots of the universe, whether it be flora or code.",
-  "authors": [
-    "NanoBotΣ",
-    "rotgruengelb",
-    "Steaf23"
-  ],
-  "contributors": [
-    "Oddity2004"
-  ],
+  "version": "${version}",
+  "authors": ["${authors}"],
+  "contributors": ["${contributors}"],
   "contact": {
-    "homepage": "",
-    "sources": "https://github.com/The-Titanium-Mod/titanium-mod"
+    "sources": "${sources_url}",
+    "issues": "${issues_url}",
+    "homepage": "${homepage_url}"
   },
-  "license": "ARR",
-  "icon": "assets/titanium/icon.png",
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "${discord_url}"
+      }
+    }
+  },
+  "description": "${description}",
+  "icon": "assets/icon.png",
+  "license": "${license}",
   "environment": "*",
-  "accessWidener": "titanium.accesswidener",
+  "accessWidener": "aw/${minecraft}.accesswidener",
   "entrypoints": {
     "main": [
-      "net.rotgruengelb.titanium.Titanium"
+      "${group}.${id}.platform.fabric.FabricEntrypoint"
     ],
     "client": [
-      "net.rotgruengelb.titanium.TitaniumClient"
+      "${group}.${id}.platform.fabric.FabricClientEntrypoint"
     ],
     "fabric-datagen": [
-      "net.rotgruengelb.titanium.datagen.TitaniumDataGenerator"
+      "${group}.${id}.platform.fabric.datagen.FabricDataGeneratorEntrypoint"
     ]
   },
   "mixins": [
-    "titanium.mixins.json",
-    {
-      "config": "titanium.client.mixins.json",
-      "environment": "client"
-    }
-  ],
-  "depends": {
-    "fabricloader": ">=0.15",
-    "minecraft": "${mcdep}",
-    "fabric-api": "*"
-  }
+    "${id}.mixins.json"
+  ],${dependencies}
 }

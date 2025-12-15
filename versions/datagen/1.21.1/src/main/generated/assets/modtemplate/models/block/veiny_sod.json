@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "modtemplate:block/veiny_clart",
+    "side": "modtemplate:block/veiny_sod_side",
+    "top": "modtemplate:block/veiny_sod_top"
+  }
+}

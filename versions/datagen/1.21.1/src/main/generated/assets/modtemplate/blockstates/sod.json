@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "modtemplate:block/sod"
+      },
+      {
+        "model": "modtemplate:block/sod",
+        "y": 90
+      },
+      {
+        "model": "modtemplate:block/sod",
+        "y": 180
+      },
+      {
+        "model": "modtemplate:block/sod",
+        "y": 270
+      }
+    ]
+  }
+}

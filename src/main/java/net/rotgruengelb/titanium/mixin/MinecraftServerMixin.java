@@ -1,14 +1,14 @@
 package net.rotgruengelb.titanium.mixin;
 
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
+import dev.kikugie.fletching_table.annotation.MixinEnvironment;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.WorldGenerationProgressListener;
-import net.minecraft.world.dimension.DimensionOptions;
-import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
-import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
-import net.minecraft.world.gen.surfacebuilder.MaterialRules;
+import net.minecraft.server.level.progress.ChunkProgressListener;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.world.gen.surfacebuilder.TitaniumSurfaceRules;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,27 +18,26 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
+@MixinEnvironment(type = MixinEnvironment.Env.MAIN)
 public abstract class MinecraftServerMixin {
     @Shadow
-    public abstract DynamicRegistryManager.Immutable getRegistryManager();
+    public abstract RegistryAccess.Frozen registryAccess();
 
-    @Inject(at = @At("TAIL"), method = "createWorlds")
-    private void addSurfaceRules(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
+    @Inject(at = @At("TAIL"), method = "createLevels")
+    private void addSurfaceRules(ChunkProgressListener worldGenerationProgressListener, CallbackInfo ci) {
         Titanium.LOGGER.debug("Adding Surface Rules");
-        Registry<DimensionOptions> value =
+		LevelStem dimensionOptions =
                 //? if 1.21.1 {
-                getRegistryManager().get(RegistryKeys.DIMENSION);
-                 //?} else {
-                /*getRegistryManager().getOrThrow(RegistryKeys.DIMENSION);
-                *///?}
-        DimensionOptions dimensionOptions = value.get(DimensionOptions.END);
-
-        if (dimensionOptions != null && dimensionOptions.chunkGenerator() instanceof NoiseChunkGenerator generator) {
-            ChunkGeneratorSettings settings = generator.getSettings().value();
+                /*registryAccess().registryOrThrow(Registries.LEVEL_STEM).get(LevelStem.END);
+                 *///?} else {
+                registryAccess().lookupOrThrow(Registries.LEVEL_STEM).getValue(LevelStem.END);
+                //?}
+        if (dimensionOptions != null && dimensionOptions.generator() instanceof NoiseBasedChunkGenerator generator) {
+            NoiseGeneratorSettings settings = generator.generatorSettings().value();
             ChunkGeneratorSettingsAccessor accessor = (ChunkGeneratorSettingsAccessor) (Object) settings;
 
             if (accessor == null) return;
-            accessor.setSurfaceRule(MaterialRules.sequence(TitaniumSurfaceRules.createTitaniumEndSurfaceRule(), settings.surfaceRule()));
+            accessor.setSurfaceRule(SurfaceRules.sequence(TitaniumSurfaceRules.createTitaniumEndSurfaceRule(), settings.surfaceRule()));
         }
     }
 

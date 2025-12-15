@@ -2,8 +2,8 @@ package net.rotgruengelb.titanium.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
-import net.minecraft.block.BlockSetType;
-import net.minecraft.block.WoodType;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.rotgruengelb.titanium.Titanium;
 
 public class TitaniumBlockTypes {

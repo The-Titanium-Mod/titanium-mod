@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "modtemplate:block/wildwood_planks",
+    "side": "modtemplate:block/wildwood_planks",
+    "top": "modtemplate:block/wildwood_planks"
+  }
+}
