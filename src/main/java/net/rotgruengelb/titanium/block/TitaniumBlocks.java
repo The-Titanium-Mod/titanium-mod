@@ -30,8 +30,8 @@ import net.rotgruengelb.titanium.item.TitaniumItems;
 
 //? if 1.21.8 {
 
-/*import net.minecraft.world.level.block.TintedParticleLeavesBlock;
- *///?}
+import net.minecraft.world.level.block.TintedParticleLeavesBlock;
+ //?}
 
 import java.util.function.Function;
 
@@ -215,8 +215,8 @@ public class TitaniumBlocks {
 
     private static Block block(ResourceKey<Block> key, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties settings) {
         //? if 1.21.8 {
-        /*settings = settings.setId(key);
-         *///?}
+        settings = settings.setId(key);
+         //?}
         Block block = factory.apply(settings);
         return Registry.register(BuiltInRegistries.BLOCK, key, block);
     }
@@ -252,10 +252,10 @@ public class TitaniumBlocks {
     @SuppressWarnings({"unused", "SameParameterValue"})
     private static LeavesBlock createLeavesBlock(float leafParticleChance, BlockBehaviour.Properties settings) {
         //? if 1.21.8 {
-        /*return new TintedParticleLeavesBlock(leafParticleChance, settings);
-         *///?} else {
-        return new LeavesBlock(settings);
-        //?}
+        return new TintedParticleLeavesBlock(leafParticleChance, settings);
+         //?} else {
+        /*return new LeavesBlock(settings);
+        *///?}
     }
 
     @SuppressWarnings("SameParameterValue")

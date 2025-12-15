@@ -16,9 +16,9 @@ import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 
 //? if 1.21.8 {
-/*import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
- *///?}
+ //?}
 
 import java.util.function.Function;
 
@@ -48,8 +48,8 @@ public class TitaniumItems {
 
     public static Item item(ResourceKey<Item> key, Function<Item.Properties, Item> factory, Item.Properties settings) {
         //? if 1.21.8 {
-        /*settings = settings.setId(key);
-        *///?}
+        settings = settings.setId(key);
+        //?}
         Item item = factory.apply(settings);
         if (item instanceof BlockItem blockItem) {
             blockItem.registerBlocks(Item.BY_BLOCK, item);
@@ -60,10 +60,10 @@ public class TitaniumItems {
 
     public static Item.Properties blockItemSettingFor(Block block) {
         //? if 1.21.8 {
-        /*return blockItemSettings().overrideDescription(block.getDescriptionId());
-         *///?} else {
-        return settings();
-        //?}
+        return blockItemSettings().overrideDescription(block.getDescriptionId());
+         //?} else {
+        /*return settings();
+        *///?}
     }
 
     private static Item.Properties createBloodBucketItemSettings() {
@@ -72,18 +72,18 @@ public class TitaniumItems {
                 .stacksTo(1);
          FoodProperties.Builder foodBuilder = new FoodProperties.Builder().alwaysEdible().nutrition(1).saturationModifier(0);
         //? if 1.21.1 {
-        settings.food(
+        /*settings.food(
                 foodBuilder.effect(
                         new MobEffectInstance(MobEffects.CONFUSION, 600, 0), 1.0F
                 ).build()
         );
-        //?} else {
-        /*settings.food(foodBuilder.build(), Consumables.defaultDrink()
+        *///?} else {
+        settings.food(foodBuilder.build(), Consumables.defaultDrink()
                         .consumeSeconds(6.0F)
                         .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA, 600, 0), 1.0F))
                         .build())
                 .usingConvertsTo(Items.BUCKET);
-        *///?}
+        //?}
         return settings;
     }
 

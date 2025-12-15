@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "modtemplate:block/vollon_bronchi"
+  }
+}

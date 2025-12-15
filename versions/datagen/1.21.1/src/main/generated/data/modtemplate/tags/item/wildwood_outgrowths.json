@@ -1,0 +1,11 @@
+{
+  "values": [
+    "modtemplate:wildwood_blister",
+    "modtemplate:short_wildwood_grass",
+    "modtemplate:tall_wildwood_grass",
+    "modtemplate:wildwood_lumen",
+    "modtemplate:rotten_wildwood_grass",
+    "modtemplate:rotting_wildwood_grass",
+    "#modtemplate:teeth"
+  ]
+}

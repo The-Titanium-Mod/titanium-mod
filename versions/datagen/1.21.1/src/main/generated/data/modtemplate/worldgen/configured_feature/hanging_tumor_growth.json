@@ -1,0 +1,105 @@
+{
+  "type": "modtemplate:hanging_blob",
+  "config": {
+    "block": {
+      "entries": [
+        {
+          "data": {
+            "Name": "modtemplate:rotten_sod_batch"
+          },
+          "weight": 7
+        },
+        {
+          "data": {
+            "Name": "modtemplate:brawn"
+          },
+          "weight": 9
+        },
+        {
+          "data": {
+            "Name": "modtemplate:red_vollon"
+          },
+          "weight": 4
+        },
+        {
+          "data": {
+            "Name": "modtemplate:blue_vollon"
+          },
+          "weight": 5
+        },
+        {
+          "data": {
+            "Name": "modtemplate:tendon"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "modtemplate:wildwood_wood",
+            "Properties": {
+              "axis": "y"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "bottom_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 8
+        },
+        {
+          "data": {
+            "Name": "modtemplate:veiny_clart"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "modtemplate:hanging_tendon"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "target_tag": "#modtemplate:wildwood_terrain",
+    "top_decorator": {
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 7
+        },
+        {
+          "data": {
+            "Name": "modtemplate:small_teeth"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "modtemplate:vollon_bronchi"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "modtemplate:vollon_strings"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "modtemplate:vollon_noodles"
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_left",
-  "textures": {
-    "bottom": "titanium:block/wildwood_door_bottom",
-    "top": "titanium:block/wildwood_door_top"
-  }
-}

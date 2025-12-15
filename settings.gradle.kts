@@ -1,24 +1,35 @@
 pluginManagement {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-        maven("https://maven.fabricmc.net/")
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		gradlePluginPortal()
+		maven("https://maven.fabricmc.net/") { name = "Fabric" }
+		maven("https://maven.neoforged.net/releases/") { name = "NeoForged" }
 		maven("https://maven.kikugie.dev/snapshots") { name = "KikuGie Snapshots" }
-    }
+		maven("https://maven.kikugie.dev/releases") { name = "KikuGie Releases" }
+		maven("https://maven.parchmentmc.org") { name = "ParchmentMC" }
+		maven("https://jitpack.io") { name = "Jitpack" }
+		exclusiveContent {
+			forRepository { maven("https://api.modrinth.com/maven") { name = "Modrinth" } }
+			filter { includeGroup("maven.modrinth") }
+		}
+	}
+	includeBuild("build-logic")
 }
 
 plugins {
-	id("dev.kikugie.stonecutter") version "0.7.10"
+	id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+	id("dev.kikugie.stonecutter") version "0.8-alpha.13"
 }
 
 stonecutter {
-    kotlinController = true
-    centralScript = "build.gradle.kts"
+	create(rootProject) {
+		fun match(version: String, vararg loaders: String) =
+			loaders.forEach { version("$version-$it", version).buildscript = "build.$it.gradle.kts" }
 
-    create(rootProject) {
-        versions("1.21.1", "1.21.8")
-        vcsVersion  = "1.21.1"
-    }
+		match("1.21.8", "fabric"/*, "neoforge"*/)
+		match("1.21.1", "fabric"/*, "neoforge"*/)
+
+		vcsVersion = "1.21.8-fabric"
+	}
 }
-
-rootProject.name = "Titanium"

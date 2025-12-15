@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "modtemplate:block/wildwood_lumen"
+  }
+}

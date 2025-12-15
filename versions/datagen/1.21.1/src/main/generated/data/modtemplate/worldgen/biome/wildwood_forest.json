@@ -1,0 +1,71 @@
+{
+  "carvers": {},
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 10518688,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 0,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [
+      "modtemplate:hanging_salt_crystal",
+      "modtemplate:hanging_tumor_growth"
+    ],
+    [],
+    [
+      "minecraft:end_gateway_return",
+      "modtemplate:blue_vollon_arch",
+      "modtemplate:red_vollon_arch",
+      "modtemplate:tendon_arch"
+    ],
+    [],
+    [
+      "modtemplate:tendon_veins"
+    ],
+    [],
+    [],
+    [
+      "modtemplate:patch_wildwood_grass",
+      "modtemplate:patch_wildwood_blister",
+      "modtemplate:patch_tall_wildwood_grass",
+      "modtemplate:patch_wild_rotten_wildwood_grass",
+      "modtemplate:patch_wildwood_grass_depths",
+      "modtemplate:patch_wildwood_grass_mid_depths",
+      "modtemplate:patch_wildwood_wild_outgrowths",
+      "modtemplate:wildwood_trees",
+      "modtemplate:wildwood_trees_depths",
+      "modtemplate:wildwood_trees_mid_depths",
+      "modtemplate:patch_wildwood_grass_forest",
+      "modtemplate:patch_wildwood_lumen_forest"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.5
+}

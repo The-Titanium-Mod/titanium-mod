@@ -35,15 +35,15 @@ import net.rotgruengelb.titanium.world.gen.feature.config.NaturalArchFeatureConf
 import net.rotgruengelb.titanium.world.gen.feature.config.TerrainDecorationFeatureConfig;
 import net.rotgruengelb.titanium.world.gen.feature.config.UndergroundVeinsFeatureConfig;
 
+
+
 //? if 1.21.1 {
-import net.minecraft.util.random.SimpleWeightedRandomList;
+/*import net.minecraft.util.random.SimpleWeightedRandomList;
+*///?} else {
+import net.minecraft.util.random.WeightedList;
+//?}
 
 import static net.rotgruengelb.titanium.util.CommonVersioned.getDirectionUnitVec3i;
-//?} else {
-/*import net.minecraft.util.random.WeightedList;
-
-import static net.rotgruengelb.titanium.util.TUtil.getDirectionUnitVec3i;
-*///?}
 
 public class TitaniumConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILDWOOD_TREE = configuredFeature("wildwood_tree");
@@ -327,12 +327,12 @@ public class TitaniumConfiguredFeatures {
     }
 
     //? if 1.21.1 {
-    private static SimpleWeightedRandomList.Builder<BlockState> createBlockStatePool() {
+    /*private static SimpleWeightedRandomList.Builder<BlockState> createBlockStatePool() {
         return SimpleWeightedRandomList.builder();
     }
-    //?} else {
-    /*private static WeightedList.Builder<BlockState> createBlockStatePool() {
+    *///?} else {
+    private static WeightedList.Builder<BlockState> createBlockStatePool() {
         return WeightedList.builder();
     }
-    *///?}
+    //?}
 }

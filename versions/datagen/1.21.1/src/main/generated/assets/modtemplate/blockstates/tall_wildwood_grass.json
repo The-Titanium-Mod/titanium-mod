@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "modtemplate:block/tall_wildwood_grass_bottom"
+    },
+    "half=upper": {
+      "model": "modtemplate:block/tall_wildwood_grass_top"
+    }
+  }
+}

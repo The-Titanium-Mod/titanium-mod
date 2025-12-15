@@ -15,7 +15,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.rotgruengelb.titanium.Titanium;
 import net.rotgruengelb.titanium.registry.tag.TitaniumBlockTags;
 
 public abstract class AbstractClartTopSoilBlock extends Block implements BonemealableBlock {
@@ -33,10 +32,10 @@ public abstract class AbstractClartTopSoilBlock extends Block implements Bonemea
             return false;
         } else {
             //? if 1.21.1 {
-            int i = LightEngine.getLightBlockInto(world, state, pos, blockState, blockPos, Direction.UP, blockState.getLightBlock(world, blockPos));
-             //?} else {
-            /*int i = LightEngine.getLightBlockInto(state, blockState, Direction.UP, blockState.getLightBlock());
-            *///?}
+            /*int i = LightEngine.getLightBlockInto(world, state, pos, blockState, blockPos, Direction.UP, blockState.getLightBlock(world, blockPos));
+             *///?} else {
+            int i = LightEngine.getLightBlockInto(state, blockState, Direction.UP, blockState.getLightBlock());
+            //?}
             return i < 15;
         }
     }
@@ -63,24 +62,24 @@ public abstract class AbstractClartTopSoilBlock extends Block implements Bonemea
         BlockPos blockPos = pos.above();
         ChunkGenerator chunkGenerator = world.getChunkSource().getGenerator();
         //? if 1.21.1 {
-        Registry<ConfiguredFeature<?, ?>> registry = world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE);
-         //?} else {
-        /*Registry<ConfiguredFeature<?, ?>> registry = world.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE);
-        *///?}
+        /*Registry<ConfiguredFeature<?, ?>> registry = world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE);
+         *///?} else {
+        Registry<ConfiguredFeature<?, ?>> registry = world.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE);
+        //?}
         this.generateGrowFeatures(registry, world, chunkGenerator, random, blockPos);
     }
 
     public abstract void generateGrowFeatures(Registry<ConfiguredFeature<?, ?>> registry, ServerLevel world, ChunkGenerator chunkGenerator, RandomSource random, BlockPos pos);
 
     //? if 1.21.8 {
-    /*public void generateFeature(Registry<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, ServerLevel world, ChunkGenerator chunkGenerator, RandomSource random, BlockPos pos) {
+    public void generateFeature(Registry<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, ServerLevel world, ChunkGenerator chunkGenerator, RandomSource random, BlockPos pos) {
         registry.getOptional(key).ifPresent(entry -> entry.place(world, chunkGenerator, random, pos));
     }
-    *///?} else {
-    public void generateFeature(Registry<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, ServerLevel world, ChunkGenerator chunkGenerator, RandomSource random, BlockPos pos) {
+    //?} else {
+    /*public void generateFeature(Registry<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, ServerLevel world, ChunkGenerator chunkGenerator, RandomSource random, BlockPos pos) {
         registry.getHolder(key).ifPresent((entry) -> entry.value().place(world, chunkGenerator, random, pos));
     }
-    //?}
+    *///?}
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {

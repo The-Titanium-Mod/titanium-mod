@@ -14,9 +14,9 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 //? if 1.21.1 {
-import net.minecraft.world.InteractionResultHolder;
+/*import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.UseAnim;
-//?}
+*///?}
 
 public class BloodBucketItem extends BucketItem {
     private static final int MAX_USE_TIME = 120; // 6 seconds
@@ -34,15 +34,15 @@ public class BloodBucketItem extends BucketItem {
         }
 
         //? if 1.21.1 {
-        if (user instanceof Player playerEntity) {
+        /*if (user instanceof Player playerEntity) {
             return ItemUtils.createFilledResult(stack, playerEntity, new ItemStack(Items.BUCKET), false);
         } else {
             stack.consume(1, user);
             return stack;
         }
-        //?} else {
-        /*return stack;
-         *///?}
+        *///?} else {
+        return stack;
+         //?}
     }
 
     @Override
@@ -51,23 +51,23 @@ public class BloodBucketItem extends BucketItem {
     }
 
     //? if 1.21.1 {
-    @Override
+    /*@Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.DRINK;
     }
-     //?}
+     *///?}
 
     @Override
     //? if 1.21.1 {
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-    //?} else {
-    /*public InteractionResult use(Level world, Player user, InteractionHand hand) {
-    *///?}
+    /*public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+    *///?} else {
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
+    //?}
         // try to use the bucket as a normal item first
         var result = super.use(world, user, hand);
         boolean resultAccepted = //? if 1.21.1 {
-                result.getResult().consumesAction(); //?} else {
-                /*result.consumesAction(); *///?}
+                /*result.getResult().consumesAction(); *///?} else {
+                result.consumesAction(); //?}
 
         // if accepted and user not sneaking return result
         if (resultAccepted || !user.isShiftKeyDown()) {

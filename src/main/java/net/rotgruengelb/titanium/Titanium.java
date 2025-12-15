@@ -1,6 +1,5 @@
 package net.rotgruengelb.titanium;
 
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -11,6 +10,8 @@ import net.rotgruengelb.titanium.block.TitaniumBlocks;
 import net.rotgruengelb.titanium.fluid.TitaniumFluids;
 import net.rotgruengelb.titanium.item.TitaniumItemGroups;
 import net.rotgruengelb.titanium.item.TitaniumItems;
+import net.rotgruengelb.titanium.platform.Platform;
+import net.rotgruengelb.titanium.platform.fabric.FabricPlatform;
 import net.rotgruengelb.titanium.registry.TitaniumGameplayContent;
 import net.rotgruengelb.titanium.world.TitaniumGameRules;
 import net.rotgruengelb.titanium.world.biome.TitaniumBiomes;
@@ -20,39 +21,64 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Titanium implements ModInitializer {
+//? fabric {
 
-    public static final String MOD_ID = "titanium";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public static final String VERSION = /*$ mod_version*/ "0.1.0";
+//?} neoforge {
+/*import com.example.modtemplate.platform.neoforge.NeoforgePlatform;
+ *///?}
 
-    public static @NotNull ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
-    }
+@SuppressWarnings("LoggingSimilarMessage")
+public class Titanium {
 
-    @Override
-    public void onInitialize() {
+	public static final String MOD_ID = /*$ mod_id*/ "titanium";
+	public static final String MOD_VERSION = /*$ mod_version*/ "0.1.0";
+	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Titanium";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-        TitaniumItems.initialize();
-        TitaniumBlocks.initialize();
-        TitaniumFluids.initialize();
-        TitaniumGameRules.initialize();
-        TitaniumItemGroups.initialize();
-        TitaniumGameplayContent.initialize();
+	private static final Platform PLATFORM = createPlatformInstance();
 
-        // Worldgen
-        TitaniumBiomes.initialize();
-        TitaniumDensityFunctionTypes.initialize();
-        TitaniumFeatures.initialize();
+	public static void onInitialize() {
+		LOGGER.info("Initializing {} on {}", MOD_ID, Titanium.xplat().loader());
 
-        FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
-            registerBuiltinResourcePack(modContainer, "new_terrain", ResourcePackActivationType.DEFAULT_ENABLED);
-        });
+		TitaniumItems.initialize();
+		TitaniumBlocks.initialize();
+		TitaniumFluids.initialize();
+		TitaniumGameRules.initialize();
+		TitaniumItemGroups.initialize();
+		TitaniumGameplayContent.initialize();
 
-        LOGGER.debug("{} ({}) has been initialized!", MOD_ID, VERSION);
-    }
+		// Worldgen
+		TitaniumBiomes.initialize();
+		TitaniumDensityFunctionTypes.initialize();
+		TitaniumFeatures.initialize();
 
-    static void registerBuiltinResourcePack(ModContainer modContainer, String path, ResourcePackActivationType activationType) {
-        ResourceManagerHelper.registerBuiltinResourcePack(Titanium.id(path), modContainer, Component.translatable("pack.titanium." + path), activationType);
-    }
+		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
+			registerBuiltinResourcePack(modContainer, "new_terrain", ResourcePackActivationType.DEFAULT_ENABLED);
+		});
+	}
+
+	public static void onInitializeClient() {
+		LOGGER.info("Initializing {} Client on {}", MOD_ID, Titanium.xplat().loader());
+		LOGGER.debug("{}: { version: {}; friendly_name: {} }", MOD_ID, MOD_VERSION, MOD_FRIENDLY_NAME);
+	}
+
+	public static @NotNull ResourceLocation id(String path) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+	}
+
+	static void registerBuiltinResourcePack(ModContainer modContainer, String path, ResourcePackActivationType activationType) {
+		ResourceManagerHelper.registerBuiltinResourcePack(Titanium.id(path), modContainer, Component.translatable("pack.titanium." + path), activationType);
+	}
+
+	static Platform xplat() {
+		return PLATFORM;
+	}
+
+	private static Platform createPlatformInstance() {
+		//? fabric {
+		return new FabricPlatform();
+		//?} neoforge {
+		/*return new NeoforgePlatform();
+		 *///?}
+	}
 }

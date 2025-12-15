@@ -1,11 +1,10 @@
 package net.rotgruengelb.titanium.mixin;
 
+import dev.kikugie.fletching_table.annotation.MixinEnvironment;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.progress.ChunkProgressListener;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
@@ -19,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
+@MixinEnvironment(type = MixinEnvironment.Env.MAIN)
 public abstract class MinecraftServerMixin {
     @Shadow
     public abstract RegistryAccess.Frozen registryAccess();
@@ -28,10 +28,10 @@ public abstract class MinecraftServerMixin {
         Titanium.LOGGER.debug("Adding Surface Rules");
 		LevelStem dimensionOptions =
                 //? if 1.21.1 {
-                registryAccess().registryOrThrow(Registries.LEVEL_STEM).get(LevelStem.END);
-                 //?} else {
-                /*registryAccess().lookupOrThrow(Registries.LEVEL_STEM).getValue(LevelStem.END);
-                *///?}
+                /*registryAccess().registryOrThrow(Registries.LEVEL_STEM).get(LevelStem.END);
+                 *///?} else {
+                registryAccess().lookupOrThrow(Registries.LEVEL_STEM).getValue(LevelStem.END);
+                //?}
         if (dimensionOptions != null && dimensionOptions.generator() instanceof NoiseBasedChunkGenerator generator) {
             NoiseGeneratorSettings settings = generator.generatorSettings().value();
             ChunkGeneratorSettingsAccessor accessor = (ChunkGeneratorSettingsAccessor) (Object) settings;

@@ -38,10 +38,10 @@ public abstract class BloodFluid extends FlowingFluid {
 
     @Override
     //? if 1.21.1 {
-    protected boolean canConvertToSource(Level world) {
-    //?} else {
-    /*protected boolean canConvertToSource(ServerLevel world) {
-    *///?}
+    /*protected boolean canConvertToSource(Level world) {
+    *///?} else {
+    protected boolean canConvertToSource(ServerLevel world) {
+    //?}
 		return world.getGameRules()
 				.getBoolean(TitaniumGameRules.BLOOD_SOURCE_CONVERSION);
 	}
